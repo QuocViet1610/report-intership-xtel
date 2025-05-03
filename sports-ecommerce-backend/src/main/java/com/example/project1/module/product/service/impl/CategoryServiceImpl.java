@@ -73,9 +73,9 @@ public class CategoryServiceImpl implements CategoryService {
         }
         request.setName(request.getName().trim());
         if (isCreated) {
-            Optional<Category> existingCategory = categoryRepository.findByName(request.getName());
-            if (existingCategory.isPresent() &&
-                    request.getName().equalsIgnoreCase(existingCategory.get().getName()) ) {
+            List<Category> existingCategory = categoryRepository.findByName(request.getName());
+            if (existingCategory.size() > 1 &&
+                    request.getName().equalsIgnoreCase(existingCategory.get(1).getName()) ) {
                 throw new ValidateException(Translator.toMessage("Thể loại đã tồn tại"));
             }
         } else {
