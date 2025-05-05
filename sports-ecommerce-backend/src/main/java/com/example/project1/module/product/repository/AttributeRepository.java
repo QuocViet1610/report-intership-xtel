@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AttributeRepository extends JpaRepository<Attribute, Long>, JpaSpecificationExecutor<Attribute> {
-    Optional<Attribute> findByName(String name);
+    Optional<Attribute> findByNameIgnoreCase(String name);
 
-    Optional<Attribute> findByNameAndIdNot(String name, Long id);
+
+    Optional<Attribute> findByNameIgnoreCaseAndIdNot(String name, Long id);
+
 
     @Query("SELECT MAX(a.displayOrder) FROM Attribute a")
     Optional<Integer> findMaxDisplayOrder();

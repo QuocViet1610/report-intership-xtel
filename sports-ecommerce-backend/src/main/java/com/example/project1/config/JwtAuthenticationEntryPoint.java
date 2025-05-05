@@ -20,7 +20,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.addHeader("Content-Type", "application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(response.getOutputStream(), ResponseResult.unAuthorization("ban không có đủ quyền"));
+        objectMapper.writeValue(response.getOutputStream(), ResponseResult.unAuthorization("Không đủ quyền"));
         response.flushBuffer();
     }
 }

@@ -6,15 +6,16 @@ import com.example.project1.mapper.product.AttributeMapper;
 import com.example.project1.mapper.product.AttributeValueMapper;
 import com.example.project1.model.dto.product.AttributeDto;
 import com.example.project1.model.dto.product.AttributeValueDTO;
+import com.example.project1.model.dto.product.ProductAttributeValueDto;
 import com.example.project1.model.dto.request.product.AttributeCreateRequest;
 import com.example.project1.model.dto.request.product.AttributeSearchRequest;
-import com.example.project1.model.dto.request.product.BrandCreateRequest;
-import com.example.project1.model.dto.view.product.CategoryView;
 import com.example.project1.model.enity.product.Attribute;
 import com.example.project1.model.enity.product.AttributeValue;
+import com.example.project1.model.enity.product.ProductAttributeValue;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.repository.AttributeRepository;
 import com.example.project1.module.product.repository.AttributeValueRepository;
+import com.example.project1.module.product.repository.ProductAttributeValueRepository;
 import com.example.project1.module.product.service.AttributeService;
 import com.example.project1.utils.DataUtils;
 import com.example.project1.utils.SearchSpecificationUtil;
@@ -40,6 +41,9 @@ public class AttributeServiceImpl implements AttributeService {
     AttributeMapper attributeMapper;
     AttributeValueRepository attributeValueRepository;
     AttributeValueMapper attributeValueMapper;
+    ProductAttributeValueRepository productAttributeValueRepository;
+//    ProductAttributeValue
+
     @Override
     public void delete(Long id) {
         Attribute attribute = attributeRepository.findById(id)
@@ -49,13 +53,13 @@ public class AttributeServiceImpl implements AttributeService {
 
     private void validateLogic(AttributeCreateRequest request, boolean isCreated) {
         if (isCreated) {
-            if (attributeRepository.findByName(request.getName()).isPresent()) {
+            if (attributeRepository.findByNameIgnoreCase(request.getName()).isPresent()) {
                 throw new ValidateException(Translator.toMessage("Thuộc tính đã tồn tại"));
             }
             Integer maxDisplayOrder = attributeRepository.findMaxDisplayOrder().orElse(0);
             request.setDisplayOrder(maxDisplayOrder + 1);
         } else {
-            if (attributeRepository.findByNameAndIdNot(request.getName(), request.getId()).isPresent()) {
+            if (attributeRepository.findByNameIgnoreCaseAndIdNot(request.getName(), request.getId()).isPresent()) {
                 throw new ValidateException(Translator.toMessage("Thuộc tính đã tồn tại"));
             }
         }
@@ -145,6 +149,14 @@ public class AttributeServiceImpl implements AttributeService {
                 .and(SearchSpecificationUtil.or(mapCondition));
         if (!DataUtils.isNullOrEmpty(pageable) && !pageable.isFindAll()) {
             Page<Attribute> page = attributeRepository.findAll(conditions, pageable);
+            page.getContent().forEach(attribute -> {
+                Set<AttributeValue> sortedValues = attribute.getValues().stream()
+                        .sorted(Comparator.comparing(AttributeValue::getName, Comparator.nullsLast(String::compareTo)))  // Sắp xếp với xử lý null
+                        .collect(Collectors.toCollection(LinkedHashSet::new));
+
+                attribute.setValues(sortedValues);
+            });
+
             return new PageImpl<>(attributeMapper.toDto(page.getContent()), pageable, page.getTotalElements());
         }
         return attributeMapper.toDto(attributeRepository.findAll(conditions, pageable.getSort()));
@@ -153,7 +165,16 @@ public class AttributeServiceImpl implements AttributeService {
     @Override
     public List<AttributeDto> findAll() {
         List<Attribute> attributes = attributeRepository.findAll();
-        attributes.forEach(attribute -> attribute.getValues().size());
+
+        attributes.forEach(attribute -> {
+            // Sắp xếp danh sách values theo tên và gán lại vào Set mới
+            Set<AttributeValue> sortedValues = attribute.getValues().stream()
+                    .sorted(Comparator.comparing(AttributeValue::getName))  // Sắp xếp theo tên của lớp AttributeValue
+                    .collect(Collectors.toCollection(LinkedHashSet::new));  // Thu lại kết quả vào LinkedHashSet để giữ thứ tự
+
+            // Cập nhật lại danh sách values sau khi sắp xếp
+            attribute.setValues(sortedValues);
+        });
 
 //        List<AttributeValue> attributesvalue = attributeValueRepository.findAllByAttributeId();
         return attributeMapper.toDto(attributes);
@@ -163,5 +184,21 @@ public class AttributeServiceImpl implements AttributeService {
     public List<AttributeValueDTO> getAttributeValue(Long id) {
         return attributeValueMapper.toDto(attributeValueRepository.findAllByAttributeId(id));
     }
+
+    @Override
+    public AttributeDto getDetail(Long id) {
+        return attributeMapper.toDto(attributeRepository.findById(id).get());
+    }
+
+    @Override
+    public Boolean productAttributeExist(Long id) {
+        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAll();
+
+//        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAllByAttributeValueId(id);
+
+        return productAttributeValues.size() > 0 ? true : false;
+    }
+
+
 
 }

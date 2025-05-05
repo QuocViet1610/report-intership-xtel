@@ -17,5 +17,8 @@ public class CategoryCreateRequest {
         if (name == null || name.trim().isEmpty()) {
             throw new ValidateException(Translator.toMessage("error.category.name.required"));
         }
+        if (name.length() < 3 || name.length() > 255) {
+            throw new ValidateException(Translator.toMessage("Tên thể loại sản phẩm tối thiểu 3 ký tự trở lên"));
+        }
     }
 }

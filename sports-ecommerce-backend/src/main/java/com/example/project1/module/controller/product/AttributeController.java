@@ -68,4 +68,15 @@ public class AttributeController {
         return ResponseResult.ofSuccess(attributeService.getAttributeValue(id));
     }
 
+
+    @GetMapping("/detail/{id}")
+    public ResponseResult<AttributeDto> getDetail(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(attributeService.getDetail(id));
+    }
+
+    @GetMapping("/exist-product-value/{id}")
+    public ResponseResult<Boolean> isProductExist(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(attributeService.productAttributeExist(id));
+    }
+
 }

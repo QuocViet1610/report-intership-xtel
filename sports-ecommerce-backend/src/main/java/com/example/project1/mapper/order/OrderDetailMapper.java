@@ -1,19 +1,12 @@
-package com.example.project1.mapper.Order;
+package com.example.project1.mapper.order;
 
 import com.example.project1.mapper.EntityMapper;
 import com.example.project1.model.dto.Order.OrderDetailDto;
-import com.example.project1.model.dto.Order.OrderDto;
 import com.example.project1.model.dto.request.Order.AddressCreateRequest;
 import com.example.project1.model.dto.request.Order.OrderDetailCreateRequest;
-import com.example.project1.model.dto.request.Order.OrderRequest;
-import com.example.project1.model.dto.respone.CartItemResponse;
 import com.example.project1.model.dto.respone.OrderDetailResponse;
-import com.example.project1.model.dto.respone.OrderResponse;
-import com.example.project1.model.enity.cart.CartItem;
 import com.example.project1.model.enity.order.Address;
-import com.example.project1.model.enity.order.Order;
 import com.example.project1.model.enity.order.OrderDetail;
-import com.example.project1.utils.Constants;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

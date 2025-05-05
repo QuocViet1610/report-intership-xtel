@@ -1,6 +1,7 @@
 package com.example.project1.module.product.service;
 import com.example.project1.model.dto.product.AttributeDto;
 import com.example.project1.model.dto.product.AttributeValueDTO;
+import com.example.project1.model.dto.product.ProductAttributeValueDto;
 import com.example.project1.model.dto.request.product.AttributeCreateRequest;
 import com.example.project1.model.dto.request.product.AttributeSearchRequest;
 import com.example.project1.module.PageableCustom;
@@ -16,4 +17,8 @@ public interface AttributeService {
     List<AttributeDto> findAll();
 
     List<AttributeValueDTO> getAttributeValue(Long id);
+
+    AttributeDto getDetail(Long id);
+
+    Boolean productAttributeExist(Long id);
 }

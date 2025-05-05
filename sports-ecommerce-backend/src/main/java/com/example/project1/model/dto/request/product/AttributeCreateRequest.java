@@ -13,8 +13,8 @@ public class AttributeCreateRequest  {
 
     private Long id;
 
-    @NotBlank(message = "error.product.attribute.required")
-    @Size(min = 3, max = 255, message = "error.product.attribute.size ")
+    @NotBlank(message = "Tên thuộc tính không được để trống")
+    @Size(max = 255, message = "Tên thuộc tính tối đa 255 ký tự")
     private String name;
 
     private String description;
