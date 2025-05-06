@@ -13,12 +13,15 @@ import com.example.project1.model.dto.respone.OrderResponse;
 import com.example.project1.model.dto.view.product.ProductView;
 import com.example.project1.model.enity.order.Order;
 import com.example.project1.model.enity.order.OrderDetail;
+import com.example.project1.model.enity.order.OrderView;
 import com.example.project1.model.enity.product.ProductVariant;
 import com.example.project1.module.Order.repository.OrderDetailRepository;
 import com.example.project1.module.Order.repository.OrderRepository;
 import com.example.project1.module.Order.repository.OrderStatusRepository;
+import com.example.project1.module.Order.repository.OrderViewRepository;
 import com.example.project1.module.Order.service.OrderService;
 import com.example.project1.module.PageableCustom;
+import com.example.project1.module.User.repository.UserRepository;
 import com.example.project1.module.product.repository.ProductRepository;
 import com.example.project1.module.product.repository.ProductVariantRepository;
 import com.example.project1.module.product.repository.ProductViewRepository;
@@ -31,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -51,6 +55,8 @@ public class OrderServiceImpl implements OrderService {
     OrderDetailRepository orderDetailRepository;
     ProductViewRepository productViewRepository;
     ProductViewMapper productViewMapper;
+    OrderViewRepository orderViewRepository;
+    UserRepository userRepository;
 
     private void validateLogic(OrderRequest request, boolean isCreated) {
         Long userId = tokenUtil.getCurrentUserId();
@@ -65,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
         if (!productVariantRepository.findById(request.getProductVariantId()).isPresent()) {
             throw new ValidateException(Translator.toMessage("Biến thể sản phẩm trong đơn hàng không tồn tại "));
         }
+
     }
 
     @Override
@@ -82,7 +89,6 @@ public class OrderServiceImpl implements OrderService {
 
         orderDetailRepository.saveAll(orderDetails);
         order.setOrderDetails(orderDetails.stream().collect(Collectors.toSet()));
-
         return orderMapper.toDto(order);
     }
 
@@ -115,15 +121,13 @@ public class OrderServiceImpl implements OrderService {
 
         OrderResponse orderResponse = orderMapper.toResponse(order);
         orderResponse.setOrderDetails(orderDetails);
-
         return orderResponse;
     }
 
     @Override
     public List<OrderDto> getAllOrder() {
         Long userId = tokenUtil.getCurrentUserId();
-        List<Order> orders = orderRepository.findByUserId(userId);
-
+        List<Order> orders = orderRepository.findByUserId(userId, Sort.by(Sort.Order.desc("id")));
         return orderMapper.toDto(orders);
     }
 
@@ -132,15 +136,19 @@ public class OrderServiceImpl implements OrderService {
         Map<String, String> mapCondition = new HashMap<>();
         if (!DataUtils.isNullOrEmpty(searchRequest.getSearchText())) {
             mapCondition.put("orderCode", searchRequest.getSearchText());
+            mapCondition.put("userFullName", searchRequest.getSearchText());
+            mapCondition.put("userEmail", searchRequest.getSearchText());
+            mapCondition.put("phone", searchRequest.getSearchText());
+
         }
-        Specification<Order> conditions = Specification.where(SearchSpecificationUtil.<Order>alwaysTrue())
+        Specification<OrderView> conditions = Specification.where(SearchSpecificationUtil.<OrderView>alwaysTrue())
                 .and(SearchSpecificationUtil.equal("statusId", searchRequest.getStatusId()))
                 .and(SearchSpecificationUtil.or(mapCondition));
         if (!DataUtils.isNullOrEmpty(pageable) && !pageable.isFindAll()) {
-            Page<Order> page = orderRepository.findAll(conditions, pageable);
-            return new PageImpl<>(orderMapper.toDto(page.getContent()), pageable, page.getTotalElements());
+            Page<OrderView> page = orderViewRepository.findAll(conditions, pageable);
+            return new PageImpl<>(page.getContent(), pageable, page.getTotalElements());
         }
-        return orderMapper.toDto(orderRepository.findAll(conditions, pageable.getSort()));
+        return orderViewRepository.findAll(conditions, pageable.getSort());
     }
 
     @Override
@@ -157,12 +165,27 @@ public class OrderServiceImpl implements OrderService {
         Long userId = tokenUtil.getCurrentUserId();
         Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
         if (order.getStatusId() >= 3){
-            throw new ValidateException(Translator.toMessage("Đơn hàng đang vận chuyển không thể huỷ"));
+            throw new ValidateException(Translator.toMessage("Đơn hàng đã vận chuyển không thể huỷ"));
         }
         order.setStatusId(5L);
         orderRepository.save(order);
         return orderMapper.toDto(order);
     }
 
+    @Override
+    public Object Dashboard() {
+        Long totalOrders = orderRepository.getTotalOrders();
+        Double totalRevenue = orderRepository.getTotalRevenue();
+        Long totalProduct = productRepository.count();
+        Long totalProductVariant = productVariantRepository.count();
+        Long countProduct = totalProduct + totalProductVariant;
+        Long totalUser =userRepository.count();
+        Map<String, Object> dashboardData = new HashMap<>();
+        dashboardData.put("totalOrders", totalOrders);
+        dashboardData.put("totalRevenue", totalRevenue);
+        dashboardData.put("totalProduct", countProduct);
+        dashboardData.put("totalUser", totalUser);
+        return dashboardData;
+    }
 
 }

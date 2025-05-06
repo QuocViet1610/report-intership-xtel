@@ -182,6 +182,7 @@ public class MinioUtils {
 
         } catch (Exception e) {
             log.error("Error: " + e);
+            throw  new ValidateException(Translator.toMessage(e.toString()));
         }
 
     }

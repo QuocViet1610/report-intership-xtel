@@ -51,13 +51,13 @@ server:
 
 jwt:
     signerKey: 8o24T1lHAIsiyuoKMPYnVaavjaVWmTbAE4tofn0jmEs=
-    valid-duration: 7200 # in seconds 2h
+    valid-duration: 14400 # in seconds 2h
     refreshable-duration: 72000 # in seconds
 
 
 app:
     minio:
-        host: "http://localhost:9000/"
+        host: "http://localhost:9001/"
         local: "http://localhost:9000/"
         accessKey: "minioadmin"
         secretKey: "minioadmin"

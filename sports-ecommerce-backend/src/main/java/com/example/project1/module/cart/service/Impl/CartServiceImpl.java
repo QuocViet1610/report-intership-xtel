@@ -151,4 +151,10 @@ public class CartServiceImpl implements CartService {
         return cartResponse;
     }
 
+    @Override
+    public void deleteCart() {
+        Cart cart = cartRepository.findByUserId(tokenUtil.getCurrentUserId()).orElseThrow(() -> new ValidateException(Translator.toMessage("Giỏ hàng không tồn tại")));
+        cartRepository.delete(cart);
+    }
+
 }

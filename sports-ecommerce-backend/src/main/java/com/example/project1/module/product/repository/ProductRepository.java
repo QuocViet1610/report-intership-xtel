@@ -23,6 +23,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
     @Query(value = "SELECT * FROM product WHERE category_id IN :categoryIds", nativeQuery = true)
     List<Product> findAllByCategoryId(@Param("categoryIds") List<Long> categoryIds);
 
-
+    List<Product> findByBrandId(Long id);
 
 }

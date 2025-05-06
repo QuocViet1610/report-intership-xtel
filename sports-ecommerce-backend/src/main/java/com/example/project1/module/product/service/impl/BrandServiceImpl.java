@@ -9,8 +9,10 @@ import com.example.project1.model.dto.request.product.BrandBaseRequest;
 import com.example.project1.model.dto.request.product.BrandCreateRequest;
 import com.example.project1.model.dto.request.product.BrandSearchRequest;
 import com.example.project1.model.enity.product.Brand;
+import com.example.project1.model.enity.product.Product;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.repository.BrandRepository;
+import com.example.project1.module.product.repository.ProductRepository;
 import com.example.project1.module.product.service.BrandService;
 import com.example.project1.utils.DataUtils;
 import com.example.project1.utils.MinioUtils;
@@ -40,6 +42,7 @@ public class BrandServiceImpl implements BrandService {
     private String bucketName ;
     private String folderLocal;
     private String keyName ;
+    private final ProductRepository productRepository;
 
     @PostConstruct
     void started() {
@@ -73,6 +76,11 @@ public class BrandServiceImpl implements BrandService {
     public void delete(Long id) {
         Brand brand = brandRepository.findById(id).orElseThrow(() -> new ValidateException(Translator.toMessage("thể loại không tồn tại ")));
         MinioUtils.deleteFileMinio(bucketName, brand.getLogo());
+        List<Product> products =  productRepository.findByBrandId(id);
+        if (products.size() > 0 ){
+            throw new ValidateException(Translator.toMessage("Sản phẩm đang thuộc thương hiệu không thể xoá sản phẩm"));
+        }
+        
         brandRepository.delete(brand);
     }
 

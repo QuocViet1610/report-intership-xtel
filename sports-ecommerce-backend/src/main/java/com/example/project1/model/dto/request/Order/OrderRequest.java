@@ -11,7 +11,7 @@ public class OrderRequest {
 
     private Long id;
 
-    @NotNull(message = "User ID không được để trống")
+
     private Long userId;
 
     @NotNull(message = "Tổng giá không được để trống")

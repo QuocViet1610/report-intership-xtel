@@ -43,6 +43,11 @@ public class CartController {
         return ResponseResult.ofSuccess(cartService.getCartByUserId());
     }
 
+    @DeleteMapping("")
+    public ResponseResult<Void> deleteCart() {
+        cartService.deleteCart();
+        return ResponseResult.ofSuccess();
+    }
 
 //    @PostMapping("/search")
 //    public ResponseResult<Object> searchCart(@RequestBody @TrimAndValid CartItemCreateRequest searchRequest,

@@ -58,5 +58,11 @@ public class OrderController {
     public ResponseResult<OrderDto> cancelOrder(@PathVariable Long id) {
         return ResponseResult.ofSuccess(orderService.CancelOrder(id));
     }
+
+    @GetMapping("/dashboard")
+    public ResponseResult<Object> getDashboard() {
+        return ResponseResult.ofSuccess(orderService.Dashboard());
+    }
+
 }
 

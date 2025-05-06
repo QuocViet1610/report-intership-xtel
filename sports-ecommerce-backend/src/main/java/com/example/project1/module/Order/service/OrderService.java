@@ -20,4 +20,6 @@ public interface OrderService {
     OrderDto UpdateProcess(Long id);
 
     OrderDto CancelOrder(Long id);
+
+    Object Dashboard();
 }

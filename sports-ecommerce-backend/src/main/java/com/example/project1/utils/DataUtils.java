@@ -210,27 +210,27 @@ public class DataUtils {
     }
 
 
-    @Value("${app.minio.host}")
+    @Value("${app.minio.local}")
     public void setMinioHost(String minioHost) {
         DataUtils.minioHost = minioHost;
     }
 
 
-//    public static String convertUrl(String url) {
-//        String tmp_Url = "";
-//        if (!DataUtils.isNullOrEmpty(url)) {
-//            if (url.contains(minioHost) || url.contains("https://assets.plugshare.com"))
-//                tmp_Url = url;
-//            else
-//                tmp_Url = minioHost+ bucketName+"/" + url;
-//        }
-//        return tmp_Url;
-//    }
-
     public static String convertUrl(String url) {
-        String modifiedString = url.replace("/", "//");
-        String tmp_Url = "src//upload//"+modifiedString;
-
+        String tmp_Url = "";
+        if (!DataUtils.isNullOrEmpty(url)) {
+            if (url.contains(minioHost) || url.contains("https://assets.plugshare.com"))
+                tmp_Url = url;
+            else
+                tmp_Url = minioHost+ bucketName+"/" + url;
+        }
         return tmp_Url;
     }
+
+//    public static String convertUrl(String url) {
+//        String modifiedString = url.replace("/", "//");
+//        String tmp_Url = "src//upload//image//"+modifiedString;
+//
+//        return tmp_Url;
+//    }
 }

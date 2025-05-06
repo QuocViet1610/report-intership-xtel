@@ -1,14 +1,16 @@
 package com.example.project1.module.controller.product;
 
+import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.dto.ResponseResult;
+import com.example.project1.model.dto.request.product.ProductVariantCreateRequest;
+import com.example.project1.model.dto.request.product.ProductVariantUpdate;
+import com.example.project1.model.dto.respone.CartResponse;
+import com.example.project1.model.enity.product.ProductVariant;
 import com.example.project1.module.product.service.ProductVariantService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product-variant")
@@ -21,4 +23,16 @@ public class ProductVariantController {
         productVariantService.delete(id);
         return ResponseResult.ofSuccess();
     }
+
+    @PutMapping("/{id}")
+    public ResponseResult<ProductVariant> update(@PathVariable Long id
+                                       ,@RequestBody @TrimAndValid ProductVariantUpdate request) {
+        return ResponseResult.ofSuccess(productVariantService.update(id, request));
+    }
+
+    @GetMapping("/detail/{id}")
+    public ResponseResult<ProductVariant> getCartByUserId(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(productVariantService.getDetail(id));
+    }
+
 }

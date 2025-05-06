@@ -47,4 +47,6 @@ public class ProductVariant extends BaseEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ProductVariantAttribute> variantAttributes;
+
+
 }
