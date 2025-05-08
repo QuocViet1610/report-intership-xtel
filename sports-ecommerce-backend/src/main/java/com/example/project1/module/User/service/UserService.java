@@ -16,4 +16,17 @@ public interface UserService {
     UserDto register(UserVerification request);
 
     UserDto getMyInfo();
+
+    Object createStaff(UserCreateRequest request);
+
+    Object getStaff();
+
+    Object getUser();
+
+    Object updateActive(Long id);
+
+    void deleteUser(Long userId);
+   Object getMyInf();
+
+   Object changepassword(String passwrodOld, String passwordNew);
 }

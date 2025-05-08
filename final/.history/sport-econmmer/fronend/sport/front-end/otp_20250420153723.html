@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/images/logo/logoHeader1.png?v=1" type="image/png">
+    <title>GOFIT</title>
+
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+
+    <!-- Iconly css -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/bulk-style.css">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <style>
+        .form-control {
+            border: 1px solid #ccc !important; /* Viền màu xám nhạt */
+            border-radius: 5px; /* Bo tròn góc */
+               }
+            .log-in-button li{
+                border: 1px solid #ccc !important; /* Viền màu xám nhạt */
+                border-radius: 5px; /* Bo tròn góc */
+            }
+            .log-in-box{
+                background: white !important; 
+            }
+    
+    </style>
+</head>
+
+<body>
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+
+
+
+    <!-- mobile fix menu start -->
+    <div class="mobile-menu d-md-none d-block mobile-cart">
+        <ul>
+            <li class="active">
+                <a href="index.html">
+                    <i class="iconly-Home icli"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li class="mobile-category">
+                <a href="javascript:void(0)">
+                    <i class="iconly-Category icli js-link"></i>
+                    <span>Category</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="search.html" class="search-box">
+                    <i class="iconly-Search icli"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="wishlist.html" class="notifi-wishlist">
+                    <i class="iconly-Heart icli"></i>
+                    <span>My Wish</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="cart.html">
+                    <i class="iconly-Bag-2 icli fly-cate"></i>
+                    <span>Cart</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- mobile fix menu end -->
+
+
+    <!-- Breadcrumb Section End -->
+
+    <!-- log in section start -->
+    <section class="log-in-section otp-section section-b-space" style="width: 100vw; height: 100vh; padding: 0px;" >
+        <div class="container-fluid h-100">
+          <div class="row h-100">
+            <!-- Cột trái: ảnh -->
+            <div class="col-lg-8 col-md-8 p-0 d-md-block d-none">
+              <div class="image-contain h-100 w-100">
+                <img src="https://thethemedemo.com/fitzoon/wp-content/uploads/revslider/home-1/4s-1.jpg"
+                     class="img-fluid"
+                     style="width: 100%; height: 100%; object-fit: cover;" 
+                     alt="OTP background">
+              </div>
+            </div>
+      
+            <!-- Cột phải: form OTP -->
+            <div class="col-lg-4 col-md-4 d-flex align-items-center justify-content-center">
+              <div class="log-in-box">
+                <div class="log-in-title mb-4">
+                  <h3 class="text-title">Xác nhận tại khoản của bạn</h3>
+                  <h5 class="text-content">Mã OTP đã được gửi đến địa chỉ <span>*******32@gmail.com</span></h5>
+                </div>
+      
+                <div id="otp" class="inputs d-flex flex-row justify-content-center gap-2 mb-3">
+                  <input class="text-center form-control rounded" type="text" id="first" maxlength="1" placeholder="0">
+                  <input class="text-center form-control rounded" type="text" id="second" maxlength="1" placeholder="0">
+                  <input class="text-center form-control rounded" type="text" id="third" maxlength="1" placeholder="0">
+                  <input class="text-center form-control rounded" type="text" id="fourth" maxlength="1" placeholder="0">
+                  <input class="text-center form-control rounded" type="text" id="fifth" maxlength="1" placeholder="0">
+                  <input class="text-center form-control rounded" type="text" id="sixth" maxlength="1" placeholder="0">
+                </div>
+      
+                <div class="send-box pt-3 mb-3">
+                  <h6>Bạn đã nhận được mã ? <a href="javascript:void(0)" class="theme-color fw-bold">Gửi lại</a></h6>
+                </div>
+      
+                <button onclick="location.href = 'index-5.html';" class="btn btn-animation w-100" type="submit">
+                  xác nhận
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    <!-- log in section end -->
+
+
+
+    <!-- Tap to top and theme setting button start -->
+    <div class="theme-option">
+        <div class="setting-box">
+            <button class="btn setting-button">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <div class="theme-setting-2">
+                <div class="theme-box">
+                    <ul>
+                        <li>
+                            <div class="setting-name">
+                                <h4>Color</h4>
+                            </div>
+                            <div class="theme-setting-button color-picker">
+                                <form class="form-control">
+                                    <label for="colorPick" class="form-label mb-0">Theme Color</label>
+                                    <input type="color" class="form-control form-control-color" id="colorPick"
+                                        value="#0da487" title="Choose your color">
+                                </form>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="setting-name">
+                                <h4>Dark</h4>
+                            </div>
+                            <div class="theme-setting-button">
+                                <button class="btn btn-2 outline" id="darkButton">Dark</button>
+                                <button class="btn btn-2 unline" id="lightButton">Light</button>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="setting-name">
+                                <h4>RTL</h4>
+                            </div>
+                            <div class="theme-setting-button rtl">
+                                <button class="btn btn-2 rtl-unline">LTR</button>
+                                <button class="btn btn-2 rtl-outline">RTL</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-to-top">
+            <a id="back-to-top" href="#">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <!-- Tap to top and theme setting button end -->
+
+    <!-- Bg overlay Start -->
+    <div class="bg-overlay"></div>
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- otp js-->
+    <script src="../assets/js/otp.js"></script>
+
+    <!-- Slick js-->
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/slick/slick-animation.min.js"></script>
+    <script src="../assets/js/slick/custom_slick.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../assets/js/feather/feather.min.js"></script>
+    <script src="../assets/js/feather/feather-icon.js"></script>
+
+    <!-- Lazyload Js -->
+    <script src="../assets/js/lazysizes.min.js"></script>
+
+    <!-- script js -->
+    <script src="../assets/js/script.js"></script>
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/front-end/otp.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Mar 2024 15:08:24 GMT -->
+</html>

@@ -1,0 +1,149 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+/* header .navbar-nav .dropdown-menu {
+    width: 80vw; 
+    left: -20vw; 
+    height: 40vw;
+    background: red;
+} */
+
+
+header .navbar-nav .dropdown-menu li{
+
+}
+
+.top-nav {
+    padding: 10px !important;
+}
+
+.input-group {
+    width: 125%;
+}
+
+// header 
+.dropdown-menu li {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu .sub-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200px;
+    background: white;
+    border: 1px solid #ddd;
+    display: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu li:hover > .sub-menu,
+.dropdown-menu li.active > .sub-menu {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+}
+
+.navbar {
+    background: #333;
+    padding: 10px 20px;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar .nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar .nav-item a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+.navbar .nav-item:hover > a {
+    background: #555;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 250px;  /* Chiều rộng của menu */
+    height: auto;  /* Tự động theo nội dung */
+    border: 1px solid #ddd;
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hiển thị menu khi active */
+.dropdown-menu.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Menu con (sub-menu) có kích thước bằng 100% dropdown-menu */
+.dropdown-menu .sub-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;  /* Chiều rộng bằng dropdown-menu */
+    height: 100%; /* Chiều dài bằng dropdown-menu */
+    background: white;
+    border: 1px solid #ddd;
+    display: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hiển thị menu con khi active */
+.dropdown-menu li:hover > .sub-menu,
+.dropdown-menu li.active > .sub-menu {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Định dạng dropdown item */
+.dropdown-menu .dropdown-item {
+    padding: 12px 16px;
+    display: block;
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: #f5f5f5;
+}

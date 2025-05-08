@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container chính của menu */
+        .menu-container {
+            display: flex;
+            width: 80vw;
+            height: 60vh;
+            border: 1px solid #ddd;
+            background: white;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Menu bên trái (Danh mục chính) */
+        .menu-left {
+            width: 30%;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+        }
+
+        /* Menu bên phải (Danh mục con) */
+        .menu-right {
+            width: 70%;
+            display: none; /* Ẩn mặc định */
+            padding: 20px;
+        }
+
+        /* Danh sách menu */
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list li {
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Hiệu ứng hover */
+        .menu-list li:hover {
+            background: #f5f5f5;
+        }
+
+        /* Mục đang được chọn */
+        .menu-list li.active {
+            background: #ddd;
+            font-weight: bold;
+        }
+
+        /* Mũi tên chỉ bên phải */
+        .menu-list li::after {
+            content: '›';
+            font-size: 18px;
+            color: #888;
+            display: inline-block;
+        }
+
+        /* Khi có submenu, hiển thị */
+        .menu-right.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <!-- Menu trái -->
+        <div class="menu-left">
+            <ul class="menu-list">
+                <li data-category="chay-bo">Chạy Bộ & Đi Bộ</li>
+                <li data-category="leo-nui">Leo Núi & Dã Ngoại</li>
+                <li data-category="the-thao-nuoc">Thể Thao Dưới Nước</li>
+                <li data-category="gym">Tập Gym & Boxing</li>
+                <li data-category="the-thao-vot">Thể Thao Dùng Vợt</li>
+            </ul>
+        </div>
+
+        <!-- Menu phải (Danh mục con) -->
+        <div class="menu-right" id="sub-menu">
+            <h3 id="category-title">Danh mục con</h3>
+            <ul class="menu-list" id="submenu-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let menuItems = document.querySelectorAll(".menu-left .menu-list li");
+            let subMenu = document.getElementById("sub-menu");
+            let subMenuList = document.getElementById("submenu-list");
+            let categoryTitle = document.getElementById("category-title");
+
+            // Dữ liệu menu con (Danh sách thẻ con theo danh mục cha)
+            let subCategories = {
+                "chay-bo": ["Chạy Bộ Đường Trường", "Chạy Địa Hình (Trail)", "Đi Bộ", "Sản phẩm mới"],
+                "leo-nui": ["Dụng cụ Leo Núi", "Giày Leo Núi", "Ba Lô & Túi Đeo"],
+                "the-thao-nuoc": ["Bơi Lội", "Lặn Biển", "Lướt Sóng"],
+                "gym": ["Dụng Cụ Tập Gym", "Quần Áo Gym", "Phụ Kiện Tập Luyện"],
+                "the-thao-vot": ["Tennis", "Cầu Lông", "Bóng Bàn"]
+            };
+
+            menuItems.forEach(item => {
+                item.addEventListener("click", function () {
+                    let category = this.getAttribute("data-category");
+
+                    // Đặt tiêu đề danh mục con
+                    categoryTitle.textContent = this.textContent;
+
+                    // Xóa trạng thái active của các mục khác
+                    menuItems.forEach(i => i.classList.remove("active"));
+                    this.classList.add("active");
+
+                    // Cập nhật danh sách menu con
+                    subMenuList.innerHTML = "";
+                    if (subCategories[category]) {
+                        subCategories[category].forEach(sub => {
+                            let li = document.createElement("li");
+                            li.textContent = sub;
+                            subMenuList.appendChild(li);
+                        });
+                    }
+
+                    // Hiển thị menu con
+                    subMenu.classList.add("active");
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

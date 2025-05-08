@@ -1,0 +1,9 @@
+.header-nav-left {
+    display: none;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}

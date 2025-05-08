@@ -1,0 +1,56 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+/* Tùy chỉnh ul để làm menu giống hình */
+.menu-sports {
+    list-style: none; /* Bỏ dấu chấm đầu dòng */
+    padding: 0;
+    margin: 0;
+    width: 280px; /* Độ rộng của menu */
+    background: #fff; /* Màu nền trắng */
+    border-right: 2px solid #e1e1e1; /* Viền phải để ngăn cách */
+}
+
+/* Tùy chỉnh từng mục li */
+.menu-sports li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    border-bottom: 1px solid #e1e1e1; /* Đường gạch dưới mỗi mục */
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào mỗi mục */
+.menu-sports li:hover {
+    background-color: #f5f5f5; /* Đổi màu nền khi hover */
+}
+
+/* Mũi tên bên phải */
+.menu-sports li::after {
+    content: "\276F"; /* Unicode cho mũi tên ">" */
+    font-size: 14px;
+    color: #888;
+}

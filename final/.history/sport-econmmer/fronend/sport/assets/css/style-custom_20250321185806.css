@@ -1,0 +1,57 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+/* Làm rộng dropdown-menu */
+.dropdown-menu {
+    width: 300px;                /* hoặc bạn có thể dùng 100% hay auto nếu cần */
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                   /* khoảng cách giữa các ô */
+}
+
+/* Mỗi thẻ li là một ô vuông */
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a.dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;               /* tạo chiều cao để thành hình vuông (gần vuông) */
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover */
+.dropdown-menu li a.dropdown-item:hover {
+    background-color: #e0e0e0;
+}

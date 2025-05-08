@@ -2,6 +2,7 @@ package com.example.project1.model.enity.User;
 
 import com.example.project1.model.BaseEntity;
 import com.example.project1.model.enity.product.ProductRating;
+import com.example.project1.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -74,5 +75,10 @@ public class User  {
     }
 
     public User() {
+    }
+
+    public String getAvatar() {
+        return DataUtils.convertUrl("product/avatar-vo-danh-9.png");
+
     }
 }

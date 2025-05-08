@@ -50,4 +50,49 @@ public class UserController {
     {
         return ResponseResult.ofSuccess(userService.getMyInfo());
     }
+
+    @PostMapping("/createStaff")
+    public ResponseResult<Object> createStaff(@RequestBody @Valid UserCreateRequest request)
+    {
+        return ResponseResult.ofSuccess(userService.createStaff(request));
+    }
+
+        @GetMapping("/get-staff")
+    public ResponseResult<Object> geStaff()
+    {
+        return ResponseResult.ofSuccess(userService.getStaff());
+    }
+
+    @GetMapping("/get-usr")
+    public ResponseResult<Object> getUser()
+    {
+        return ResponseResult.ofSuccess(userService.getUser());
+    }
+
+    @PutMapping("/update-active/{id}")
+    public ResponseResult<Object> lock(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(userService.updateActive(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseResult<Void> delete(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseResult.ofSuccess();
+    }
+
+    @GetMapping("/get-inf")
+    public ResponseResult<Object> delete() {
+        return ResponseResult.ofSuccess(userService.getMyInf());
+    }
+
+    @PutMapping("/change-password-update")
+    public ResponseResult<Object> changePassword(
+                                                 @RequestParam String passwordOld,
+                                                 @RequestParam String passwordNew) {
+        return ResponseResult.ofSuccess( userService.changepassword(passwordOld, passwordNew));
+
+
+    }
+
+
 }

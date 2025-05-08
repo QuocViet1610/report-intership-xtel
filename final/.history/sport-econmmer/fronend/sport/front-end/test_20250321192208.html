@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #333;
+            padding: 10px 20px;
+        }
+
+        .navbar ul {
+            list-style: none;
+        }
+
+        .navbar .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .navbar .nav-item a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .navbar .nav-item:hover > a {
+            background: #555;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 200px;
+            background: white;
+            border: 1px solid #ddd;
+            display: none; /* Ẩn mặc định */
+            padding: 0;
+        }
+
+        /* Hiển thị menu con khi hover */
+        .dropdown-menu li {
+            position: relative;
+            list-style: none;
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 16px;
+            display: block;
+            color: black;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-menu li:hover {
+            background: #f5f5f5;
+        }
+
+        /* Menu con xuất hiện bên cạnh */
+        .dropdown-menu .sub-menu {
+            position: absolute;
+            top: 0;
+            left: 100%; /* Hiển thị bên phải */
+            width: 200px;
+            background: white;
+            border: 1px solid #ddd;
+            display: none;
+        }
+
+        /* Hiển thị menu con khi hover hoặc active */
+        .dropdown-menu li:hover > .sub-menu,
+        .dropdown-menu li.active > .sub-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0)">Môn thể thao</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Bóng Đá</a></li>
+                    <li>
+                        <a href="#">Cầu Lông</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Vợt Cầu Lông</a></li>
+                            <li><a href="#">Giày Cầu Lông</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Bóng Rổ</a></li>
+                    <li><a href="#">Chạy bộ</a></li>
+                    <li><a href="#">Thể Hình</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let menuItems = document.querySelectorAll(".dropdown-menu > li");
+
+            menuItems.forEach(item => {
+                item.addEventListener("click", function (e) {
+                    e.stopPropagation(); // Ngăn chặn sự kiện lan ra ngoài
+                    let subMenu = this.querySelector(".sub-menu");
+
+                    // Đóng tất cả menu con trước khi mở menu mới
+                    document.querySelectorAll(".sub-menu").forEach(menu => {
+                        if (menu !== subMenu) {
+                            menu.style.display = "none";
+                        }
+                    });
+
+                    // Toggle menu con
+                    if (subMenu) {
+                        subMenu.style.display = (subMenu.style.display === "block") ? "none" : "block";
+                    }
+                });
+            });
+
+            // Đóng menu khi click ra ngoài
+            document.addEventListener("click", function () {
+                document.querySelectorAll(".sub-menu").forEach(menu => {
+                    menu.style.display = "none";
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

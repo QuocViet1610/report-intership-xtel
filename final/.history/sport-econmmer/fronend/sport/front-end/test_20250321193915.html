@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <style>
+        /* Reset mặc định */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #333;
+            padding: 10px 20px;
+        }
+
+        .navbar ul {
+            list-style: none;
+        }
+
+        .navbar .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .navbar .nav-item a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .navbar .nav-item:hover > a {
+            background: #555;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 250px;  /* Chiều rộng của menu */
+            height: auto;  /* Tự động theo nội dung */
+            background: white;
+            border: 1px solid #ddd;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hiển thị menu khi active */
+        .dropdown-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Menu con (sub-menu) có kích thước bằng 100% dropdown-menu */
+        .dropdown-menu .sub-menu {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;  /* Chiều rộng bằng dropdown-menu */
+            height: 100%; /* Chiều dài bằng dropdown-menu */
+            background: white;
+            border: 1px solid #ddd;
+            display: none;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hiển thị menu con khi active */
+        .dropdown-menu li:hover > .sub-menu,
+        .dropdown-menu li.active > .sub-menu {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Định dạng dropdown item */
+        .dropdown-menu .dropdown-item {
+            padding: 12px 16px;
+            display: block;
+            color: black;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background: #f5f5f5;
+        }
+
+        /* Responsive: Mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                text-align: center;
+            }
+            
+            .navbar .nav-item {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .dropdown-menu .sub-menu {
+                position: static;
+                width: 100%;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0)" class="nav-link dropdown-toggle">Môn thể thao</a>
+                <ul class="dropdown-menu">
+                    <li><a href="shop-left-sidebar.html" class="dropdown-item">Bóng Đá</a></li>
+                    <li>
+                        <a href="#" class="dropdown-item">Cầu Lông</a>
+                        <ul class="sub-menu">
+                            <li><a href="#" class="dropdown-item">Vợt Cầu Lông</a></li>
+                            <li><a href="#" class="dropdown-item">Giày Cầu Lông</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="shop-left-sidebar.html" class="dropdown-item">Bóng Rổ</a></li>
+                    <li><a href="shop-left-sidebar.html" class="dropdown-item">Chạy bộ</a></li>
+                    <li><a href="shop-left-sidebar.html" class="dropdown-item">Thể Hình</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let dropdowns = document.querySelectorAll(".dropdown-toggle");
+
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    
+                    let menu = this.nextElementSibling;
+                    let isActive = menu.classList.contains("active");
+
+                    // Đóng tất cả menu trước khi mở menu mới
+                    document.querySelectorAll(".dropdown-menu").forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+                    // Toggle menu
+                    if (!isActive) {
+                        menu.classList.add("active");
+                    }
+                });
+            });
+
+            // Đóng menu khi click ra ngoài
+            document.addEventListener("click", function (e) {
+                if (!e.target.closest(".nav-item")) {
+                    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+                        menu.classList.remove("active");
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

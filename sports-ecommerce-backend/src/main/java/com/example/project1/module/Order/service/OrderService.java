@@ -22,4 +22,12 @@ public interface OrderService {
     OrderDto CancelOrder(Long id);
 
     Object Dashboard();
+
+    Object doanhThu();
+
+    Object loiNhuan();
+
+    Object topProduct();
+
+    Object topOder();
 }

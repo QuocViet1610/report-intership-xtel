@@ -1,0 +1,41 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+header .navbar-nav .dropdown-menu {
+    width: 80vw;  /* Chiếm 80% chiều rộng của viewport (body) */
+    left: -20vw;  /* Đẩy sang trái 20% của body */
+    height: 40vw;
+    background: red;
+}
+
+
+header .navbar-nav .dropdown-menu li{
+
+}
+
+.top-nav {
+    padding: 10px !important;
+}
+
+.input-group {
+    width: 125%;
+}

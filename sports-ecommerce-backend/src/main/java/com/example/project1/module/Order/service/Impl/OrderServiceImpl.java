@@ -14,6 +14,8 @@ import com.example.project1.model.dto.view.product.ProductView;
 import com.example.project1.model.enity.order.Order;
 import com.example.project1.model.enity.order.OrderDetail;
 import com.example.project1.model.enity.order.OrderView;
+import com.example.project1.model.enity.product.Product;
+import com.example.project1.model.enity.product.ProductImage;
 import com.example.project1.model.enity.product.ProductVariant;
 import com.example.project1.module.Order.repository.OrderDetailRepository;
 import com.example.project1.module.Order.repository.OrderRepository;
@@ -22,6 +24,7 @@ import com.example.project1.module.Order.repository.OrderViewRepository;
 import com.example.project1.module.Order.service.OrderService;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.User.repository.UserRepository;
+import com.example.project1.module.product.repository.ProductImageRepository;
 import com.example.project1.module.product.repository.ProductRepository;
 import com.example.project1.module.product.repository.ProductVariantRepository;
 import com.example.project1.module.product.repository.ProductViewRepository;
@@ -32,11 +35,12 @@ import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
     ProductViewMapper productViewMapper;
     OrderViewRepository orderViewRepository;
     UserRepository userRepository;
+    ProductImageRepository productImageRepository;
 
     private void validateLogic(OrderRequest request, boolean isCreated) {
         Long userId = tokenUtil.getCurrentUserId();
@@ -97,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
         Long userId = tokenUtil.getCurrentUserId();
         Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
         List<OrderDetail> orderDetailList = orderDetailRepository.findAllByOrderId(order.getId());
-          Set<OrderDetailResponse> orderDetails = orderDetailList.stream()
+        Set<OrderDetailResponse> orderDetails = orderDetailList.stream()
                 .sorted(Comparator.comparing(OrderDetail::getOrderId)) // Sắp xếp theo ID
                 .map(orderDetail -> {
 
@@ -155,7 +160,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto UpdateProcess(Long id) {
         Long userId = tokenUtil.getCurrentUserId();
         Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
-        order.setStatusId(order.getStatusId()+1);
+        order.setStatusId(order.getStatusId() + 1);
         orderRepository.save(order);
         return orderMapper.toDto(order);
     }
@@ -164,7 +169,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto CancelOrder(Long id) {
         Long userId = tokenUtil.getCurrentUserId();
         Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
-        if (order.getStatusId() >= 3){
+        if (order.getStatusId() >= 3) {
             throw new ValidateException(Translator.toMessage("Đơn hàng đã vận chuyển không thể huỷ"));
         }
         order.setStatusId(5L);
@@ -179,7 +184,7 @@ public class OrderServiceImpl implements OrderService {
         Long totalProduct = productRepository.count();
         Long totalProductVariant = productVariantRepository.count();
         Long countProduct = totalProduct + totalProductVariant;
-        Long totalUser =userRepository.count();
+        Long totalUser = userRepository.count();
         Map<String, Object> dashboardData = new HashMap<>();
         dashboardData.put("totalOrders", totalOrders);
         dashboardData.put("totalRevenue", totalRevenue);
@@ -187,5 +192,71 @@ public class OrderServiceImpl implements OrderService {
         dashboardData.put("totalUser", totalUser);
         return dashboardData;
     }
+
+    @Override
+    public Object doanhThu() {
+        int currentYear = LocalDate.now().getYear();
+        List<Object[]> results = orderRepository.getMonthlyRevenue(currentYear);
+
+        double[] monthlyRevenue = new double[12];
+
+        for (Object[] row : results) {
+            int month = ((Integer) row[0]) - 1; // Trừ 1 vì mảng bắt đầu từ 0
+            BigDecimal total = (BigDecimal) row[1]; // Sửa tại đây: dùng BigDecimal
+            monthlyRevenue[month] = total != null ? total.doubleValue() : 0.0;
+        }
+
+        return monthlyRevenue;
+    }
+
+    @Override
+    public Object loiNhuan() {
+        List<Double> profits = new ArrayList<>(Collections.nCopies(12, 0.0));
+        List<Object[]> result = orderRepository.getMonthlyProfitData();
+
+        for (Object[] row : result) {
+            int month = ((Number) row[0]).intValue(); // tháng (1-12)
+            double profit = ((Number) row[3]).doubleValue(); // lợi nhuận
+            profits.set(month - 1, profit);
+        }
+
+        return profits;
+    }
+
+    @Override
+    public Object topProduct() {
+        Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Order.desc("totalOrders")));
+        List<Object[]> result = orderDetailRepository.findTop5ProductsByTotalOrders(pageable);
+
+
+        List<Long> productIds = result.stream()
+                .map(row -> (Long) row[0])  // Chuyển đổi từ Object[] lấy product_id
+                .collect(Collectors.toList());
+
+
+        List<ProductView> products = productViewRepository.findAllById(productIds);
+
+
+        List<ProductImage> productImages = new ArrayList<>();
+
+
+        for (Long productId : productIds) {
+
+            List<ProductImage> images = productImageRepository.findAllByProductId(productId);
+
+            productImages.addAll(images);
+        }
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("products", products);            // Thêm danh sách sản phẩm vào Map
+        resultMap.put("productImages", productImages);
+        return resultMap;
+    }
+
+    @Override
+    public Object topOder() {
+        Pageable pageable = PageRequest.of(0, 5);  // Lấy 5 đơn hàng có số tiền cao nhất
+        return orderRepository.findTop5ByOrderByTotalAmountDesc(pageable);
+    }
+
 
 }

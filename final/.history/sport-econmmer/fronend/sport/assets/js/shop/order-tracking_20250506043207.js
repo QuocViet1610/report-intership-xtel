@@ -1,0 +1,134 @@
+$(document).ready(function() {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get('orderId');
+console.log(orderId)
+if(orderId){
+    let address = null;
+    let token = localStorage.getItem('authToken');
+    if(token){
+
+        $.ajax({
+            url: `http://localhost:8080/order/` + orderId, 
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+            },
+            success: function(response) {
+                console.log("response.data")
+
+                if(response.code === '200') {
+                    console.log(response.data)
+                    document.getElementById('idOrder').textContent = response.data.orderCode;
+                    const createdAtDate = new Date(response.data.createdAt);
+                    const updateAtDate = new Date(response.data.createdAt);
+                    address = response.data.shippingAddress;
+                    addressDetail(address);
+                    // Cộng thêm 3 ngày vào updateAtDate
+                    updateAtDate.setDate(createdAtDate.getDate() + 3);
+                    
+                    // Tùy chọn cho định dạng có giờ
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedCreatedAt = createdAtDate.toLocaleString('vi-VN', options);
+                    
+                    // Tùy chọn cho định dạng không có giờ (chỉ có năm, tháng, ngày)
+                    const optionUpdate = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedUpdatedAt = updateAtDate.toLocaleString('vi-VN', optionUpdate);
+                    
+                    // Gán thời gian đặt vào thẻ có id là timePlaced
+                    document.getElementById('timePlaced').textContent = formattedCreatedAt;
+                    
+                    // Gán thời gian dự kiến đến vào thẻ có id là estimatedTime
+                    document.getElementById('estimatedTime').textContent = formattedUpdatedAt;
+                    
+
+                    const statusId = response.data.statusId; // Giá trị có thể là 1 hoặc 2
+
+                    // Lấy tất cả các phần tử li
+                    const statusElements = document.querySelectorAll('.progtrckr li');
+
+                    // Kiểm tra giá trị statusId và thêm lớp tương ứng
+                    if (statusId === 1) {
+                        // Nếu statusId là 1, chỉ thêm 'progtrckr-done' vào phần tử đầu tiên
+                        statusElements[0].classList.add('progtrckr-done');
+                    } else if (statusId === 2) {
+                        // Nếu statusId là 2, thêm 'progtrckr-done' vào 2 phần tử đầu tiên
+                        statusElements[0].classList.add('progtrckr-done');
+                        statusElements[1].classList.add('progtrckr-done');
+                    } else {
+                        // Nếu không phải 1 hoặc 2, không làm gì (hoặc có thể thêm logic khác nếu cần)
+                    }
+                }
+
+                const totalPrice = response.data.totalPrice;
+                const totalDiscount = response.data.totalDiscount;
+                const finalPrice = response.data.finalPrice;
+                const totalProduct = response.data.totalProduct;
+    
+                // Gán dữ liệu vào các phần tử HTML
+                document.querySelector('.summery-header h5').textContent = `(${totalProduct} sản phẩm)`;
+                document.querySelector('.summery-contain li:nth-child(1) .price').textContent = formatCurrency(totalPrice);
+                document.querySelector('.summery-contain li:nth-child(2) .price').textContent = formatCurrency(response.data.shippingMethod === "Vận chuyển nhanh" ? 10000 : 0); // Vận chuyển có thể thay đổi theo yêu cầu
+                document.querySelector('.summery-contain li:nth-child(3) .price').textContent = formatCurrency(totalDiscount);
+                document.querySelector('.summery-total li .price').textContent = formatCurrency(finalPrice);
+            },
+            error: function(xhr, status, error) {
+         
+                let errorMessage = "Lịch sử giao hàng đang trống";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                showError(errorMessage);  
+            }
+        });
+
+
+  
+        function addressDetail(id) {
+            $.ajax({
+                url: `http://localhost:8080/addresses/` + address, 
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json',
+                },
+                success: function(response) {
+                    const fullName = response.data.fullName;
+                    const phoneNumber = response.data.phoneNumber; // Lấy số điện thoại
+                    const addressText = response.data.addressText;
+                    const wardName = response.data.wardName;
+                    const districtName = response.data.districtName;
+                    const provinceName = response.data.provinceName;
+              
+                    // Gộp các thông tin lại thành một chuỗi địa chỉ đầy đủ
+                    const fullAddress = `${addressText}, ${wardName}, ${districtName}, ${provinceName}`;
+        
+                    // Gán tên người mua vào thẻ với id="nameAddress"
+                    document.getElementById('nameAddress').textContent = fullName;
+                    
+                    console.log(phoneNumber)
+                    // Gán số điện thoại vào thẻ với id="phoneNumber"
+                    document.getElementById('phoneNumber').textContent = phoneNumber;
+        
+                    // Gán địa chỉ đầy đủ vào thẻ với id="address"
+                    document.getElementById('address').textContent = fullAddress;
+                },
+                error: function(xhr, status, error) {
+                    let errorMessage = "Không thể lấy thông tin địa chỉ";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    }
+                    showError(errorMessage);  
+                }
+            });
+        } 
+    }else{
+        showError("Xin vui lòng đăng nhập")
+    }
+}
+
+
+
+
+});

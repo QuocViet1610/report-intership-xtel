@@ -1,0 +1,42 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+.dropdown-menu li {
+    display: block;              /* mỗi li là một khối riêng */
+    margin: 5px 0;               /* khoảng cách giữa các ô */
+}
+
+.dropdown-menu li a.dropdown-item {
+    display: block;
+    padding: 12px 16px;
+    background-color: #f8f9fa;   /* màu nền của ô */
+    border: 1px solid #dee2e6;   /* viền mỏng */
+    border-radius: 6px;          /* bo góc nhẹ */
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a.dropdown-item:hover {
+    background-color: #e2e6ea;   /* hiệu ứng hover */
+    color: #000;
+}

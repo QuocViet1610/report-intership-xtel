@@ -1,0 +1,102 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+header .navbar-nav .dropdown-menu {
+    width: 80vw; 
+    left: -20vw; 
+    height: 30vw;
+}
+
+
+header .navbar-nav .dropdown-menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+header .navbar-nav .dropdown-menu li {
+    width: 20%;                  /* 5 mục trên 1 hàng */
+    background-color: violet;    /* Nền tím */
+    padding: 10px;
+    margin: 0;
+    border: 1px solid black;
+    /* border-top: none; */
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/* Định dạng thẻ a */
+header .navbar-nav .dropdown-menu li > a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+/* Thêm mũi tên góc phải */
+header .navbar-nav .dropdown-menu li > a::after {
+    content: '\203A';           /* Unicode ký hiệu › */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #555;
+}
+
+
+.top-nav {
+    padding: 10px !important;
+}
+
+.input-group {
+    width: 125%;
+}
+
+// header 
+.dropdown-menu li {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-menu .sub-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200px;
+    background: white;
+    border: 1px solid #ddd;
+    display: none;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu li:hover > .sub-menu,
+.dropdown-menu li.active > .sub-menu {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+}
+

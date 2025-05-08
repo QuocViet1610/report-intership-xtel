@@ -64,5 +64,24 @@ public class OrderController {
         return ResponseResult.ofSuccess(orderService.Dashboard());
     }
 
+    @GetMapping("/doanhthu")
+    public ResponseResult<Object> getdoanhthu() {
+        return ResponseResult.ofSuccess(orderService.doanhThu());
+    }
+
+    @GetMapping("/getLoiNhuan")
+    public ResponseResult<Object> getLoiNhuan() {
+        return ResponseResult.ofSuccess(orderService.loiNhuan());
+    }
+
+    @GetMapping("/topProduct")
+    public ResponseResult<Object> getTopProduct() {
+        return ResponseResult.ofSuccess(orderService.topProduct());
+    }
+
+    @GetMapping("/topOrder")
+    public ResponseResult<Object> getTopOrder() {
+        return ResponseResult.ofSuccess(orderService.topOder());
+    }
 }
 

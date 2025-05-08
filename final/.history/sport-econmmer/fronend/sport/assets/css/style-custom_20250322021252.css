@@ -1,0 +1,29 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+header .navbar-nav .dropdown-menu-2 {
+    width: 80vw; /* Chiều rộng 80% màn hình */
+    left: 50%; /* Đặt vị trí giữa màn hình */
+    transform: translateX(-40vw); /* Dịch chuyển ngược lại 40vw (50% của 80vw) */
+    position: absolute;
+    top: 100%; /* Hiển thị ngay dưới menu cha */
+}

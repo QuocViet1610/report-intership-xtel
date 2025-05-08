@@ -21,4 +21,6 @@ public interface ProductService {
     List<ProductViewDto> getAll();
 
     ProductViewDto getDetail(Long id);
+
+
 }

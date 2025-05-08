@@ -1,0 +1,32 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+header .navbar-nav .dropdown-menu {
+    width: 80vw;  /* Chiếm 80% chiều rộng của viewport (body) */
+    left: -10vw;  /* Đẩy sang trái 20% của body */
+    background: red;
+}
+
+
+header .navbar-nav .dropdown-menu li{
+
+}

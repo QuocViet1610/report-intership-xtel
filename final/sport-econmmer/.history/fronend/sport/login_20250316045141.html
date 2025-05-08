@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/bulk-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h3 class="text-center">Đăng nhập</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Nhập email" formControlName="email" required>
+                    <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="text-danger">
+                      <small>Vui lòng nhập email</small>
+                    </div>
+      
+                    <!-- Lỗi khi email không hợp lệ -->
+                    <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger">
+                      <small>Email không hợp lệ</small>
+                    </div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" formControlName="password" required>
+                        <span class="input-group-text password-toggle" (click)="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </span>
+                    </div>
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                      <small>Mật khẩu ít nhất 8 ký tự</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn primary-btn w-100" [disabled]="loginForm.invalid">Đăng nhập</button>
+                <div class="text-center mt-2">
+                    <a href="#" class="text-decoration-none" style="color: var(--link-text);">Quên mật khẩu?</a>
+                </div>
+            </form>
+            <hr>
+            <div class="social-login">
+                <button class="btn btn-danger"><i class="fab fa-google"></i> Đăng nhập với Google</button>
+                <button class="btn btn-primary"><i class="fab fa-facebook"></i> Đăng nhập với Facebook</button>
+            </div>
+            <p class="text-center mt-3">Bạn chưa có tài khoản?
+              <a [routerLink]="'/register'"  style="color: var(--link-text);">Đăng ký ngay!</a>
+            </p>
+      
+        </div>
+      </div>
+ 
+      <script src="./assets/js/jquery-3.6.0.min.js"></script>
+
+      <!-- jquery ui-->
+      <script src="./assets/js/jquery-ui.min.js"></script>
+  
+      <!-- Bootstrap js-->
+      <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+      <script src="./assets/js/bootstrap/popper.min.js"></script>
+      <script src="./assets/js/bootstrap/bootstrap-notify.min.js"></script>
+</body>
+</html>

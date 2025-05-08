@@ -1,0 +1,26 @@
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5%;
+    padding: 20px;
+    /* background: var(--card-bg); */
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+  }
+  .password-toggle {
+    cursor: pointer;
+  }
+  .social-login button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .primary-btn {
+    background-color: var(--primary-btn);
+    color: var(--secondary-btn);
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--hover-btn);
+  }
+  

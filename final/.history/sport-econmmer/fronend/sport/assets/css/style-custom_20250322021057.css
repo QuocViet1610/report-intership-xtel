@@ -1,0 +1,28 @@
+.header-nav-left {
+    display: none !important;
+}
+
+@media (max-width: 1199.98px) {
+    .header-nav-left {
+        display: block !important;
+    }
+}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 1197.98px) {
+    .offcanvas-body {
+        display: block !important;
+    }
+}
+
+header .navbar-nav .dropdown-menu-2 {
+    width: 80vw; /* Chiều rộng 80% viewport */
+    left: 50%; /* Đặt vị trí bắt đầu ở giữa */
+    transform: translateX(-50%); /* Dịch chuyển ngược lại 50% chiều rộng để căn giữa */
+    position: absolute;
+}

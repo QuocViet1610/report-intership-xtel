@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+
+    <!-- Header End -->
+
+    <!-- mobile fix menu start -->
+
+    <!-- mobile fix menu end -->
+
+    <!-- Breadcrumb Section Start -->
+
+    <!-- Breadcrumb Section End -->
+
+    <!-- log in section start -->
+    <section class="log-in-section section-b-space w-100 vh-100 d-flex align-items-center">
+        <div class="container-fluid p-0">
+          <div class="row g-0">
+            <!-- Hình ảnh bên trái -->
+            <div class="col-lg-8 d-none d-lg-block">
+              <div class="h-100">
+                <img src="../assets/images/banner/login.jpg"
+                     alt="Đăng nhập"
+                     class="img-fluid w-100 h-100"
+                     style="object-fit: cover;">
+              </div>
+            </div>
+      
+            <!-- Form đăng ký bên phải -->
+            <div class="col-12 col-sm-10 col-md-8 col-lg-4 mx-auto d-flex align-items-center">
+              <div class="log-in-box w-100 px-3 py-4">
+                <div class="log-in-title text-center mb-4">
+                  <h1>Gofit</h1>
+                  <h4>Tạo Tài Khoản Mới</h4>
+                </div>
+      
+                <form class="row g-3" id="register-form">
+                  <!-- Họ tên -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="fullname" placeholder="Tên đầy đủ" required>
+                      <label for="fullname">Tên đầy đủ</label>
+                    </div>
+                    <div id="fullname-error" class="text-danger d-none">Tên phải có ít nhất 3 ký tự</div>
+                  </div>
+      
+                  <!-- Email -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="email" placeholder="Email" required>
+                      <label for="email">Địa chỉ Email</label>
+                    </div>
+                    <div id="email-error" class="text-danger d-none">Email không hợp lệ</div>
+                  </div>
+      
+                  <!-- Số điện thoại -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" required>
+                      <label for="phone">Số điện thoại</label>
+                    </div>
+                    <div id="phone-error" class="text-danger d-none">Số điện thoại không hợp lệ</div>
+                  </div>
+      
+                  <!-- Mật khẩu -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                      <label for="password">Mật khẩu</label>
+                    </div>
+                    <div id="password-error" class="text-danger d-none">Mật khẩu phải ít nhất 8 ký tự</div>
+                  </div>
+      
+                  <!-- Nhập lại mật khẩu -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                      <label for="confirm-password">Nhập lại mật khẩu</label>
+                    </div>
+                    <div id="confirm-password-error" class="text-danger d-none">Mật khẩu không khớp</div>
+                  </div>
+      
+                  <!-- Nút đăng ký -->
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
+                  </div>
+                </form>
+      
+                <!-- Hoặc đăng ký với mạng xã hội -->
+                <div class="text-center mt-3">
+                  <h6>hoặc</h6>
+                </div>
+      
+                <div class="d-grid gap-2 mt-2">
+                  <a href="https://accounts.google.com/signin" class="btn btn-outline-secondary">
+                    <img src="../assets/images/inner-page/google.png" alt="" style="width: 20px; margin-right: 10px;">
+                    Đăng ký với Google
+                  </a>
+                  <a href="https://www.facebook.com/" class="btn btn-outline-secondary">
+                    <img src="../assets/images/inner-page/facebook.png" alt="" style="width: 20px; margin-right: 10px;">
+                    Đăng ký với Facebook
+                  </a>
+                </div>
+      
+                <!-- Liên kết đăng nhập -->
+                <div class="text-center mt-4">
+                  <h6>Bạn đã có tài khoản?</h6>
+                  <a href="login.html" class="text-decoration-none">Đăng Nhập</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    
+    
+    <!-- log in section end -->
+
+
+    <!-- Tap to top and theme setting button end -->
+
+    <!-- Bg overlay Start -->
+
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../assets/js/feather/feather.min.js"></script>
+    <script src="../assets/js/feather/feather-icon.js"></script>
+
+    <!-- Slick js-->
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/slick/slick-animation.min.js"></script>
+    <script src="../assets/js/slick/custom_slick.js"></script>
+
+    <!-- Lazyload Js -->
+    <script src="../assets/js/lazysizes.min.js"></script>
+
+    <!-- script js -->
+    <script src="../assets/js/script.js"></script>
+
+
+<script>
+// Định nghĩa hàm showError
+function showError(message) {
+    console.error("Error:", message);
+    // Hiển thị thông báo lỗi cho người dùng (thêm code hiển thị thông báo)
+    alert(message); // Hoặc sử dụng cách hiển thị thông báo khác
+}
+
+$(document).ready(function() {
+    $('#register-form').on('submit', function(event) {
+        event.preventDefault(); // Ngăn form submit theo cách thông thường
+        
+        // Lấy giá trị từ form
+        const fullname = $('#fullname').val();
+        const email = $('#email').val();
+        const phone = $('#phone').val();
+        const password = $('#password').val();
+        const confirmPassword = $('#confirm-password').val();
+        
+        console.log("Form submitted:", fullname, email, phone);
+        
+        // Biến xác nhận
+        let isValid = true;
+
+        // Kiểm tra tên (>= 3 ký tự)
+        if (fullname.length < 3) {
+            $('#fullname-error').show();
+            isValid = false;
+        } else {
+            $('#fullname-error').hide();
+        }
+
+        // Kiểm tra email (đúng định dạng)
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            $('#email-error').show();
+            isValid = false;
+        } else {
+            $('#email-error').hide();
+        }
+
+        // Kiểm tra số điện thoại (chỉ chứa số và có độ dài từ 10-11 ký tự)
+        const phonePattern = /^\d{10,11}$/;
+        if (!phonePattern.test(phone)) {
+            $('#phone-error').show();
+            isValid = false;
+        } else {
+            $('#phone-error').hide();
+        }
+
+        // Kiểm tra mật khẩu (>= 8 ký tự)
+        if (password.length < 8) {
+            $('#password-error').show();
+            isValid = false;
+        } else {
+            $('#password-error').hide();
+        }
+
+        // Kiểm tra mật khẩu nhập lại (phải trùng với mật khẩu)
+        if (password !== confirmPassword) {
+            $('#confirm-password-error').show();
+            isValid = false;
+        } else {
+            $('#confirm-password-error').hide();
+        }
+        
+        // Nếu dữ liệu hợp lệ, gửi Ajax request
+        if (isValid) {
+            console.log("Sending AJAX request...");
+   
+            $.ajax({
+                url: "http://localhost:8080/auth/register",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    fullName: fullname,
+                    email: email,
+                    phone: phone,
+                    password: password,
+                    passwordConfirm: confirmPassword
+                }),
+                success: function(response) {
+                    console.log("Success response:", response);
+                    if (response.code === "200") { 
+                        if (response.data) {
+                            localStorage.setItem("registerRequest", JSON.stringify({
+                                fullName: fullname,
+                                email: email,
+                                phone: phone,
+                                password: password,
+                                passwordConfirm: confirmPassword
+                            }));
+                            window.location.href = "otp.html";
+                        }
+                    } else {
+                        showError(response.message || "Đăng ký thất bại!");
+                    }
+                },
+                error: function(xhr) {
+                    console.log("Error response:", xhr);
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        showError(xhr.responseJSON.message); 
+                    } else {
+                        showError("Đăng ký thất bại! Vui lòng kiểm tra lại.");
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+</body>
+
+
+</html>

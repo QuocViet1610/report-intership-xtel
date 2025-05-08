@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        .otp-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #777;
+            text-align: center;
+        }
+        
+        .email-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .email {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .edit-email {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .edit-email:hover {
+            text-decoration: underline;
+        }
+        
+        .otp-box {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .otp-input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin: 0 5px;
+        }
+        
+        .otp-status {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .sent-status {
+            color: #28a745;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .resend-otp {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .resend-otp:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+
+    <!-- Header End -->
+
+    <!-- mobile fix menu start -->
+
+    <!-- mobile fix menu end -->
+
+    <!-- Breadcrumb Section Start -->
+
+    <!-- Breadcrumb Section End -->
+
+    <!-- log in section start -->
+    <section class="log-in-section section-b-space" style="padding: 0px;">
+        <div class="container-fluid-lg w-100">
+            <div class="row">
+                <div class="col-xxl-5 col-xl-5 col-lg-5 d-lg-block d-none ms-auto">
+                    <div class="image-contain">
+                        <img src="../assets/images/inner-page/sign-up.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+    
+                <div class="col-xxl-5 col-xl-5 col-lg-7 col-sm-8 mx-auto">
+                    <div class="log-in-box">
+                        <section class="otp-section" style="min-height: 90vh;">
+                            <div class="container">
+                                <div class="content">
+                                    <h2>Chào mừng bạn quay trở lại!</h2>
+                                    <p>Để tăng cường tính bảo mật cho tài khoản Decathlon của bạn, bạn sẽ cần một mã xác minh khi đăng nhập vào thiết bị mới.</p>
+                                    <!-- <div class="email-info">
+                                        <span class="email">20312565@eaut.edu.vn</span>
+                                        <a href="#" class="edit-email">Chỉnh sửa</a>
+                                    </div>
+                         -->
+                                    <div class="otp-box">
+                                        <label for="otp">Mã OTP</label>
+                                        <div class="otp-inputs">
+                                            <input type="text" id="otp1" maxlength="1" class="otp-input" />
+                                            <input type="text" id="otp2" maxlength="1" class="otp-input" />
+                                            <input type="text" id="otp3" maxlength="1" class="otp-input" />
+                                            <input type="text" id="otp4" maxlength="1" class="otp-input" />
+                                            <input type="text" id="otp5" maxlength="1" class="otp-input" />
+                                            <input type="text" id="otp6" maxlength="1" class="otp-input" />
+                                        </div>
+                                        <div class="otp-status">
+                                            <span class="sent-status">Mã đã được gửi đi</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-3"></div>
+                                    <div class="col-12">
+                                        <button class="btn btn-animation w-100" type="submit">Đăng Ký</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                    </div>
+                </div>
+    
+                <div class="col-xxl-7 col-xl-6 col-lg-6"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- log in section end -->
+
+
+    <!-- Tap to top and theme setting button end -->
+
+    <!-- Bg overlay Start -->
+
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../assets/js/feather/feather.min.js"></script>
+    <script src="../assets/js/feather/feather-icon.js"></script>
+
+    <!-- Slick js-->
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/slick/slick-animation.min.js"></script>
+    <script src="../assets/js/slick/custom_slick.js"></script>
+
+    <!-- Lazyload Js -->
+    <script src="../assets/js/lazysizes.min.js"></script>
+
+    <!-- script js -->
+    <script src="../assets/js/script.js"></script>
+</body>
+
+
+</html>

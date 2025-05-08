@@ -10,7 +10,11 @@ import com.example.project1.model.dto.request.product.*;
 import com.example.project1.model.dto.view.product.ProductAttributeValueView;
 import com.example.project1.model.dto.view.product.ProductView;
 import com.example.project1.model.dto.view.product.ProductViewDto;
+import com.example.project1.model.enity.order.Order;
+import com.example.project1.model.enity.order.OrderDetail;
 import com.example.project1.model.enity.product.*;
+import com.example.project1.module.Order.repository.OrderDetailRepository;
+import com.example.project1.module.Order.repository.OrderRepository;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.repository.*;
 import com.example.project1.module.product.service.ProductService;
@@ -49,6 +53,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductVariantRepository productVariantRepository;
     private final ProductViewRepository productViewRepository;
     private final ProductViewMapper productViewMapper;
+    private final OrderDetailRepository orderRepository;
     private final ProductAttributeValueViewRepos productAttributeValueViewRepos;
 //    private final ProductView
     private String bucketName ;
@@ -192,15 +197,23 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ValidateException(Translator.toMessage("Sản phẩm không tồn tại")));
-        List<ProductImage> productImages = productImageRepository.findAllByProductId(product.getId());
-
-        if (!productImages.isEmpty()) {
-            for (ProductImage productImage : productImages) {
-                MinioUtils.deleteFileMinio(bucketName, productImage.getImageUrl());
-            }
+        List<OrderDetail> order = orderRepository.findAllByProductId(id);
+        if (order.size() > 0){
+            product.setIsActive(0);
+            productRepository.save(product);
         }
-        productRepository.delete(product);
-        productRepository.findAll();
+        else {
+            List<ProductImage> productImages = productImageRepository.findAllByProductId(product.getId());
+
+            if (!productImages.isEmpty()) {
+                for (ProductImage productImage : productImages) {
+                    MinioUtils.deleteFileMinio(bucketName, productImage.getImageUrl());
+                }
+            }
+            productRepository.delete(product);
+        }
+
+
     }
 
     @Override

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu Đa Cấp</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container chính của menu */
+        .menu-container {
+            display: flex;
+            width: 90vw;
+            height: 60vh;
+            border: 1px solid #ddd;
+            background: white;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Menu cấp */
+        .menu-level {
+            width: 25%;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            display: none;
+        }
+
+        /* Hiển thị menu khi active */
+        .menu-level.active {
+            display: block;
+        }
+
+        /* Danh sách menu */
+        .menu-list {
+            list-style: none;
+            width: 100%;
+        }
+
+        .menu-list li {
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Hiệu ứng hover */
+        .menu-list li:hover {
+            background: #f5f5f5;
+        }
+
+        /* Mục đang được chọn */
+        .menu-list li.active {
+            background: #ddd;
+            font-weight: bold;
+        }
+
+        /* Mũi tên chỉ bên phải */
+        .menu-list li::after {
+            content: '›';
+            font-size: 18px;
+            color: #888;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <!-- Menu cấp 1 -->
+        <div class="menu-level active" id="menu-1">
+            <ul class="menu-list">
+                <li data-category="chay-bo">Chạy Bộ & Đi Bộ</li>
+                <li data-category="leo-nui">Leo Núi & Dã Ngoại</li>
+                <li data-category="the-thao-nuoc">Thể Thao Dưới Nước</li>
+                <li data-category="gym">Tập Gym & Boxing</li>
+                <li data-category="the-thao-vot">Thể Thao Dùng Vợt</li>
+            </ul>
+        </div>
+
+        <!-- Menu cấp 2 -->
+        <div class="menu-level" id="menu-2">
+            <h3 id="title-2">Danh mục con</h3>
+            <ul class="menu-list" id="list-2"></ul>
+        </div>
+
+        <!-- Menu cấp 3 -->
+        <div class="menu-level" id="menu-3">
+            <h3 id="title-3">Danh mục con</h3>
+            <ul class="menu-list" id="list-3"></ul>
+        </div>
+
+        <!-- Menu cấp 4 -->
+        <div class="menu-level" id="menu-4">
+            <h3 id="title-4">Danh mục con</h3>
+            <ul class="menu-list" id="list-4"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let menus = [
+                { level: 1, element: document.getElementById("menu-1"), list: null },
+                { level: 2, element: document.getElementById("menu-2"), list: document.getElementById("list-2"), title: document.getElementById("title-2") },
+                { level: 3, element: document.getElementById("menu-3"), list: document.getElementById("list-3"), title: document.getElementById("title-3") },
+                { level: 4, element: document.getElementById("menu-4"), list: document.getElementById("list-4"), title: document.getElementById("title-4") }
+            ];
+
+            // Dữ liệu menu con
+            let subCategories = {
+                "chay-bo": { "Chạy Bộ Đường Trường": ["Giày Chạy Bộ", "Quần Áo Chạy Bộ Nam", "Quần Áo Chạy Bộ Nữ"], "Chạy Địa Hình": ["Giày Địa Hình", "Balo Nước"], "Đi Bộ": ["Gậy Đi Bộ", "Dép Đi Bộ"] },
+                "leo-nui": { "Dụng cụ Leo Núi": ["Dây Leo", "Balo Leo Núi"], "Giày Leo Núi": ["Giày Trekking", "Giày Hiking"] },
+                "the-thao-nuoc": { "Bơi Lội": ["Kính Bơi", "Áo Bơi"], "Lặn Biển": ["Bình Dưỡng Khí", "Chân Vịt"] },
+                "gym": { "Dụng Cụ Tập Gym": ["Tạ Tay", "Dây Kháng Lực"], "Quần Áo Gym": ["Áo Tanktop", "Quần Gym"] },
+                "the-thao-vot": { "Tennis": ["Vợt Tennis", "Giày Tennis"], "Cầu Lông": ["Vợt Cầu Lông", "Quả Cầu Lông"] }
+            };
+
+            // Xử lý click vào menu cấp 1
+            menus[0].element.querySelectorAll("li").forEach(item => {
+                item.addEventListener("click", function () {
+                    let category = this.getAttribute("data-category");
+                    updateSubMenu(1, category, subCategories[category]);
+                });
+            });
+
+            // Xử lý click vào menu cấp 2 và 3
+            menus.slice(1, 3).forEach((menu, index) => {
+                menu.list.addEventListener("click", function (e) {
+                    if (e.target.tagName === "LI") {
+                        let nextLevel = index + 2; // Lấy cấp tiếp theo
+                        let subItems = subCategories[e.target.parentNode.getAttribute("data-category")][e.target.textContent];
+                        updateSubMenu(nextLevel, e.target.textContent, subItems);
+                    }
+                });
+            });
+
+            // Hàm cập nhật menu con
+            function updateSubMenu(level, title, items) {
+                let currentMenu = menus[level];
+                let prevMenu = menus[level - 1];
+
+                // Cập nhật tiêu đề
+                currentMenu.title.textContent = title;
+
+                // Cập nhật danh sách mục con
+                currentMenu.list.innerHTML = "";
+                if (items) {
+                    for (let key in items) {
+                        let li = document.createElement("li");
+                        li.textContent = key;
+                        currentMenu.list.appendChild(li);
+                    }
+                }
+
+                // Hiển thị menu con
+                menus.forEach((menu, index) => {
+                    menu.element.classList.toggle("active", index <= level);
+                });
+
+                // Gán category vào menu con
+                currentMenu.list.setAttribute("data-category", title);
+            }
+        });
+    </script>
+
+</body>
+</html>

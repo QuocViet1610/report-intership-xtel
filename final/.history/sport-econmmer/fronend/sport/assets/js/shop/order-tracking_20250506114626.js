@@ -1,0 +1,335 @@
+$(document).ready(function() {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get('orderId');
+
+if(orderId){
+    let address = null;
+    let token = localStorage.getItem('authToken');
+    if(token){
+
+        $.ajax({
+            url: `http://localhost:8080/order/` + orderId, 
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+            },
+            success: function(response) {
+
+
+                if(response.code === '200') {
+
+                    document.getElementById('idOrder').textContent = response.data.orderCode;
+                    const createdAtDate = new Date(response.data.createdAt);
+                    const updateAtDate = new Date(response.data.createdAt);
+                    address = response.data.shippingAddress;
+                    addressDetail(address);
+                    // Cộng thêm 3 ngày vào updateAtDate
+                    updateAtDate.setDate(createdAtDate.getDate() + 3);
+                    
+                    // Tùy chọn cho định dạng có giờ
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedCreatedAt = createdAtDate.toLocaleString('vi-VN', options);
+                    
+                    // Tùy chọn cho định dạng không có giờ (chỉ có năm, tháng, ngày)
+                    const optionUpdate = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedUpdatedAt = updateAtDate.toLocaleString('vi-VN', optionUpdate);
+                    
+                    // Gán thời gian đặt vào thẻ có id là timePlaced
+                    document.getElementById('timePlaced').textContent = formattedCreatedAt;
+                    
+                    // Gán thời gian dự kiến đến vào thẻ có id là estimatedTime
+                    document.getElementById('estimatedTime').textContent = formattedUpdatedAt;
+                    
+
+                    const statusId = response.data.statusId; // Giá trị có thể là 1 hoặc 2
+
+                    // Lấy tất cả các phần tử li
+                    const statusElements = document.querySelectorAll('.progtrckr li');
+
+                    // Kiểm tra giá trị statusId và thêm lớp tương ứng
+                    if (statusId === 1) {
+                        // Nếu statusId là 1, chỉ thêm 'progtrckr-done' vào phần tử đầu tiên
+                        statusElements[0].classList.add('progtrckr-done');
+                    } else if (statusId === 2) {
+                        // Nếu statusId là 2, thêm 'progtrckr-done' vào 2 phần tử đầu tiên
+                        statusElements[0].classList.add('progtrckr-done');
+                        statusElements[1].classList.add('progtrckr-done');
+                    } else if (statusId === 3) {
+                        statusElements[0].classList.add('progtrckr-done');
+                        statusElements[1].classList.add('progtrckr-done');
+                        statusElements[2].classList.add('progtrckr-done');
+                    } else if (statusId === 4) {
+                        statusElements[0].classList.add('progtrckr-done');
+                        statusElements[1].classList.add('progtrckr-done');
+                        statusElements[2].classList.add('progtrckr-done');
+                        statusElements[3].classList.add('progtrckr-done');
+                    }
+
+
+                    
+                }
+                const totalPrice = response.data.totalPrice;
+                const totalDiscount = response.data.totalDiscount;
+                const finalPrice = response.data.finalPrice;
+                const totalProduct = response.data.totalProduct;
+                const paymentMethod = response.data.paymentMethod;
+    
+                // Gán số sản phẩm vào phần tử với id="totalProducts"
+                document.getElementById('totalProducts').textContent = `(${totalProduct} sản phẩm)`;
+    
+                // Gán giá đơn hàng vào phần tử với id="orderPrice"
+                document.getElementById('orderPrice').textContent = formatCurrency(totalPrice);
+    
+                // Gán giá vận chuyển vào phần tử với id="shippingPrice"
+                document.getElementById('shippingPrice').textContent = formatCurrency(response.data.finalPrice- (response.data.totalPrice - response.data.totalDiscount)); // Thay đổi giá vận chuyển nếu cần
+    
+                // Gán giảm giá vào phần tử với id="discountPrice"
+                document.getElementById('discountPrice').textContent = formatCurrency(totalDiscount);
+    
+                // Gán tổng đơn hàng vào phần tử với id="finalPrice"
+                document.getElementById('finalPrice').textContent = formatCurrency(finalPrice);
+    
+                // Gán phương thức thanh toán vào phần tử với id="paymentMethod"
+                document.getElementById('paymentMethod').textContent = paymentMethod;
+
+                var orderDetail = [];
+                orderDetail = response.data.orderDetails;
+                
+                let totalAmount = 0; // Biến để tính tổng số tiền của tất cả các sản phẩm
+                
+                // Hàm để render các thuộc tính của sản phẩm
+                function renderProductAttributes(item) {
+                    let attributesHTML = '';
+                    // Kiểm tra nếu có productAttributeValue và nó có giá trị
+                    if (item.productAttributeValue && item.productAttributeValue.length > 0) {
+                       
+                        item.productAttributeValue.forEach(attribute => {
+                            // Lấy tên thuộc tính
+                            let attributeName = attribute.attributeName;
+                            
+                            // Lấy các giá trị của thuộc tính (nếu có)
+                            let attributeValues = attribute.attributeValues.map(val => val.name).join(', ');
+                
+                            // Tạo HTML cho từng thuộc tính
+                            attributesHTML += `
+                                <li><strong>${attributeName}:</strong> ${attributeValues}</li>
+                            `;
+                        });
+                    }
+                    return attributesHTML;
+                }
+                
+                // Đảm bảo tbody tồn tại
+                if ($('#product-tbody').length === 0) {
+                    $('.table').append('<tbody id="product-tbody"></tbody>');
+                }
+                
+                orderDetail.forEach(orderItem => {
+                    // Lấy số lượng sản phẩm
+                    let quantityProduct = orderItem.quantity;
+                
+                    // Lấy thông tin sản phẩm
+                    let item = orderItem.productView; // Lấy thông tin của productView
+                
+                    // Lấy hình ảnh chính của sản phẩm
+                    let mainImage = item.productImages.find(image => image.isPrimary === 1);
+                    let imageUrl = mainImage ? mainImage.imageUrl : 'default-image.jpg'; // Nếu không có ảnh chính, dùng ảnh mặc định
+                
+                    // Lấy tên sản phẩm và giá
+                    let productName = item.productName;
+                    let productPrice = item.productPrice;
+                    let totalPrice = parseInt(productPrice) * parseInt(quantityProduct); // Tính tổng giá của sản phẩm
+                
+                    // Kiểm tra và lấy thông tin variant nếu có
+                    let productVariantId = null;
+                    // Mặc định color và size là rỗng
+                    let color = '';
+                    let size = '';
+                    
+                    if (item.productVariants && item.productVariants.length > 0) {
+                        let variant = item.productVariants[0]; // Lấy variant đầu tiên
+                        productName = variant.name;
+                        productPrice = variant.price; 
+                        productVariantId = variant.id;
+                        totalPrice = parseInt(productPrice) * parseInt(quantityProduct); // Cập nhật tổng giá khi có variant
+                        
+                        // Lấy thông tin color và size từ variant nếu có
+                        if (item.productAttributeValue && item.productAttributeValue.length > 0) {
+                            item.productAttributeValue.forEach(attr => {
+                                if (attr.attributeName.toLowerCase() === 'màu sắc' || attr.attributeName.toLowerCase() === 'color') {
+                                    color = attr.attributeValues.map(val => val.name).join(', ');
+                                }
+                                if (attr.attributeName.toLowerCase() === 'kích cỡ' || attr.attributeName.toLowerCase() === 'size') {
+                                    size = attr.attributeValues.map(val => val.name).join(', ');
+                                }
+                            });
+                        }
+                    }
+                
+                    // Hiển thị thông tin sản phẩm trong console
+                    // console.log(`Sản phẩm: ${productName}`);
+                    // console.log(`Giá: ${productPrice}`);
+                    // console.log(`Số lượng: ${quantityProduct}`);
+                    // console.log(`Tổng giá: ${totalPrice}`);
+                
+                    // Lấy và hiển thị các thuộc tính của sản phẩm
+                    // let attributesHTML = renderProductAttributes(item);
+                    // if (attributesHTML) {
+                    //     console.log(`Thuộc tính sản phẩm:`);
+                    //     console.log(attributesHTML);
+                    // } else {
+                    //     console.log('Không có thuộc tính sản phẩm.');
+                    // }
+                
+                    console.log('--------------------------------------');
+                
+                    // Cộng tổng số tiền cho tất cả các sản phẩm
+                    totalAmount += totalPrice;
+                
+                    // Tạo HTML cho dòng sản phẩm - SỬA LỖI: sử dụng các biến đã định nghĩa thay vì product.xyz
+                    let productRow = `
+                    <tr>
+                        <td class="product-detail">
+                            <div class="product border-0">
+                                <a href="product.left-sidebar.html" class="product-image">
+                                    <img src="${imageUrl}" class="img-fluid blur-up lazyload" alt="${productName}">
+                                </a>
+                                <div class="product-detail">
+                                    <ul>
+                                        <li class="name">
+                                            <a href="product-left-thumbnail.html">${productName}</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="price">
+                            <h4 class="table-title text-content">Giá</h4>
+                            <h6 class="theme-color">${parseInt(productPrice).toLocaleString()}đ</h6>
+                        </td>
+                        <td class="quantity">
+                            <h4 class="table-title text-content">Số lượng</h4>
+                            <h4 class="text-title">${quantityProduct}</h4>
+                        </td>
+                        <td class="subtotal">
+                            <h4 class="table-title text-content">Tổng cộng</h4>
+                            <h5>${parseInt(totalPrice).toLocaleString()}đ</h5>
+                        </td>
+                    </tr>`;
+                
+                    // Thêm dòng vào bảng
+                    $('#product-tbody').append(productRow);
+                });
+
+
+
+            },
+            error: function(xhr, status, error) {
+         
+                let errorMessage = "Lịch sử giao hàng đang trống";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                showError(errorMessage);  
+            }
+        });
+
+
+
+        function renderTable(products) {
+            // Clear table body trước khi thêm mới
+            $('#product-table tbody').empty();
+        
+            // Duyệt qua dữ liệu sản phẩm và tạo các dòng mới cho bảng
+            products.forEach(function(product) {
+                var row = `<tr>
+                    <td class="product-detail">
+                        <div class="product border-0">
+                            <a href="${product.link}" class="product-image">
+                                <img src="${product.image}" class="img-fluid blur-up lazyload" alt="">
+                            </a>
+                            <div class="product-detail">
+                                <ul>
+                                    <li class="name">
+                                        <a href="${product.link}">${product.name}</a>
+                                    </li>
+                                    <li class="text-content">Màu sắc: ${product.color}</li>
+                                    <li class="text-content">Kích cỡ: ${product.size}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">
+                        <h4 class="table-title text-content">Giá</h4>
+                        <h6 class="theme-color">${product.price}đ</h6>
+                    </td>
+                    <td class="quantity">
+                        <h4 class="table-title text-content">Số lượng</h4>
+                        <h4 class="text-title">${product.quantity}</h4>
+                    </td>
+                    <td class="subtotal">
+                        <h4 class="table-title text-content">Tổng cộng</h4>
+                        <h5>${product.subtotal}đ</h5>
+                    </td>
+                </tr>`;
+                
+                // Thêm dòng mới vào bảng
+                $('#product-table tbody').append(row);
+            });
+        }
+        
+
+        function formatCurrency(amount) {
+            return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        function addressDetail(id) {
+            $.ajax({
+                url: `http://localhost:8080/addresses/` + address, 
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json',
+                },
+                success: function(response) {
+                    const fullName = response.data.fullName;
+                    const phoneNumber = response.data.phoneNumber; // Lấy số điện thoại
+                    const addressText = response.data.addressText;
+                    const wardName = response.data.wardName;
+                    const districtName = response.data.districtName;
+                    const provinceName = response.data.provinceName;
+              
+                    // Gộp các thông tin lại thành một chuỗi địa chỉ đầy đủ
+                    const fullAddress = `${addressText}, ${wardName}, ${districtName}, ${provinceName}`;
+        
+                    // Gán tên người mua vào thẻ với id="nameAddress"
+                    document.getElementById('nameAddress').textContent = fullName;
+                    
+                    // console.log(phoneNumber)
+                    // Gán số điện thoại vào thẻ với id="phoneNumber"
+                    document.getElementById('phoneNumber').textContent = phoneNumber;
+        
+                    // Gán địa chỉ đầy đủ vào thẻ với id="address"
+                    document.getElementById('address').textContent = fullAddress;
+                },
+                error: function(xhr, status, error) {
+                    let errorMessage = "Không thể lấy thông tin địa chỉ";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    }
+                    showError(errorMessage);  
+                }
+            });
+        } 
+    }else{
+        showError("Xin vui lòng đăng nhập")
+    }
+}
+
+
+
+
+});

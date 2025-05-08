@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h3 class="text-center">Đăng nhập</h3>
+            <form action="your-login-endpoint" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+                    <div id="emailError" class="text-danger" style="display:none;">
+                        <small>Vui lòng nhập email</small>
+                    </div>
+                    <div id="emailInvalidError" class="text-danger" style="display:none;">
+                        <small>Email không hợp lệ</small>
+                    </div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                        <span class="input-group-text password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </span>
+                    </div>
+                    <div id="passwordError" class="text-danger" style="display:none;">
+                        <small>Mật khẩu ít nhất 8 ký tự</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn primary-btn w-100" id="submitBtn">Đăng nhập</button>
+                <div class="text-center mt-2">
+                    <a href="#" class="text-decoration-none" style="color: var(--link-text);">Quên mật khẩu?</a>
+                </div>
+            </form>
+            <hr>
+            <div class="social-login">
+                <button class="btn btn-danger"><i class="fab fa-google"></i> Đăng nhập với Google</button>
+                <button class="btn btn-primary"><i class="fab fa-facebook"></i> Đăng nhập với Facebook</button>
+            </div>
+            <p class="text-center mt-3">Bạn chưa có tài khoản?
+                <a href="/register" style="color: var(--link-text);">Đăng ký ngay!</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <!-- jquery ui-->
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/bootstrap/popper.min.js"></script>
+    <script src="./assets/js/bootstrap/bootstrap-notify.min.js"></script>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var toggleIcon = document.getElementById('toggleIcon');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Example validation
+        document.querySelector('form').addEventListener('submit', function(event) {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let valid = true;
+
+            // Validate email
+            if (!email) {
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            } else if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+                document.getElementById('emailInvalidError').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+                document.getElementById('emailInvalidError').style.display = 'none';
+            }
+
+            // Validate password
+            if (password.length < 8) {
+                document.getElementById('passwordError').style.display = 'block';
+                valid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

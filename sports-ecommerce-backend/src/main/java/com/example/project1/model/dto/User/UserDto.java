@@ -32,6 +32,8 @@ public class UserDto  {
 
     private String avatar;
 
+    private String password;
+
     public UserDto() {
 
     }

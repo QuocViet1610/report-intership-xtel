@@ -1,18 +1,15 @@
 package com.example.project1.module.Order.repository;
 
-import com.example.project1.model.dto.respone.CartResponse;
-import com.example.project1.model.enity.order.Address;
 import com.example.project1.model.enity.order.Order;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
 
@@ -20,9 +17,49 @@ public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecific
 
     List<Order> findByUserId(Long userId, Sort sort);
 
-    @Query("SELECT SUM(o.finalPrice) FROM Order o")
+
+    List<Order> findAllByUserId(Long userId);
+
+    @Query("SELECT SUM(o.finalPrice) FROM Order o WHERE o.statusId = 4")
     Double getTotalRevenue();
 
     @Query("SELECT COUNT(o) FROM Order o")
     Long getTotalOrders();
+
+    @Query("SELECT MONTH(o.createdAt) as month, SUM(o.finalPrice) as total " +
+            "FROM Order o " +
+            "WHERE YEAR(o.createdAt) = :year AND o.statusId = 4 " +
+            "GROUP BY MONTH(o.createdAt)")
+    List<Object[]> getMonthlyRevenue(@Param("year") int year);
+
+    @Query(value = """
+    SELECT 
+        MONTH(o.created_at) AS month,
+        SUM(od.total) AS total_revenue,
+        SUM(
+            CASE
+                WHEN od.product_variant_id IS NOT NULL THEN pv.cost_price * od.quantity
+                ELSE p.cost_price * od.quantity
+            END
+        ) AS total_cost,
+        SUM(od.total) - SUM(
+            CASE
+                WHEN od.product_variant_id IS NOT NULL THEN pv.cost_price * od.quantity
+                ELSE p.cost_price * od.quantity
+            END
+        ) AS total_profit
+    FROM Order_detail od
+    JOIN Orders o ON o.order_id = od.order_id
+    LEFT JOIN product p ON p.id = od.product_id
+    LEFT JOIN product_variants pv ON pv.id = od.product_variant_id
+    WHERE o.status_id = 4
+    GROUP BY MONTH(o.created_at)
+    ORDER BY MONTH(o.created_at)
+    """, nativeQuery = true)
+    List<Object[]> getMonthlyProfitData();
+
+    @Query("SELECT o FROM Order o WHERE o.statusId = 4 ORDER BY o.finalPrice DESC")
+    List<Order> findTop5ByOrderByTotalAmountDesc(Pageable pageable);
+
+
 }

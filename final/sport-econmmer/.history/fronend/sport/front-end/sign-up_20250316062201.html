@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+
+    <!-- Header End -->
+
+    <!-- mobile fix menu start -->
+
+    <!-- mobile fix menu end -->
+
+    <!-- Breadcrumb Section Start -->
+
+    <!-- Breadcrumb Section End -->
+
+    <!-- log in section start -->
+    <section class="log-in-section section-b-space">
+        <div class="container-fluid-lg w-100">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
+                    <div class="image-contain">
+                        <img src="../assets/images/inner-page/sign-up.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+    
+                <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+                    <div class="log-in-box">
+                        <div class="log-in-title">
+                            <h3>Sport ecommer</h3>
+                            <h4>Tạo Tài Khoản Mới</h4>
+                        </div>
+    
+                        <div class="input-box">
+                            <form class="row g-4" id="register-form">
+                                <!-- Trường tên đầy đủ -->
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
+                                        <input type="text" class="form-control" id="fullname" placeholder="Tên đầy đủ" required>
+                                        <label for="fullname">Tên đầy đủ</label>
+                                    </div>
+                                    <div id="fullname-error" class="text-danger" style="display:none;">Tên phải có ít nhất 3 ký tự</div>
+                                </div>
+                        
+                                <!-- Trường email -->
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Địa chỉ Email" required>
+                                        <label for="email">Địa chỉ Email</label>
+                                    </div>
+                                    <div id="email-error" class="text-danger" style="display:none;">Email không hợp lệ</div>
+                                </div>
+                        
+                                <!-- Trường số điện thoại -->
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
+                                        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" required>
+                                        <label for="phone">Số điện thoại</label>
+                                    </div>
+                                    <div id="phone-error" class="text-danger" style="display:none;">Số điện thoại không hợp lệ</div>
+                                </div>
+                        
+                                <!-- Trường mật khẩu -->
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
+                                        <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                                        <label for="password">Mật khẩu</label>
+                                    </div>
+                                    <div id="password-error" class="text-danger" style="display:none;">Mật khẩu phải ít nhất 8 ký tự</div>
+                                </div>
+                        
+                                <!-- Trường nhập lại mật khẩu -->
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
+                                        <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                                        <label for="confirm-password">Nhập lại mật khẩu</label>
+                                    </div>
+                                    <div id="confirm-password-error" class="text-danger" style="display:none;">Mật khẩu không khớp</div>
+                                </div>
+                        
+                                <!-- Nút đăng ký -->
+                                <div class="col-12">
+                                    <button class="btn btn-animation w-100" type="submit">Đăng Ký</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+    
+                        <!-- Đăng ký qua mạng xã hội -->
+                        <div class="other-log-in">
+                            <h6>hoặc</h6>
+                        </div>
+    
+                        <div class="log-in-button">
+                            <ul>
+                                <li>
+                                    <a href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin"
+                                        class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/google.png" class="blur-up lazyload" alt="">
+                                        Đăng ký với Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/" class="btn google-button w-100">
+                                        <img src="../assets/images/inner-page/facebook.png" class="blur-up lazyload" alt="">
+                                        Đăng ký với Facebook
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+    
+                        <div class="other-log-in">
+                            <h6></h6>
+                        </div>
+    
+                        <!-- Liên kết đăng nhập nếu đã có tài khoản -->
+                        <div class="sign-up-box">
+                            <h4>Bạn đã có tài khoản?</h4>
+                            <a href="login.html">Đăng Nhập</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-xxl-7 col-xl-6 col-lg-6"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- log in section end -->
+
+
+    <!-- Tap to top and theme setting button end -->
+
+    <!-- Bg overlay Start -->
+
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../assets/js/feather/feather.min.js"></script>
+    <script src="../assets/js/feather/feather-icon.js"></script>
+
+    <!-- Slick js-->
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/slick/slick-animation.min.js"></script>
+    <script src="../assets/js/slick/custom_slick.js"></script>
+
+    <!-- Lazyload Js -->
+    <script src="../assets/js/lazysizes.min.js"></script>
+
+    <!-- script js -->
+    <script src="../assets/js/script.js"></script>
+
+
+<script>
+    document.getElementById('register-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Ngừng gửi form để thực hiện kiểm tra
+    
+        // Lấy giá trị các trường
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+    
+        // Biến xác nhận
+        let isValid = true;
+    
+        // Kiểm tra tên (>= 3 ký tự)
+        if (fullname.length < 3) {
+            document.getElementById('fullname-error').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('fullname-error').style.display = 'none';
+        }
+    
+        // Kiểm tra email (đúng định dạng)
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('email-error').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('email-error').style.display = 'none';
+        }
+    
+        // Kiểm tra số điện thoại (chỉ chứa số và có độ dài từ 10-11 ký tự)
+        const phonePattern = /^\d{10,11}$/;
+        if (!phonePattern.test(phone)) {
+            document.getElementById('phone-error').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('phone-error').style.display = 'none';
+        }
+    
+        // Kiểm tra mật khẩu (>= 8 ký tự)
+        if (password.length < 8) {
+            document.getElementById('password-error').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('password-error').style.display = 'none';
+        }
+    
+        // Kiểm tra mật khẩu nhập lại (phải trùng với mật khẩu)
+        if (password !== confirmPassword) {
+            document.getElementById('confirm-password-error').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('confirm-password-error').style.display = 'none';
+        }
+    
+        // Nếu tất cả điều kiện đều hợp lệ, gửi form
+        if (isValid) {
+
+            
+            $.ajax({
+                url: "http://localhost:8080/auth/login", 
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+                success: function (response) {
+                    if (response.code === "200") { 
+                        let token = response.data.token;
+    
+                        if (token) {
+        
+                            // if (rememberMe) {
+                            //     localStorage.setItem("authToken", token);
+                            //     localStorage.setItem("username", email);
+                            //     localStorage.setItem("password", password);
+                            // }
+                            localStorage.setItem("authToken", token);
+
+                            window.location.href = "index.html"; 
+                        } else {
+                            showError("Lỗi: Không nhận được token từ server!");
+                        }
+                    } else {
+                        showError(response.message || "Đăng nhập thất bại!");
+                    }
+                },
+                error: function (xhr) {
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        showError(xhr.responseJSON.message); 
+                    } else {
+                        showError("Đăng nhập thất bại! Vui lòng kiểm tra lại.");
+                    }
+                }
+            });
+        } else {
+
+        }
+    });
+    
+</script>
+</body>
+
+
+</html>
