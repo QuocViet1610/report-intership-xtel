@@ -16,4 +16,8 @@ public interface CategoryService {
     public CategoryDto update(CategoryBaseRequest request, Long id) ;
 
     List<CategoryDto> findAll();
+
+    Object getDetail(Long id);
+
+    Object getFullParentId();
 }

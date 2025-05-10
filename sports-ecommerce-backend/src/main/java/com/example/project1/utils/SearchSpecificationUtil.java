@@ -39,6 +39,31 @@ public final class SearchSpecificationUtil {
         ) : null;
     }
 
+    public static <T> Specification<T> likeFieldAttribute(String key, String[] values) {
+        return (r, q, b) -> {
+            if (values != null && values.length > 0) {
+                // Tạo một danh sách để lưu tất cả các predicate
+                List<Predicate> predicates = new ArrayList<>();
+
+                // Duyệt qua mảng giá trị và tạo các điều kiện LIKE cho từng giá trị
+                for (String value : values) {
+                    if (!StringUtils.isBlank(value)) {
+                        // Tạo các điều kiện LIKE cho mỗi giá trị và thêm vào danh sách
+                        predicates.add(b.like(b.upper(r.get(key)), "%," + likeSpecialToStr(value).toUpperCase() + ",%"));
+                        predicates.add(b.like(b.upper(r.get(key)), likeSpecialToStr(value).toUpperCase() + "%"));
+                        predicates.add(b.like(b.upper(r.get(key)), ",%," + likeSpecialToStr(value).toUpperCase()));
+                    }
+                }
+
+                // Kết hợp tất cả các điều kiện bằng OR
+                return predicates.isEmpty() ? null : b.or(predicates.toArray(new Predicate[0]));
+            }
+            return null; // Nếu mảng rỗng hoặc null, trả về null
+        };
+    }
+
+
+
     public static <T> Specification<T> equalIdConditionOr(String key, Long value) {
         return value != null ? (r, q, b) -> b.or(
                 b.equal(r.get(key), value)

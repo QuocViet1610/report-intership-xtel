@@ -41,7 +41,6 @@ public class UserController {
     {
         Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
 
-
         return ResponseResult.ofSuccess(userService.findAll());
     }
 

@@ -88,6 +88,9 @@ public class ProductView {
     @Column(name = "full_parent_id")
     private String fullParentId;
 
+    @Column(name = "attribute_value_ids")
+    private String attributeValueIds;
+
     @JsonIgnore
     @OneToMany(mappedBy = "productView", fetch = FetchType.LAZY)
     private Set<ProductVariant> productVariants;

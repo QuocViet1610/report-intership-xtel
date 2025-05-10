@@ -36,4 +36,7 @@ public class ProductRating extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false )
     private User user;
+
+    @Column(name = "is_active", nullable = false)
+    private Integer isActive = 1;
 }

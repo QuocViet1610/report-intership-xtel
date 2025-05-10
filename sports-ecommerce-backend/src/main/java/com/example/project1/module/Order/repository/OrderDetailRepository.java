@@ -21,4 +21,5 @@ List<OrderDetail> findAllByOrderId( Long userId);
     List<Object[]> findTop5ProductsByTotalOrders(Pageable pageable);
 
     List<OrderDetail> findAllByProductId( Long ID);
+
 }

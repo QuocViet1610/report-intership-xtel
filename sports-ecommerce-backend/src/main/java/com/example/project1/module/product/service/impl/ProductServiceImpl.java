@@ -1,4 +1,5 @@
 package com.example.project1.module.product.service.impl;
+
 import com.example.project1.expection.ValidateException;
 import com.example.project1.local.Translator;
 import com.example.project1.mapper.product.ProductMapper;
@@ -7,14 +8,11 @@ import com.example.project1.mapper.product.ProductViewMapper;
 import com.example.project1.model.config.MinioConfig;
 import com.example.project1.model.dto.product.ProductDto;
 import com.example.project1.model.dto.request.product.*;
-import com.example.project1.model.dto.view.product.ProductAttributeValueView;
 import com.example.project1.model.dto.view.product.ProductView;
 import com.example.project1.model.dto.view.product.ProductViewDto;
-import com.example.project1.model.enity.order.Order;
 import com.example.project1.model.enity.order.OrderDetail;
 import com.example.project1.model.enity.product.*;
 import com.example.project1.module.Order.repository.OrderDetailRepository;
-import com.example.project1.module.Order.repository.OrderRepository;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.repository.*;
 import com.example.project1.module.product.service.ProductService;
@@ -29,6 +27,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.math.BigDecimal;
 import java.text.Normalizer;
 import java.util.*;
@@ -222,13 +221,18 @@ public class ProductServiceImpl implements ProductService {
         if (!DataUtils.isNullOrEmpty(searchRequest.getSearchText())) {
             mapCondition.put("productName", searchRequest.getSearchText());
             mapCondition.put("productCode", searchRequest.getSearchText());
+//            mapCondition.put("attributeValueIds", searchRequest.getAttributeSearch());
         }
         Specification<ProductView> conditions = Specification.where(SearchSpecificationUtil.<ProductView>alwaysTrue())
                 .and(SearchSpecificationUtil.equal("brandId", searchRequest.getBrandId()))
                 .and(SearchSpecificationUtil.equal("categoryId", searchRequest.getCategoryId()))
                 .and(SearchSpecificationUtil.equal("genderId", searchRequest.getGenderId()))
-                .and(SearchSpecificationUtil.likeFieldCategory("fullParentId", searchRequest.getFullParentId()))
-                .or(SearchSpecificationUtil.equal("categoryId", searchRequest.getCategorySearch()))
+                .and(SearchSpecificationUtil.likeFieldAttribute("attributeValueIds", searchRequest.getAttributeSearch()))
+                .and(
+                        Specification.<ProductView>where(SearchSpecificationUtil.equal("categoryId", searchRequest.getCategorySearch()))
+                                .or(SearchSpecificationUtil.likeFieldCategory("fullParentId", searchRequest.getFullParentId()))
+                )
+//                .or(SearchSpecificationUtil.between("productPrice", searchRequest.getMinPrice(), searchRequest.getMaxPrice()))
                 .and(SearchSpecificationUtil.or(mapCondition));
         if (!DataUtils.isNullOrEmpty(pageable) && !pageable.isFindAll()) {
             Page<ProductView> page = productViewRepository.findAll(conditions, pageable);

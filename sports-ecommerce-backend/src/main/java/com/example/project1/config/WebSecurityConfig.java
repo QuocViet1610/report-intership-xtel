@@ -58,6 +58,10 @@ public class WebSecurityConfig {
             Pair.of("/auth/send-otp-forget-password/{email}", HttpMethod.POST),
             Pair.of("/auth/social-login", HttpMethod.GET),
             Pair.of("/auth/social/callback", HttpMethod.GET),
+            Pair.of("/brand/search", HttpMethod.POST),
+            Pair.of("/attribute/find-value/{id}", HttpMethod.GET),
+            Pair.of("/category/{id}", HttpMethod.GET),
+            Pair.of("/product-rating/{id}", HttpMethod.GET),
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

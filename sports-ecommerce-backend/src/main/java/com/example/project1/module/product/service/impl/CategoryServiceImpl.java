@@ -193,4 +193,17 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDto> findAll() {
         return categoryMapper.toDto(categoryRepository.findAll());
     }
+
+    @Override
+    public Object getDetail(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new ValidateException(Translator.toMessage("Thể loại không tồn tại ")));
+        return category;
+    }
+
+    @Override
+    public Object getFullParentId() {
+        return null;
+    }
+
+
 }

@@ -63,4 +63,9 @@ public class CategoryController {
     public ResponseResult<List<CategoryDto>> updateCategory() {
         return ResponseResult.ofSuccess(categoryService.findAll());
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseResult<Object> updateCategory(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(categoryService.getDetail(id));
+    }
 }

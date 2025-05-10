@@ -14,5 +14,7 @@ public class ProductRatingDto extends BaseDto {
     private String comment;
 
     private Long userId;
+
+    private Integer isActive = 1;
 }
 

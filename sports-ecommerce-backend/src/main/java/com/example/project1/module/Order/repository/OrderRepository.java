@@ -18,6 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecific
     List<Order> findByUserId(Long userId, Sort sort);
 
 
+
     List<Order> findAllByUserId(Long userId);
 
     @Query("SELECT SUM(o.finalPrice) FROM Order o WHERE o.statusId = 4")

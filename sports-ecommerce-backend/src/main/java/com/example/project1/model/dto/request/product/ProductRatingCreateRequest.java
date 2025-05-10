@@ -20,4 +20,6 @@ public class ProductRatingCreateRequest {
     private Long productId;
 
     private Long userId;
+
+    private Integer isActive = 1;
 }

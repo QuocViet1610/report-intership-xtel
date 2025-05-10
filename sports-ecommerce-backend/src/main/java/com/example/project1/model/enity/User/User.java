@@ -1,6 +1,5 @@
 package com.example.project1.model.enity.User;
 
-import com.example.project1.model.BaseEntity;
 import com.example.project1.model.enity.product.ProductRating;
 import com.example.project1.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -37,6 +37,7 @@ public class ProductViewDto {
         private String categoryImage;
         private Set<ProductVariantDto> productVariants;
         private String fullParentId;
+        private String attributeValueIds;
 //        private Set<ProductAttribute> productAttributes;
 //        private Set<ProductAttributeValue> productAttributeValues;
         private Set<ProductImage> productImages;

@@ -11,10 +11,12 @@ import com.example.project1.model.dto.request.product.AttributeCreateRequest;
 import com.example.project1.model.dto.request.product.AttributeSearchRequest;
 import com.example.project1.model.enity.product.Attribute;
 import com.example.project1.model.enity.product.AttributeValue;
+import com.example.project1.model.enity.product.ProductAttribute;
 import com.example.project1.model.enity.product.ProductAttributeValue;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.repository.AttributeRepository;
 import com.example.project1.module.product.repository.AttributeValueRepository;
+import com.example.project1.module.product.repository.ProductAttributeRepository;
 import com.example.project1.module.product.repository.ProductAttributeValueRepository;
 import com.example.project1.module.product.service.AttributeService;
 import com.example.project1.utils.DataUtils;
@@ -42,13 +44,20 @@ public class AttributeServiceImpl implements AttributeService {
     AttributeValueRepository attributeValueRepository;
     AttributeValueMapper attributeValueMapper;
     ProductAttributeValueRepository productAttributeValueRepository;
+    ProductAttributeRepository productAttributeRepository;
 //    ProductAttributeValue
 
     @Override
     public void delete(Long id) {
-        Attribute attribute = attributeRepository.findById(id)
-                .orElseThrow(() -> new ValidateException(Translator.toMessage("Thuộc tính không tồn tại")));
-        attributeRepository.delete(attribute);
+        List<ProductAttribute> productAttributes = productAttributeRepository.findAllByAttributeId(id);
+        if (productAttributes.size() > 0){
+            throw new ValidateException(Translator.toMessage("Sản phẩm đang có thuộc tính, không thể xoá"));
+        }else{
+            Attribute attribute = attributeRepository.findById(id)
+                    .orElseThrow(() -> new ValidateException(Translator.toMessage("Thuộc tính không tồn tại")));
+            attributeRepository.delete(attribute);
+        }
+
     }
 
     private void validateLogic(AttributeCreateRequest request, boolean isCreated) {
@@ -192,9 +201,9 @@ public class AttributeServiceImpl implements AttributeService {
 
     @Override
     public Boolean productAttributeExist(Long id) {
-        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAll();
+//        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAll();
 
-//        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAllByAttributeValueId(id);
+        List<ProductAttributeValue> productAttributeValues = productAttributeValueRepository.findAllByAttributeValueId(id);
 
         return productAttributeValues.size() > 0 ? true : false;
     }
