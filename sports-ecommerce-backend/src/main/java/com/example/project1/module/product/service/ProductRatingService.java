@@ -16,5 +16,5 @@ public interface ProductRatingService {
 
      Object search(ProductRatingSearch searchRequest, PageableCustom pageable) ;
 
-
+    Object updateActive(Long id, Integer isActive);
 }

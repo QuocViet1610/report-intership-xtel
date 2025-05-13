@@ -88,4 +88,12 @@ public Object getAllByProduct(Long productId){
         }
         return productRatingViewRepository.findAll(conditions, pageable.getSort());
     }
+
+    @Override
+    public Object updateActive(Long id, Integer isActive) {
+        ProductRating productRating = productRatingRepository.findById(id)
+                .orElseThrow(() -> new ValidateException(Translator.toMessage("Đánh giá sản phẩm không tồn tại")));
+        productRating.setIsActive(isActive);
+        return  productRatingRepository.save(productRating);
+    }
 }
