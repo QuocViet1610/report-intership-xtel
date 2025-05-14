@@ -30,6 +30,17 @@ public class MinioConfig {
     @Value("${app.image.folder.category}")
     private String minioCategoryFolder;
 
+    @Value("${app.image.folder.user}")
+    private String minioUserFolder;
+
+    @Value("${app.image.folder.blog}")
+    private String minioBlogFolder;
+
+    @Value("${app.image.keyName.blog}")
+    private String minioBlogKeyName;
+
+    @Value("${app.image.keyName.user}")
+    private String minioUserKeyName;
     @Value("${app.image.keyName.category}")
     private String minioCategoryKeyName;
 

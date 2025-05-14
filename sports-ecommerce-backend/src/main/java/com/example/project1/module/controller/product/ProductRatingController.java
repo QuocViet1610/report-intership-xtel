@@ -45,4 +45,10 @@ public class ProductRatingController {
             return ResponseResult.ofSuccess(productRatingService.search(searchRequest, PageableCustom.setPageableCustom(0, size, sort,true)));
         }
     }
+
+    @PutMapping("/{id}/{active}")
+    public ResponseResult<Object> getDetail(@PathVariable Long id, @PathVariable Integer active) {
+        return ResponseResult.ofSuccess(productRatingService.updateActive(id, active));
+    }
+
 }

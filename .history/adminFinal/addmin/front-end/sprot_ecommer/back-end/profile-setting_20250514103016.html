@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/profile-setting.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Mar 2024 15:53:46 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="assets/css/linearicon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+
+    <!-- fontawesome css  -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify.css">
+
+    <!--Drop zon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/dropzone.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/feather-icon.css">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/date-picker.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
+
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap-tagsinput.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.custom.css">
+</head>
+
+<body>
+    <!-- tap on top start-->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end-->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-header">
+            <div class="header-wrapper m-0">
+                <div class="header-logo-wrapper p-0">
+                    <div class="logo-wrapper">
+
+                    </div>
+                 
+                </div>
+
+                <div class="toggle-sidebar" style="display: block;">
+                    <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                </div>
+                
+                <!-- <form class="form-inline search-full" action="javascript:void(0)" method="get">
+                    <div class="form-group w-100">
+                        <div class="Typeahead Typeahead--twitterUsers">
+                            <div class="u-posRelative">
+                                <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                    placeholder="Tìm Kiếm" name="q" title="" autofocus>
+                                <i class="close-search" data-feather="x"></i>
+                                <div class="spinner-border Typeahead-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </div>
+                </form> -->
+
+                <div class="nav-right col-6 pull-right right-header p-0">
+                    <ul class="nav-menus">
+                        <li>
+                            <span class="header-search">
+                                <i class="ri-search-line"></i>
+                            </span>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <div class="notification-box">
+                            </div>
+                            <!-- <ul class="notification-dropdown onhover-show-div">
+                                <li>
+                                    <i class="ri-notification-line"></i>
+                                    <h6 class="f-18 mb-0">Thông báo</h6>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
+                                            class="pull-right">10 min.</span>
+                                    </p>
+                                </li>
+
+                            </ul> -->
+                        </li>
+
+                        <!-- <li>
+                            <div class="mode">
+                                <i class="ri-moon-line"></i>
+                            </div>
+                        </li> -->
+                        <li class="profile-nav onhover-dropdown pe-0 me-0">
+                            <div class="media profile-media">
+                                <img class="user-profile rounded-circle" src="assets/images/users/4.jpg" alt="">
+                                <div class="user-name-hide media-body">
+                                    <span id="username"></span>
+                                    <p class="mb-0 font-roboto" > Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                </div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div">
+                                <li>
+                                    <a href="all-users.html">
+                                        <i data-feather="users"></i>
+                                        <span>Tài Khoảnn</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                        href="javascript:void(0)">
+                                        <i data-feather="log-out"></i>
+                                        <span>Đăng xuất</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="sidebar-wrapper" >
+                <div ></div>
+                <div>
+                    <div class="logo-wrapper logo-wrapper-center" style="padding: 20px; padding-left: 40px">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-white" src="assets/images/logo/logo-white.png" alt="logo">
+
+                             <!-- <h1>Sport ecommer</h1> -->
+                        </a>
+                        <div class="back-btn">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <!-- <div class="toggle-sidebar">
+                            <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                        </div> -->
+                    </div>
+                    <div class="logo-icon-wrapper">
+                        <a href="index.html">
+                            <!-- <img class="img-fluid main-logo main-white" src="assets/images/logo/logo.png" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="assets/images/logo/logo-white.png"
+                                alt="logo"> -->
+                        </a>
+                    </div>
+                    <nav class="sidebar-main">
+                        <div class="left-arrow" id="left-arrow">
+                            <i data-feather="arrow-left"></i>
+                        </div>
+
+                        <div id="sidebar-menu">
+                            <ul class="sidebar-links" id="simple-bar">
+                                <li class="back-btn"></li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                        <i class="ri-home-line"></i>
+                                        <span>Bảng điều khiển</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Quản lý sản phẩm</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="products.html">Sản phẩm</a></li>
+                                        <!-- <li><a href="add-new-product.html">Thêm sản phẩm</a></li> -->
+                                        <li><a href="attributes.html">Thuộc tính sản phẩm</a></li>          
+                                        <li><a href="category.html">Thể loại sản phẩm</a></li>  
+                                        <li><a href="product-review.html">Đánh giá sản phẩm</a></li>
+                                    </ul>
+                                </li>
+                                
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="category.html">Danh sách thể loại</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-category.html">Thêm thể loại</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="category.html  ">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="attributes.html">Thuộc tính</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-attributes.html">Thêm thuộc tính</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="attributes.html">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Nhân viên</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="all-users.html">Danh sách nhân viên</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Quản lý người dùng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-users.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Nhân viên</span>
+                                            </a>
+                                        </li>
+        
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-customer.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Khách hàng</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Đơn Hàng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="order-list.html">Danh sách đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-detail.html">Chi tiết đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-tracking.html">theo dõi đơn</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="order-list.html">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Quản lý đơn Hàng</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Giảm giá</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="coupon-list.html">Danh sách giảm giá</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="create-coupon.html">Tạo giảm giá</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="coupon-list.html">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Quản lý giảm giá</span>
+                                    </a>
+                                </li>
+
+                                
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="blog-list.html">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Quản lý bài viết</span>
+                                    </a>
+                                </li>
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Cài đặt</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="profile-setting.html">Profile Setting</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="profile-setting.html">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Thông tin tài khoản</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                        <i class="ri-file-chart-line"></i>
+                                        <span>Báo cáo</span>
+                                    </a>
+                                </li> -->
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                        <i class="ri-list-check"></i>
+                                        <span>List Page</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <div class="right-arrow" id="right-arrow">
+                            <i data-feather="arrow-right"></i>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+
+            <!-- Settings Section Start -->
+            <div class="page-body" style="margin-top: 15px !important">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Details Start -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="title-header option-title">
+                                                <h5>Thông tin tài khoản</h5>
+                                            </div>
+                                            <form class="theme-form theme-form-2 mega-form" id="userForm">
+                                                <div class="row">
+
+     <div class="mb-4 row align-items-center">
+            <label class="form-label-title col-sm-2 mb-0">Ảnh đại diện</label>
+              <div id="imagePreview" class="mt-2" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview" style="max-width: 150px; border-radius: 50%;">
+                </div>
+            <div class="col-sm-10">
+                <input class="form-control" type="file" id="profilePicture" accept="image/*">
+                <!-- Display Profile Image -->
+                <div class="mt-2">
+                    <img id="profileImage" src="default-avatar.png" alt="Profile Picture" style="max-width: 150px; border-radius: 50%; display: block;">
+                </div>
+                <!-- Display Image Preview -->
+
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="form-label-title col-sm-2 mb-0">Tên đầy đủ</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" id="fullName" placeholder="Tên đầy đủ">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="form-label-title col-sm-2 mb-0">Số điện thoại</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="number" id="phone" placeholder="Số điện thoại">
+                                                        </div>
+                                                    </div>
+                                            
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="form-label-title col-sm-2 mb-0">Email</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="email" id="email" placeholder="Email" disabled    >
+                                                        </div>
+                                                    </div>
+                                            
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="form-label-title col-sm-2 mb-0">Mật khẩu</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="password" id="password" placeholder="Mật khẩu">
+                                                        </div>
+                                                    </div>
+                                            
+                                                    <div class="mb-4 row align-items-center">
+                                                        <label class="form-label-title col-sm-2 mb-0">Xác nhận mật khẩu</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <button class="btn px-4 py-2" id="btn-create" style="background: green; color: white">Cập nhập thông tin</button>
+                                                </div>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- Details End -->
+
+                                    <!-- Address Start -->
+
+                                    <!-- Address End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Settings Section End -->
+        </div>
+        <!-- Page Body End-->
+
+
+
+        <!-- footer End-->
+    </div>
+    <!-- page-wrapper End-->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- latest jquery-->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js-->
+    <script src="assets/js/scrollbar/simplebar.js"></script>
+    <script src="assets/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar jquery-->
+    <script src="assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+
+    <!-- bootstrap tag-input JS start-->
+    <script src="assets/js/bootstrap-tagsinput.min.js"></script>
+    <script src="assets/js/sidebar-menu.js"></script>
+
+    <!-- customizer js start  -->
+    <script src="assets/js/customizer.js"></script>
+    <!-- customizer js end -->
+
+    <!--Dropzon start-->
+    <script src="assets/js/dropzone/dropzone.js"></script>
+    <script src="assets/js/dropzone/dropzone-script.js"></script>
+
+    <!--Dropzon start-->
+    <script src="assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/notify/index.js"></script>
+    <!-- Plugins JS Ends-->
+
+    <!-- Theme js-->
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        
+        let token = localStorage.getItem("authToken");
+        $.ajax({
+            url: 'http://localhost:8080/user/get-inf',  
+            type: 'GET',
+            contentType: 'application/json',
+
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Accept": "application/json"
+              },
+            success: function(response) {
+                const data = response.data;
+          
+                // Gán dữ liệu vào form
+                $('#fullName').val(data.fullName);  // Gán tên đầy đủ
+                $('#phone').val(data.phone);        // Gán số điện thoại
+                $('#email').val(data.email);        // Gán email
+                $('#password').val(data.password);  // Gán mật khẩu
+                $('#confirmPassword').val(data.password);
+            },
+            error: function(xhr, status, error) {
+                // Xử lý khi có lỗi
+                let errorMessage = "Đã xảy ra lỗi!";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                } else if (xhr.responseText) {
+                    try {
+                        let response = JSON.parse(xhr.responseText);
+                        errorMessage = response.message || "Lỗi không xác định từ máy chủ!";
+                    } catch (e) {
+                        errorMessage = "Lỗi không thể đọc phản hồi từ server!";
+                    }
+                }
+                showError(errorMessage);
+            }
+        });
+ 
+        $('#btn-create').on('click', function(e) {
+            e.preventDefault();  // Ngừng reload trang khi bấm nút
+        
+            // Lấy dữ liệu từ các trường trong biểu mẫu
+   // Lấy ID người dùng từ thuộc tính data-id của form
+            const fullName = $('#fullName').val();
+            const email = $('#email').val();
+            const phone = $('#phone').val();
+            const password = $('#password').val();
+            const confirmPassword = $('#confirmPassword').val();
+            // Validate dữ liệu
+    if (!fullName) {
+        showError("Tên đầy đủ không được để trống!");
+        return;
+    }
+
+
+    if (!phone) {
+        showError("Số điện thoại không được để trống!");
+        return;
+    }
+
+    // Kiểm tra định dạng số điện thoại (chỉ cho phép số và dài từ 10-11 ký tự)
+    const phonePattern = /^[0-9]{10,11}$/;
+    if (!phonePattern.test(phone)) {
+        showError("Số điện thoại không hợp lệ!");
+        return;
+    }
+
+    if (!password) {
+        showError("Mật khẩu không được để trống!");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        showError("Mật khẩu và xác nhận mật khẩu không khớp!");
+        return;
+    }
+
+            userId = 1;
+            // Tạo đối tượng JSON gửi đi
+            const data = {
+                id: userId,
+                fullName: fullName,
+                email: email,
+                phone: phone,
+                password: password,
+                isActive: 1  // Hoặc trạng thái nào đó bạn muốn gán
+            };
+        
+            // Gọi AJAX
+            $.ajax({
+                url: `http://localhost:8080/user/${userId}`,  // Địa chỉ API PUT
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                headers: {
+                    "Authorization": "Bearer " + token,  // Nếu cần token
+                    "Accept": "application/json"
+                },
+                success: function(response) {
+                    if (response.code === "200") {
+                        showSuccess("Cập nhật thông tin thành công!");
+
+                        // Hiển thị thông báo trong 1 giây rồi reload trang
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000); // 1000 ms = 1 giây
+                    } else {
+                        showError("Có lỗi xảy ra khi cập nhật thông tin!");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý khi có lỗi
+                    let errorMessage = "Đã xảy ra lỗi!";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    } else if (xhr.responseText) {
+                        try {
+                            let response = JSON.parse(xhr.responseText);
+                            errorMessage = response.message || "Lỗi không xác định từ máy chủ!";
+                        } catch (e) {
+                            errorMessage = "Lỗi không thể đọc phản hồi từ server!";
+                        }
+                    }
+                    showError(errorMessage);
+                }
+            });
+        });
+
+
+
+         document.getElementById('profilePicture').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function (e) {
+            const imagePreview = document.getElementById('imagePreview');
+            const previewImage = document.getElementById('previewImage');
+            const profileImage = document.getElementById('profileImage');
+
+            // Update the preview image with the selected file
+            previewImage.src = e.target.result;
+            imagePreview.style.display = 'block';
+            profileImage.style.display = 'none'; // Hide the default avatar if there's a preview
+        };
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+
+
+    </script>
+</body>
+
+
+
+</html>

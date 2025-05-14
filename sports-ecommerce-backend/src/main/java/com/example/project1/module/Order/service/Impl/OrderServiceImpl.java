@@ -144,8 +144,8 @@ public class OrderServiceImpl implements OrderService {
             mapCondition.put("userFullName", searchRequest.getSearchText());
             mapCondition.put("userEmail", searchRequest.getSearchText());
             mapCondition.put("phone", searchRequest.getSearchText());
-
         }
+
         Specification<OrderView> conditions = Specification.where(SearchSpecificationUtil.<OrderView>alwaysTrue())
                 .and(SearchSpecificationUtil.equal("statusId", searchRequest.getStatusId()))
                 .and(SearchSpecificationUtil.or(mapCondition));

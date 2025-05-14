@@ -1,14 +1,20 @@
 package com.example.project1.module.controller.account;
+import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.User.UserDto;
+import com.example.project1.model.dto.product.CategoryDto;
 import com.example.project1.model.dto.request.UserCreateRequest;
+import com.example.project1.model.dto.request.product.CategoryBaseRequest;
 import com.example.project1.module.User.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @RestController
@@ -16,9 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
-
     private final UserService userService;
-
     @GetMapping()
 //    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseResult<List<UserDto>> getAllUser()
@@ -40,10 +44,8 @@ public class UserController {
     public ResponseResult<List<UserDto>> test()
     {
         Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
-
         return ResponseResult.ofSuccess(userService.findAll());
     }
-
     @GetMapping("/my-infor")
     public ResponseResult<UserDto> getMyProfile()
     {
@@ -56,7 +58,7 @@ public class UserController {
         return ResponseResult.ofSuccess(userService.createStaff(request));
     }
 
-        @GetMapping("/get-staff")
+    @GetMapping("/get-staff")
     public ResponseResult<Object> geStaff()
     {
         return ResponseResult.ofSuccess(userService.getStaff());
@@ -78,7 +80,6 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseResult.ofSuccess();
     }
-
     @GetMapping("/get-inf")
     public ResponseResult<Object> delete() {
         return ResponseResult.ofSuccess(userService.getMyInf());
@@ -89,9 +90,11 @@ public class UserController {
                                                  @RequestParam String passwordOld,
                                                  @RequestParam String passwordNew) {
         return ResponseResult.ofSuccess( userService.changepassword(passwordOld, passwordNew));
-
-
     }
 
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseResult<Object> updateCategory(@PathVariable Long id, @RequestParam("image") MultipartFile image) {
+        return ResponseResult.ofSuccess(userService.updateImage(image, id));
+    }
 
 }

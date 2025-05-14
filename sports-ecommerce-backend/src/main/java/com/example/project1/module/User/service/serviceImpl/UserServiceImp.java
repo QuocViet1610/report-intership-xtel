@@ -3,9 +3,14 @@ package com.example.project1.module.User.service.serviceImpl;
 import com.example.project1.expection.ValidateException;
 import com.example.project1.local.Translator;
 import com.example.project1.mapper.User.UserMapper;
+import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.Enum.RoleEnum;
+import com.example.project1.model.config.MinioConfig;
+import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.User.UserDto;
+import com.example.project1.model.dto.product.CategoryDto;
 import com.example.project1.model.dto.request.UserCreateRequest;
+import com.example.project1.model.dto.request.product.CategoryBaseRequest;
 import com.example.project1.model.enity.User.User;
 import com.example.project1.model.enity.User.UserRole;
 import com.example.project1.model.enity.User.UserVerification;
@@ -14,34 +19,50 @@ import com.example.project1.module.User.repository.RoleRepository;
 import com.example.project1.module.User.repository.UserRepository;
 import com.example.project1.module.User.repository.UserRoleRepository;
 import com.example.project1.module.User.service.UserService;
+import com.example.project1.utils.DataUtils;
+import com.example.project1.utils.MinioUtils;
 import com.example.project1.utils.TokenUtil;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserServiceImp implements UserService {
 
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final EmailService emailService;
+    private final OrderRepository orderRepository;
+    private final TokenUtil tokenUtil;
+    private final MinioConfig minioConfig;
+    private String bucketName ;
+    private String folderLocal;
+    private String keyName ;
 
-    UserRepository userRepository;
-    UserMapper userMapper;
-    PasswordEncoder passwordEncoder;
-    RoleRepository roleRepository;
-    UserRoleRepository userRoleRepository;
-    EmailService emailService;
-    OrderRepository orderRepository;
-    TokenUtil tokenUtil;
-
+    @PostConstruct
+    void started() {
+        bucketName = minioConfig.getMinioBucketName();
+        keyName = minioConfig.getMinioUserKeyName();
+        folderLocal = minioConfig.getMinioUserFolder();
+    }
 
     private void validateLogic(UserCreateRequest request, boolean isCreate){
         if (isCreate){
@@ -59,9 +80,7 @@ public class UserServiceImp implements UserService {
                 throw new ValidateException(Translator.toMessage("Số điện thoại đã tồn tại "));
             }
         }
-
     }
-
 
     @Override
     public UserDto create(UserCreateRequest request) {
@@ -78,8 +97,6 @@ public class UserServiceImp implements UserService {
 
         return userMapper.toDto(userRequest);
     }
-
-
 
     @Override
     public UserDto update(UserCreateRequest request,Long id) {
@@ -125,9 +142,7 @@ public class UserServiceImp implements UserService {
     public UserDto getMyInfo() {
         var context = SecurityContextHolder.getContext();
         String name = context.getAuthentication().getName();
-
         User user = userRepository.findByEmail(name).orElseThrow(() -> new ValidateException("error.user.user_name.not_exist"));
-
         return userMapper.toDto(user);
     }
 
@@ -201,4 +216,20 @@ public class UserServiceImp implements UserService {
 
         return userRepository.save(user);
     }
+
+    public Object updateImage(MultipartFile image, Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ValidateException("Người dùng không tồn tại "));
+        if(!DataUtils.isNullOrEmpty(image)){
+            user.setAvatar(MinioUtils.uploadToMinioAndGetUrl(image, folderLocal, bucketName, keyName));
+        }
+        if (!DataUtils.isNullOrEmpty(image)){
+            user.setAvatar(MinioUtils.uploadToMinioAndGetUrl(image, folderLocal, bucketName, keyName));
+            MinioUtils.deleteFileMinio(bucketName, user.getAvatar());
+        }else {
+            user.setAvatar(user.getAvatar());
+        }
+        return user;
+    }
+
+
 }

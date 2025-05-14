@@ -1,0 +1,128 @@
+.sidebar-wrapper{
+    background:rgba(0, 161, 54, 0.87) !important;
+}
+
+.btn-solid{
+    background:rgba(0, 161, 54, 0.87) !important;
+}
+
+.sidebar-wrapper{
+    height: 100% !important;
+}
+
+.page-header{
+    background:white !important;
+}
+
+.page-body{
+    outline: 40px solid #F9F9F6 !important; 
+}
+
+.page-header {
+    box-shadow: -500px 0 0 0 white !important; /* Chỉ tạo hiệu ứng trắng bên trái */
+}
+.page-body-wrapper{
+    background:#F9F9F6 !important;
+}
+
+/* Ẩn submenu mặc định */
+/* Ẩn submenu mặc định */
+.sidebar-submenu {
+    display: none !important;
+    position: absolute !important;
+}
+
+/* Hiển thị submenu khi hover vào phần tử cha */
+.sidebar-list:hover .sidebar-submenu {
+    display: block !important;
+}
+
+/* Đảm bảo menu con xuất hiện đúng vị trí */
+.sidebar-list {
+    position: relative !important;
+}
+
+/* Tùy chỉnh kiểu submenu */
+.sidebar-submenu li {
+    padding: 5px 0 !important;
+}
+
+.sidebar-submenu li a {
+    display: block !important;
+}
+
+.sidebar-submenu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; 
+}
+
+.page-header{
+    position: sticky !important;
+    top: 0 !important;
+
+}
+
+    
+.btn:hover{
+    /* color: white; */
+    background:rgba(0, 116, 39, 0.87) !important;
+}
+
+.btn-link:hover{
+    color: white;
+    background:rgba(0, 116, 39, 0.87) !important;
+}
+
+input {
+    border: 1x solid #ccc !important; /* Màu xám nhạt */
+    color: #000 !important; 
+    background-color: #fff; 
+    border-radius: 5px; /* Bo góc nhẹ */
+    padding: 8px 12px; /* Khoảng cách bên trong */
+    outline: none; /* Ẩn viền mặc định khi focus */
+    transition: border 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+
+}
+
+.all-package thead tr th {
+
+    min-width: 50px !important;
+
+}
+
+#table_id_filter{
+    display: none !important;
+}
+
+.form-select {
+    width: 230px; /* Điều chỉnh chiều rộng */
+    padding: 8px; /* Khoảng cách trong combobox */
+    border-radius: 5px; /* Bo tròn góc */
+    border: 1px solid #ccc; /* Màu viền */
+    font-size: 14px; /* Kích thước chữ */
+    height: 40px;;
+}
+
+label{
+    font-size: 14px;
+}
+
+.dropdown-menu .dropdown-item {
+    opacity: 1;
+    font-size: 14px !important;
+}
+
+h5{
+    font-weight: 700;
+    font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320)));
+}
+
+input{
+    font-size: 14px; 
+}
+
+.sidebar-link span {
+    text-transform: none !important;
+}
+/* .user-profile {
+    display: none !important;
+} */

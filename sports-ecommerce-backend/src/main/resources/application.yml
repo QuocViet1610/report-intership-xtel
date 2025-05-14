@@ -67,11 +67,14 @@ app:
             category: "src\\upload\\category\\"
             brand: "src\\upload\\image\\brand\\"
             product: "src\\upload\\image\\product\\"
+            user: "src\\upload\\image\\user\\"
+            blog: "src\\upload\\image\\blog\\"
         keyName:
             category: "category/"
             brand: "brand/"
             product: "product/"
-
+            user: "user/"
+            blog: "blog/"
 vnpay:
     pay-url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
     return-url: "${VNPAY_RETURN_URI:http://127.0.0.1:5501/sport-econmmer/fronend/sport/front-end/order-success.html}"

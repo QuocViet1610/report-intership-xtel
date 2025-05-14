@@ -1,5 +1,7 @@
 package com.example.project1.model.enity.User;
 
+import com.example.project1.model.enity.blog.Blog;
+import com.example.project1.model.enity.blog.Comment;
 import com.example.project1.model.enity.product.ProductRating;
 import com.example.project1.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,6 +59,14 @@ public class User  {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<ProductRating> productRatings ;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Blog> blogs;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Comment> comments;
+
     public User(Long id, String fullName, String email, String phone, String password, String facebookAccountId, String googleAccountId, String avatar, OffsetDateTime passwordChangedAt, Integer isActive, OffsetDateTime createdAt, OffsetDateTime updatedAt, Set<ProductRating> productRatings) {
         this.id = id;
         this.fullName = fullName;
@@ -77,7 +87,6 @@ public class User  {
     }
 
     public String getAvatar() {
-        return DataUtils.convertUrl("product/avatar-vo-danh-9.png");
-
+        return DataUtils.convertUrl(avatar == null ? "product/avatar-vo-danh-9.png" : avatar);
     }
 }
