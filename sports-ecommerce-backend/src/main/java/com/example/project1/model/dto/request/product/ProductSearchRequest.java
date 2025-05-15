@@ -16,6 +16,6 @@ public class ProductSearchRequest {
 
     private Double minPrice;
     private Double maxPrice;
-
+    private Integer productIsActive;
 }
 

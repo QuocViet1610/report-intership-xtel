@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/all-users.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Mar 2024 15:53:42 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="assets/css/linearicon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.css">
+
+    <!-- Themify icon css-->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/feather-icon.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.custom.css">
+    <style>
+        .dataTables_empty{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-header">
+            <div class="header-wrapper m-0">
+                <div class="header-logo-wrapper p-0">
+                    <div class="logo-wrapper">
+
+                    </div>
+                 
+                </div>
+
+                <div class="toggle-sidebar" style="display: block;">
+                    <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                </div>
+                
+                <!-- <form class="form-inline search-full" action="javascript:void(0)" method="get">
+                    <div class="form-group w-100">
+                        <div class="Typeahead Typeahead--twitterUsers">
+                            <div class="u-posRelative">
+                                <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                    placeholder="Tìm Kiếm" name="q" title="" autofocus>
+                                <i class="close-search" data-feather="x"></i>
+                                <div class="spinner-border Typeahead-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </div>
+                </form> -->
+
+                <div class="nav-right col-6 pull-right right-header p-0">
+                    <ul class="nav-menus">
+                        <li>
+                            <span class="header-search">
+                                <i class="ri-search-line"></i>
+                            </span>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <div class="notification-box">
+                            </div>
+                            <!-- <ul class="notification-dropdown onhover-show-div">
+                                <li>
+                                    <i class="ri-notification-line"></i>
+                                    <h6 class="f-18 mb-0">Thông báo</h6>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
+                                            class="pull-right">10 min.</span>
+                                    </p>
+                                </li>
+
+                            </ul> -->
+                        </li>
+
+                        <!-- <li>
+                            <div class="mode">
+                                <i class="ri-moon-line"></i>
+                            </div>
+                        </li> -->
+                        <li class="profile-nav onhover-dropdown pe-0 me-0">
+                            <div class="media profile-media">
+                                <img class="user-profile rounded-circle" src="assets/images/users/4.jpg" alt="">
+                                <div class="user-name-hide media-body">
+                                    <span id="username"></span>
+                                    <p class="mb-0 font-roboto" > Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                </div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div">
+                                <li>
+                                    <a href="all-users.html">
+                                        <i data-feather="users"></i>
+                                        <span>Tài Khoảnn</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                        href="javascript:void(0)">
+                                        <i data-feather="log-out"></i>
+                                        <span>Đăng xuất</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="sidebar-wrapper" >
+                <div ></div>
+                <div>
+                    <div class="logo-wrapper logo-wrapper-center" style="padding: 20px; padding-left: 40px">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-white" src="assets/images/logo/logo-white.png" alt="logo">
+
+                             <!-- <h1>Sport ecommer</h1> -->
+                        </a>
+                        <div class="back-btn">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <!-- <div class="toggle-sidebar">
+                            <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                        </div> -->
+                    </div>
+                    <div class="logo-icon-wrapper">
+                        <a href="index.html">
+                            <!-- <img class="img-fluid main-logo main-white" src="assets/images/logo/logo.png" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="assets/images/logo/logo-white.png"
+                                alt="logo"> -->
+                        </a>
+                    </div>
+                    <nav class="sidebar-main">
+                        <div class="left-arrow" id="left-arrow">
+                            <i data-feather="arrow-left"></i>
+                        </div>
+
+                        <div id="sidebar-menu">
+                            <ul class="sidebar-links" id="simple-bar">
+                                <li class="back-btn"></li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                        <i class="ri-home-line"></i>
+                                        <span>Bảng điều khiển</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Quản lý sản phẩm</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="products.html">Sản phẩm</a></li>
+                                        <!-- <li><a href="add-new-product.html">Thêm sản phẩm</a></li> -->
+                                        <li><a href="attributes.html">Thuộc tính sản phẩm</a></li>          
+                                        <li><a href="category.html">Thể loại sản phẩm</a></li>  
+                                        <li><a href="product-review.html">Đánh giá sản phẩm</a></li>
+                                    </ul>
+                                </li>
+                                
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="category.html">Danh sách thể loại</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-category.html">Thêm thể loại</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="category.html  ">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="attributes.html">Thuộc tính</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-attributes.html">Thêm thuộc tính</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="attributes.html">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Nhân viên</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="all-users.html">Danh sách nhân viên</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Quản lý người dùng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-users.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Nhân viên</span>
+                                            </a>
+                                        </li>
+        
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-customer.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Khách hàng</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Đơn Hàng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="order-list.html">Danh sách đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-detail.html">Chi tiết đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-tracking.html">theo dõi đơn</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="order-list.html">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Quản lý đơn Hàng</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Giảm giá</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="coupon-list.html">Danh sách giảm giá</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="create-coupon.html">Tạo giảm giá</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="coupon-list.html">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Quản lý giảm giá</span>
+                                    </a>
+                                </li>
+
+                                
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="blog-list.html">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Quản lý bài viết</span>
+                                    </a>
+                                </li>
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Cài đặt</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="profile-setting.html">Profile Setting</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="profile-setting.html">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Thông tin tài khoản</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                        <i class="ri-file-chart-line"></i>
+                                        <span>Báo cáo</span>
+                                    </a>
+                                </li> -->
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                        <i class="ri-list-check"></i>
+                                        <span>List Page</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <div class="right-arrow" id="right-arrow">
+                            <i data-feather="arrow-right"></i>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+
+            <!-- Container-fluid starts-->
+            <div class="page-body" style="margin-top: 15px !important">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <h5>Bài viết<nav></nav></h5>
+                                        <!-- <form class="d-inline-flex">
+                                            <a href="add-new-user.html" class="align-items-center btn btn-theme d-flex">
+                                                <i data-feather="plus"></i>Thêm nhân viên mới
+                                            </a>
+                                        </form> -->
+                                    </div>
+                                    <div style="display: flex;">
+                                        <label><input type="search" class="" placeholder="Tìm kiếm" aria-controls="table_id" id="searchInput" style="border:1px solid rgb(139, 139, 139);"></label>
+                                        <select id="order-date" class="form-select" style="margin-left: 40px; width:300px;" >
+                                            <option value="newest">Tổng đơn hàng từ cao đến thấp </option>
+                                            <option value="oldest">Tổng đơn hàng từ thấp đến cao</option>
+                                            <option value="ascending">Tổng giá đơn hàng từ cao đến thấp</option>
+                                            <option value="descending">Tổng giá đơn hàng từ thấp đến cao</option>
+                                        </select>       
+                                    </div>
+                                    <div class="table-responsive table-product">
+                                        <table class="table all-package theme-table" id="table_id">
+                                            <thead>
+                                                <tr>
+                                                    <th>Ảnh</th>
+                                                    <th>Tên</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Email</th>
+                                                    <th>Trạng thái</th>
+                                                    <th >Tổng đơn</th>
+                                                    <th>Tổng giá đơn</th>
+                                                    <th>Hành động</th>
+                                                </tr>
+                                            </thead>
+                                    
+                                            <tbody id="user-table-body">
+                                                <!-- Dữ liệu người dùng sẽ được render ở đây -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                                                                                    <div class="pagination-container">
+                                <label for="pageSizeSelect">Hiển thị</label>
+                                <select id="pageSizeSelect">
+                                    <option value="5">5 dòng</option>
+                                    <option value="10" selected>10 dòng</option>
+                                    <option value="15">15 dòng</option>
+                                    <option value="20">20 dòng</option>
+                                </select>
+                            
+                                <button id="firstPage" class="pagination-btn">⏮</button>
+                                <button id="prevPage" class="pagination-btn">◀</button>
+                                
+                                <input type="number" id="currentPageInput" />
+                            
+                                <button id="nextPage" class="pagination-btn">▶</button>
+                                <button id="lastPage" class="pagination-btn">⏭</button>
+                            
+                                <span id="paginationInfo">1 - 15 trong 25 hàng hóa</span>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- All User Table Ends-->
+
+
+            </div>
+            <!-- Container-fluid end -->
+        </div>
+        <!-- Page Body End -->
+
+        <!-- Modal Start -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                        <p>Are you sure you want to log out?</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="button-box">
+                            <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal End -->
+    </div>
+
+    <!-- Delete Modal Box Start -->
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-block text-center">
+                    <h5 class="modal-title w-100" id="exampleModalLabel22">Xác nhận xoá khách hàng ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box">
+                        <p>Hệ thống sẽ xóa Khách hàng, nếu khách hàng có thông tin lịch sử giao dịch thì sẽ không hoạt động. Bạn có chắc chắn muốn xóa?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-dismiss="modal">Không</button>
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal" id="delete-user">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal Box End -->
+
+<!-- Modal xác nhận -->
+<div class="modal fade" id="confirmLockModal" tabindex="-1" aria-labelledby="confirmLockModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmLockModalLabel">Xác nhận cập nhật trạng thái</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn thay đổi trạng thái người dùng này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" id="confirmToggleLock" class="btn btn-primary">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- latest js -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="assets/js/scrollbar/simplebar.js"></script>
+    <script src="assets/js/scrollbar/custom.js"></script>
+
+    <!-- customizer js -->
+    <script src="assets/js/customizer.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="assets/js/sidebar-menu.js"></script>
+    <script src="assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/notify/index.js"></script>
+
+    <!-- Data table js -->
+    <script src="assets/js/jquery.dataTables.js"></script>
+    <script src="assets/js/custom-data-table.js"></script>
+
+    <!-- all checkbox select js -->
+    <script src="assets/js/checkbox-all-check.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="assets/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="assets/js/script.js"></script>
+    
+    <script>
+ 
+
+      
+</script>
+</body>
+
+
+
+</html>

@@ -1,5 +1,6 @@
 package com.example.project1.model.enity.blog;
 
+import com.example.project1.utils.DataUtils;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -56,4 +57,12 @@ public class BlogView {
 
     @Column(name = "category_id")
     private Long categoryId;
+
+    public String getImage() {
+        return DataUtils.convertUrl(image);
+    }
+
+    public String getAvatar() {
+        return DataUtils.convertUrl(avatar == null ? "product/avatar-vo-danh-9.png" : avatar);
+    }
 }

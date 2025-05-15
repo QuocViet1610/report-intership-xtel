@@ -1,0 +1,1359 @@
+
+<html lang="en" dir="ltr">
+
+
+<head>
+
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="assets/css/linearicon.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/feather-icon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.custom.css">
+    <style>
+        /* Giảm khoảng cách giữa các cột */
+        .table th, .table td {
+            text-align: left; 
+            vertical-align: middle; 
+            padding: 4px 8px; 
+            word-break: break-word; 
+            white-space: normal;
+            overflow-wrap: break-word; 
+            padding: 4px 8px !important;
+        }
+
+        .table {
+            table-layout: fixed; 
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table tr {
+            padding: 10px;
+            padding-bottom: 10px; 
+            border-bottom: 1px solid  #ddd ! important;
+        }
+        /* Giảm cỡ chữ cho các ô trong bảng */
+        .table th {
+            font-size: 14px; 
+            padding: 8px 8px !important; 
+            font-weight: 750 !important;
+            background-color:#f3f3f3 !important; 
+            padding : 20px 8px !important;
+        }
+
+        .table td {
+            font-size: 13px; 
+            padding: 6px 8px !important;
+            font-weight: normal !important;
+            color: #000000 !important;; 
+        }
+        /* Ẩn dòng con mặc định */
+        .product-variants {
+            display: none;
+        }
+
+        /* Cấu hình kích thước cột */
+        .table th:nth-child(1), .table td:nth-child(1) { width: 1%; }  /* Cột chọn (checkbox) */
+        .table th:nth-child(2), .table td:nth-child(2) { width: 6%; }  /* Cột ảnh */
+        .table th:nth-child(3), .table td:nth-child(3) { width: 14%; } /* Mã sản phẩm */
+        .table th:nth-child(4), .table td:nth-child(4) { width: 16%; } /* Tên sản phẩm */
+        .table th:nth-child(5), .table td:nth-child(5) { width: 16%; } /* Thể loại */
+        .table th:nth-child(6), .table td:nth-child(6) { width: 10%; } /* Số lượng */
+        .table th:nth-child(7), .table td:nth-child(7) { width: 10%; } /* Giá bán */
+        .table th:nth-child(8), .table td:nth-child(8) { width: 10%; } /* Giá vốn */
+        .table th:nth-child(9), .table td:nth-child(9) { width: 10%; } /* Thao tác */
+        
+
+        /* Giữ nguyên kích thước ảnh nhỏ gọn */
+        .table-image img {
+            width: 100%;
+            height: 50px;
+            object-fit: cover;
+            max-width: 50px;
+        }
+
+        /* Điều chỉnh cột thao tác */
+        .table ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 5px;
+            justify-content: left;
+            flex-wrap: wrap; 
+        }
+
+        .table ul li {
+            display: inline-block;
+        }
+
+        /* Điều chỉnh icon trong cột thao tác */
+        .table ul li a i {
+            font-size: 15px !important;
+            color: #333;
+            transition: color 0.3s;
+            text-align: center;
+        }
+        .table td a i {
+            font-size: 15px !important;
+        }
+
+        .table ul li a i:hover {
+            color: #007bff;
+        }
+
+        /* Hiệu ứng khi dòng con hiển thị */
+        .product-variants td {
+            background-color: #f8f9fa;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .product-variants tr {
+            padding: 4px 8px !important;
+        }
+        /* Định dạng ảnh nhỏ */
+.small-img {
+    width: 50px; 
+    height: 50px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+}
+
+.small-img:hover, .small-img.active {
+    border: 2px solid #007bff;
+}
+.d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 10px; /* Khoảng cách giữa các ảnh */
+}
+/* Tạo border bao gồm cả dòng cha và dòng con */
+.product-group {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Làm nổi bật dòng cha */
+.product-row {
+    background: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Thụt dòng con vào trong dòng cha */
+.child-row td {
+    padding: 0;
+    background: #ffffff;
+}
+
+/* Bọc dòng con trong một ô lớn */
+.variant-container {
+    border-top: 1px solid #ddd;
+    background: #f0f0f0;
+    margin-left: 15px;
+}
+
+/* Định dạng bảng trong dòng con */
+.variant-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.variant-table tr {
+    border-bottom:none !important;
+}
+/* Đáp ứng khi màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 12px; /* Giảm cỡ chữ */
+        padding: 6px 8px;
+    }
+
+    .table th:nth-child(1), .table td:nth-child(1) { width: 1%; }  /* Cột chọn (checkbox) */
+    .table th:nth-child(2), .table td:nth-child(2) { width: 10%; }  /* Cột ảnh */
+    .table th:nth-child(3), .table td:nth-child(3) { width: 15%; } /* Mã sản phẩm */
+    .table th:nth-child(4), .table td:nth-child(4) { width: 17%; } /* Tên sản phẩm */
+    .table th:nth-child(5), .table td:nth-child(5) { width: 15%; } /* Thể loại */
+    .table th:nth-child(6), .table td:nth-child(6) { width: 10%; } /* Số lượng */
+    .table th:nth-child(7), .table td:nth-child(7) { width: 10%; } /* Giá bán */
+    .table th:nth-child(8), .table td:nth-child(8) { width: 10%; } /* Giá vốn */
+    .table th:nth-child(9), .table td:nth-child(9) { width: 7%; } /* Thao tác */
+    
+}
+
+/* Responsive khi màn hình rất nhỏ (<480px) */
+@media (max-width: 550px) {
+    .table th, .table td {
+        font-size: 12px; /* Giảm thêm cỡ chữ */
+        padding: 4px 6px;
+    }
+
+    .table th:nth-child(1), .table td:nth-child(1) { width: 1%; }  /* Cột chọn (checkbox) */
+    .table th:nth-child(2), .table td:nth-child(2) { width: 10%; }  /* Cột ảnh */
+    .table th:nth-child(3), .table td:nth-child(3) { width: 15%; } /* Mã sản phẩm */
+    .table th:nth-child(4), .table td:nth-child(4) { width: 17%; } /* Tên sản phẩm */
+    .table th:nth-child(5), .table td:nth-child(5) { width: 15%; } /* Thể loại */
+    .table th:nth-child(6), .table td:nth-child(6) { width: 10%; } /* Số lượng */
+    .table th:nth-child(7), .table td:nth-child(7) { width: 10%; } /* Giá bán */
+    .table th:nth-child(8), .table td:nth-child(8) { width: 10%; } /* Giá vốn */
+    .table th:nth-child(9), .table td:nth-child(9) { width: 7%; } /* Thao tác */
+}
+.col-sm-2 {
+    flex: 0 0 auto; /* Ngăn chặn việc co dãn */
+    width: 20%; /* Chiều rộng mặc định của Bootstrap col-2 */
+    min-width: 20%;
+    max-width: 20%;
+}
+.col-sm-10 {
+    width: 80%; /* Chiều rộng mặc định của Bootstrap col-2 */
+}
+
+.sidebar {
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  
+}
+.filter-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.filter-section{
+    padding-bottom: 10px;
+}
+.filter-section ul {
+    list-style: none;
+    padding: 10px;
+    padding-bottom: 0px;
+    margin: 0;
+    max-height: 150px; 
+    overflow-y: auto;
+}
+.filter-section ul li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+.filter-search, .filter-dropdown {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+@media (max-width: 800px) {
+    .sidebar { display: none; }
+}
+@media (max-width: 480px) {
+    .sidebar { display: none; }
+    .table th, .table td { font-size: 9px; padding: 3px; }
+}
+
+.sidebar {
+    height: 150vh;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ddd;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+    cursor: pointer;
+}
+.sidebar::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome & Safari */
+}
+/* Ẩn sidebar trên điện thoại */
+@media (max-width: 800px) {
+    /* Ẩn cột sidebar trên mobile */
+    .col-sm-2 {
+        display: none;
+    }
+    .col-sm-10 {
+        width: 100%; /* Chiều rộng mặc định của Bootstrap col-2 */
+    }
+    /* Sidebar ẩn ban đầu, xuất hiện khi nhấn nút */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Khi thêm class "show", sidebar sẽ hiện ra */
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    /* Nút lọc */
+    .filter-toggle {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .filter-toggle i {
+        margin-right: 5px;
+    }
+
+    /* Nút đóng sidebar trên mobile */
+    .sidebar .close-btn {
+        display: block;
+        text-align: right;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+        color: black;
+    }
+    .filter-toggle {
+        display: block !important; /* Hiện nút Lọc */
+    }
+}
+@media (min-width: 801px) {
+    .filter-toggle {
+        display: none !important; /* Ẩn nút Lọc khi trên 800px */
+    }
+}
+
+/* Mặc định không có border */
+.parent-row {
+    border: 2px solid transparent;
+}
+
+/* Khi mở biến thể, border bao toàn bộ */
+.parent-row.active-border {
+    background-color:  #eafaf1  !important; /* Xanh lá cây nhạt */
+    border-collapse: collapse;
+    border-top: 1px solid green !important;
+    border-right: 1px solid green !important;
+    border-left: 1px solid green !important;
+}
+.parent-row.active-border td{
+    border-top: 1px solid green !important;
+}
+
+
+.parent-row.active-border td:first-child {
+    border-left: 1px solid green !important; /* Border left cho td đầu tiên */
+}
+.parent-row.active-border td{
+    width: 100%;
+}
+.parent-row.active-border td:last-child {
+    border-right: 1px solid green !important; /* Border right cho td cuối cùng */
+}
+
+
+.product-variants td{
+    border-collapse: collapse;
+    border: 1px solid #ddd; 
+
+}
+
+.product-variants td {
+    border: none;
+    border-bottom: 1px solid #ddd ;
+    
+}
+
+
+/* Bỏ hover của toàn bộ dòng product-variants */
+.product-variants:hover {
+    background-color: transparent !important; /* Không đổi màu khi hover */
+}
+
+/* Border bọc toàn bộ nhóm */
+.wrapper-row {
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Khi mở biến thể, border bao cả nhóm */
+.wrapper-row.active-border {
+    border: 2px solid #007bff; /* Viền xanh */
+    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+    border-radius: 5px;
+}
+
+/* Khi mở biến thể, phần tử cha có màu xanh lá nhạt */
+.parent-row.highlight-green {
+    background-color: #ddece0a0 !important; /* Xanh lá nhạt */
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Kiểu cho label và select */
+#pageSizeSelect {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Kiểu nút phân trang */
+.pagination-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: rgba(0, 161, 54, 0.87);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.pagination-btn:hover {
+    background-color: rgba(0, 129, 43, 0.87);
+}
+
+/* Kiểu cho ô nhập số trang */
+#currentPageInput {
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Kiểu cho thông tin phân trang */
+#paginationInfo {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Đảm bảo div-update bị ẩn ban đầu */
+.div-update {
+    background:  white;
+    display: none;
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 63%; /* Đảm bảo nó nằm dưới li */
+    right: 0;
+    padding: 5px;
+
+}
+
+/* Khi hover vào #updateButton, hiển thị div-update */
+#updateButton:hover + .div-update {
+    display: block;
+    width: 20%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important; /* Bóng đậm hơn */
+    border-radius: 9px !important;
+}
+
+.div-update:hover {
+    display: block;
+    width:20%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important; /* Bóng đậm hơn */
+    border-radius: 9px !important;
+}
+
+.div-update .btn{
+    width: 100% !important;
+}
+
+.table-hover > tbody > tr.product-variants:hover {
+    --bs-table-accent-bg: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+.table-hover > tbody > tr.product-variants:hover td {
+    background-color: #f0f0f0; 
+}
+
+
+.table-hover > tbody > tr.product-last:hover td {
+    background:transparent; 
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- tap on top start-->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end-->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-header">
+            <div class="header-wrapper m-0">
+                <div class="header-logo-wrapper p-0">
+                    <div class="logo-wrapper">
+
+                    </div>
+                 
+                </div>
+
+                <div class="toggle-sidebar" style="display: block;">
+                    <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                </div>
+                
+                <!-- <form class="form-inline search-full" action="javascript:void(0)" method="get">
+                    <div class="form-group w-100">
+                        <div class="Typeahead Typeahead--twitterUsers">
+                            <div class="u-posRelative">
+                                <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                    placeholder="Tìm Kiếm" name="q" title="" autofocus>
+                                <i class="close-search" data-feather="x"></i>
+                                <div class="spinner-border Typeahead-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </div>
+                </form> -->
+
+                <div class="nav-right col-6 pull-right right-header p-0">
+                    <ul class="nav-menus">
+                        <li>
+                            <span class="header-search">
+                                <i class="ri-search-line"></i>
+                            </span>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <div class="notification-box">
+                            </div>
+                            <!-- <ul class="notification-dropdown onhover-show-div">
+                                <li>
+                                    <i class="ri-notification-line"></i>
+                                    <h6 class="f-18 mb-0">Thông báo</h6>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
+                                            class="pull-right">10 min.</span>
+                                    </p>
+                                </li>
+
+                            </ul> -->
+                        </li>
+
+                        <!-- <li>
+                            <div class="mode">
+                                <i class="ri-moon-line"></i>
+                            </div>
+                        </li> -->
+                        <li class="profile-nav onhover-dropdown pe-0 me-0">
+                            <div class="media profile-media">
+                                <img class="user-profile rounded-circle" src="assets/images/users/4.jpg" alt="">
+                                <div class="user-name-hide media-body">
+                                    <span id="username"></span>
+                                    <p class="mb-0 font-roboto" > Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                </div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div">
+                                <li>
+                                    <a href="all-users.html">
+                                        <i data-feather="users"></i>
+                                        <span>Tài Khoảnn</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                        href="javascript:void(0)">
+                                        <i data-feather="log-out"></i>
+                                        <span>Đăng xuất</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="sidebar-wrapper" >
+                <div ></div>
+                <div>
+                    <div class="logo-wrapper logo-wrapper-center" style="padding: 20px; padding-left: 40px">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-white" src="assets/images/logo/logo-white.png" alt="logo">
+
+                             <!-- <h1>Sport ecommer</h1> -->
+                        </a>
+                        <div class="back-btn">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <!-- <div class="toggle-sidebar">
+                            <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                        </div> -->
+                    </div>
+                    <div class="logo-icon-wrapper">
+                        <a href="index.html">
+                            <!-- <img class="img-fluid main-logo main-white" src="assets/images/logo/logo.png" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="assets/images/logo/logo-white.png"
+                                alt="logo"> -->
+                        </a>
+                    </div>
+                    <nav class="sidebar-main">
+                        <div class="left-arrow" id="left-arrow">
+                            <i data-feather="arrow-left"></i>
+                        </div>
+
+                        <div id="sidebar-menu">
+                            <ul class="sidebar-links" id="simple-bar">
+                                <li class="back-btn"></li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                        <i class="ri-home-line"></i>
+                                        <span>Bảng điều khiển</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Quản lý sản phẩm</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="products.html">Sản phẩm</a></li>
+                                        <!-- <li><a href="add-new-product.html">Thêm sản phẩm</a></li> -->
+                                        <li><a href="attributes.html">Thuộc tính sản phẩm</a></li>          
+                                        <li><a href="category.html">Thể loại sản phẩm</a></li>  
+                                        <li><a href="product-review.html">Đánh giá sản phẩm</a></li>
+                                    </ul>
+                                </li>
+                                
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="category.html">Danh sách thể loại</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-category.html">Thêm thể loại</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="category.html  ">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="attributes.html">Thuộc tính</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-attributes.html">Thêm thuộc tính</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="attributes.html">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Nhân viên</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="all-users.html">Danh sách nhân viên</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Quản lý người dùng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-users.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Nhân viên</span>
+                                            </a>
+                                        </li>
+        
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-customer.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Khách hàng</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Đơn Hàng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="order-list.html">Danh sách đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-detail.html">Chi tiết đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-tracking.html">theo dõi đơn</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="order-list.html">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Quản lý đơn Hàng</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Giảm giá</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="coupon-list.html">Danh sách giảm giá</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="create-coupon.html">Tạo giảm giá</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="coupon-list.html">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Quản lý giảm giá</span>
+                                    </a>
+                                </li>
+
+                                
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="blog-list.html">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Quản lý bài viết</span>
+                                    </a>
+                                </li>
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Cài đặt</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="profile-setting.html">Profile Setting</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="profile-setting.html">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Thông tin tài khoản</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                        <i class="ri-file-chart-line"></i>
+                                        <span>Báo cáo</span>
+                                    </a>
+                                </li> -->
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                        <i class="ri-list-check"></i>
+                                        <span>List Page</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <div class="right-arrow" id="right-arrow">
+                            <i data-feather="arrow-right"></i>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+
+            <!-- Container-fluid starts-->
+            <div class="page-body" style="margin-top: 15px !important;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <button class="btn btn-primary filter-toggle" onclick="toggleFilter()">
+                            <i class="ri-filter-3-line"></i> Lọc
+                        </button>
+                        
+
+                        <div class="col-sm-2">
+                         
+                            <div class="sidebar" id="sidebar-filter">
+                                <!-- Loại hàng -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Loại hàng</h5>
+                                    <ul>
+                                        <li><input type="checkbox"> Hàng hóa thông thường</li>
+                                        <li><input type="checkbox"> Hàng hóa - Sachi (IMEI)</li>
+                                        <li><input type="checkbox"> Dịch vụ</li>
+                                        <li><input type="checkbox"> Combo - Đóng gói</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <!-- Nhóm hàng -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Nhóm hàng</h5>
+                                    <input type="text" class="filter-search" placeholder="Tìm kiếm nhóm hàng">
+                                    <ul>
+                                        <li><input type="checkbox"> Đá Bóng</li>
+                                        <li><input type="checkbox"> Cầu Vợt</li>
+                                        <li><input type="checkbox"> Bơi </li>
+                                        <li><input type="checkbox"> Phụ kiện</li>
+                                        <li><input type="checkbox"> Đá Bóng</li>
+                                        <li><input type="checkbox"> Cầu Vợt</li>
+                                        <li><input type="checkbox"> Bơi </li>
+                                        <li><input type="checkbox"> Phụ kiện</li>
+                                    </ul>
+                                </div>
+                         -->
+                                <!-- Tình trạng -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Tồn kho</h5>
+                                    <ul>
+                                        <li><input type="radio" name="status"> Tất cả</li>
+                                        <li><input type="radio" name="status"> Còn Hàng</li>
+                                        <li><input type="radio" name="status"> Hết Hàng</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <div class="filter-section">
+                                    <h5 class="filter-title">Tình trạng</h5>
+                                    <ul>
+                                        <li><input type="radio" name="status" value="0"> Ngừng kinh doanh</li>
+                                        <li><input type="radio" name="status" value="1" checked> Hoạt Động</li>
+                                    </ul>
+                                </div>
+
+
+<div class="filter-section">
+    <h5 class="filter-title">Thể loại</h5>
+    <input type="text" id="categorySearchInput" placeholder="Tìm thể loại..." style="width: 100%; margin-bottom: 8px; padding: 4px;" />
+    <ul id="categoryFilterList">
+        <li>
+            <input type="radio" name="categoryFilter" value="" checked> Tất cả
+        </li>
+        <!-- Các category sẽ được thêm động -->
+    </ul>
+</div>
+
+<div class="filter-section" >
+    <h5 class="filter-title">Thể loại</h5>
+    <ul id="categoryFilterList" style="max-height: 500px;">
+        <li>
+            <input type="radio" name="categoryFilter" value="" checked> Tất cả
+        </li>
+        <!-- Các category sẽ được thêm động ở đây -->
+    </ul>
+</div>
+
+                                <!-- Thuộc tính -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Thuộc tính</h5>
+                                    <ul>
+                                        <li><input type="checkbox"> THUỘC TÍNH 1</li>
+                                        <li><input type="checkbox"> THUỘC TÍNH 2</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <!-- Đặt trước -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Đặt trước</h5>
+                                    <ul>
+                                        <li><input type="radio" name="preorder"> Tích kê</li>
+                                        <li><input type="radio" name="preorder"> Được đặt trước</li>
+                                        <li><input type="radio" name="preorder"> Không được đặt trước</li>
+                                    </ul>
+                                </div>
+                         -->
+                                <!-- Thời gian tạo -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Thời gian tạo</h5>
+                                    <ul>
+                                        <li><input type="radio" name="create-time"> Toàn thời gian</li>
+                                        <li><input type="radio" name="create-time"> Lựa chọn khác</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <!-- Ngày dự kiến nhập hàng -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Ngày dự kiến nhập hàng</h5>
+                                    <ul>
+                                        <li><input type="radio" name="expected-date"> Toàn thời gian</li>
+                                        <li><input type="radio" name="expected-date"> Lựa chọn khác</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <!-- Nhà cung cấp -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Nhà cung cấp</h5>
+                                    <select class="filter-dropdown">
+                                        <option>Chọn nhà cung cấp</option>
+                                    </select>
+                                </div> -->
+                        
+                                <!-- Đối tượng khác -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Đối tượng </h5>
+                                    <ul>
+                                        <li><input type="radio" name="other"> Tất Cả</li>
+                                        <li><input type="radio" name="other"> Nam</li>
+                                        <li><input type="radio" name="other"> Nữ</li>
+                                        <li><input type="radio" name="other"> Trẻ em</li>
+                                        <li><input type="radio" name="other"> Trẻ gái</li>
+                                        <li><input type="radio" name="other"> Trẻ trai</li>
+                                    </ul>
+                                </div> -->
+                        
+                                <!-- Vị trí -->
+                                <!-- <div class="filter-section">
+                                    <h5 class="filter-title">Vị trí</h5>
+                                    <select class="filter-dropdown">
+                                        <option>Chọn vị trí</option>
+                                    </select>
+                                </div> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-10">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title d-sm-flex d-block">
+                                        <h5>Sản phẩm</h5>
+                                        <div class="right-options">
+                                            <ul>
+                                                <li>
+                                                    <a class="btn btn-solid" href="add-new-product.html">Thêm sản phẩm</a>
+                                                </li>
+                                                <li id="updateButton" style="display: none;">
+                                                    <button class="btn btn-solid" >Cập nhập</button>
+                                                </li>
+                                                
+                                                <div class="div-update">
+                                                <button class="btn btn-update" id="updateButtonClick" >Nhập hàng</button>
+                                                <button class="btn btn-update" id="updateButtonClick" >Thiếp lập giá</button>
+                                                <button class="btn btn-update" id="updateButtonClick" style=" border-bottom: 1px solid #ddd ;">Cập nhật ảnh</button>
+                                                <button class="btn btn-update" id="button-stop" style="color: red; text-align: left;">Ngừng Kinh Doanh</button>
+                                                <button class="btn btn-update" id="button-delete" style="color: red;">Xoá</button>
+
+                                                </div>
+                                                
+                                                                                            
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label><input type="search" class="" placeholder="Tìm kiếm" aria-controls="table_id" id="searchInput" style="border:1px solid rgb(139, 139, 139);"></label>
+                    
+                                        <div class="table-responsive">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="table_id">
+                                                    <thead>
+                                                        <tr>
+                                                            <th >
+                                                                <input type="checkbox" id="selectAll" />
+                                                            </th>
+                                                            <th>Ảnh</th>
+                                                            <th>Mã hàng</th>
+                                                            <th>Tên hàng</th>
+                                                            <th>Thể loại</th>
+                                                            <th>Số Lượng</th>
+                                                            <th>Giá bán</th>
+                                                            <th>Giá vốn</th>
+                                                            <th>Thao tác</th>
+                                                        </tr>
+                                                    </thead>
+                                                
+                                                    <tbody class="product-group">
+                                                        <tr class="wrapper-row">
+                                                            <!-- Sản phẩm chính -->
+                                                            <tr class="product-row parent-row" data-id="1">
+                                                                <td>
+                                                                    <div class="table-image">
+                                                                        <img src="assets/images/product/1.png" class="img-fluid" alt="Sản phẩm 1">
+                                                                    </div>
+                                                                </td>
+                                                                <td>MT00003</td>
+                                                                <td>Product A</td>
+                                                                <td>Môn Thể Thao</td>
+                                                                <td>50</td>
+                                                                <td>200đ</td>
+                                                                <td>150đ</td>
+                                                                <td>
+                                                                    <ul>
+                                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productDetailModal">
+                                                                            <i class="ri-eye-line"></i>
+                                                                        </a>
+                                                                        <li><a href="#"><i class="ri-pencil-line"></i></a></li>
+                                                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                                                                            <i class="ri-delete-bin-line"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                    
+                                                            <!-- Dòng con - Biến thể sản phẩm -->
+                                                            <tr class="product-variants child-row" data-parent="1">
+                                                                <td colspan="8">
+                                                                    <div class="variant-container">
+                                                                        <table class="variant-table">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="table-image">
+                                                                                        <img src="assets/images/product/1.png" class="img-fluid" alt="Biến thể 1">
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>MT00003-ĐỎ-XANH</td>
+                                                                                <td>Product A - MT00003-ĐỎ-XANH</td>
+                                                                                <td>Môn Thể Thao</td>
+                                                                                <td>30</td>
+                                                                                <td>210đ</td>
+                                                                                <td>160đ</td>
+                                                                                <td>
+                                                                                    <ul>
+                                                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#productDetailModal">
+                                                                                            <i class="ri-eye-line"></i>
+                                                                                        </a>
+                                                                                        <li><a href="#"><i class="ri-pencil-line"></i></a></li>
+                                                                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                                                                                            <i class="ri-delete-bin-line"></i></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tr>
+                                                    </tbody>
+                                                    
+                                                    
+                                                </table>
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination-container">
+                                <label for="pageSizeSelect">Hiển thị</label>
+                                <select id="pageSizeSelect">
+                                    <option value="5">5 dòng</option>
+                                    <option value="10" selected>10 dòng</option>
+                                    <option value="15">15 dòng</option>
+                                    <option value="20">20 dòng</option>
+                                </select>
+                            
+                                <button id="firstPage" class="pagination-btn">⏮</button>
+                                <button id="prevPage" class="pagination-btn">◀</button>
+                                
+                                <input type="number" id="currentPageInput" />
+                            
+                                <button id="nextPage" class="pagination-btn">▶</button>
+                                <button id="lastPage" class="pagination-btn">⏭</button>
+                            
+                                <span id="paginationInfo">1 - 15 trong 25 hàng hóa</span>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+<!-- Bootstrap Modal - Hiển thị chi tiết sản phẩm -->
+<!-- Bootstrap Modal - Hiển thị chi tiết sản phẩm -->
+<div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDetailLabel">Chi tiết sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Hình ảnh sản phẩm -->
+                    <div class="col-md-5">
+                        <img id="mainImage" src="assets/images/product/1.png" class="img-fluid mb-3" alt="Sản phẩm" style="padding-left:10px">
+                        
+                        <!-- 4 ảnh nhỏ -->
+                        <div class="d-flex gap-2 justify-content-center">
+                            <img src="assets/images/product/2.png" class="img-thumbnail small-img" onclick="changeImage(this)" alt="Chi tiết 1">
+                            <img src="assets/images/product/3.png" class="img-thumbnail small-img" onclick="changeImage(this)" alt="Chi tiết 2">
+                            <img src="assets/images/product/4.png" class="img-thumbnail small-img" onclick="changeImage(this)" alt="Chi tiết 3">
+                            <img src="assets/images/product/5.png" class="img-thumbnail small-img" onclick="changeImage(this)" alt="Chi tiết 4">
+                        </div>
+                    </div>
+
+                    <!-- Tab thông tin sản phẩm -->
+                    <div class="col-md-7">
+                        <ul class="nav nav-tabs" id="productTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
+                                    type="button" role="tab" aria-controls="info" aria-selected="true">Thông tin</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="extra-info-tab" data-bs-toggle="tab" data-bs-target="#extra-info"
+                                    type="button" role="tab" aria-controls="extra-info" aria-selected="false">Thông tin bổ sung</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content mt-3" id="productTabContent">
+                            <!-- Thông tin chính -->
+                            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                <h5 class="fw-bold">Quần áo phối màu viền đỏ số 9 - x - a</h5>
+                                <p><strong>Mã hàng:</strong> SP000003</p>
+                                <p><strong>Nhóm hàng:</strong> Điện thoại</p>
+                                <p><strong>Loại hàng:</strong> Hàng hóa</p>
+                                <p><strong>Thương hiệu:</strong> Không xác định</p>
+                                <p><strong>Giá bán:</strong> 0 đ</p>
+                                <p><strong>Giá vốn:</strong> 0 đ</p>
+                                <p><strong>Trọng lượng:</strong> --</p>
+                                <p><strong>Nhà cung cấp:</strong> --</p>
+                            </div>
+
+                            <!-- Thông tin bổ sung -->
+                            <div class="tab-pane fade" id="extra-info" role="tabpanel" aria-labelledby="extra-info-tab">
+                                <p><strong>Xuất xứ:</strong> Việt Nam</p>
+                                <p><strong>Chất liệu:</strong> 100% Cotton</p>
+                                <p><strong>Kích thước:</strong> S, M, L, XL</p>
+                                <p><strong>Màu sắc:</strong> Đỏ, Xanh, Đen</p>
+                                <p><strong>Bảo hành:</strong> 12 tháng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">Không</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Có</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- Delete Modal Box Start -->
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-block text-center">
+                    <h5 class="modal-title w-100" id="exampleModalLabel22">Xác nhận xoá</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box">
+                        <p>Hệ thống sẽ xóa sản phẩm nhưng khi sản phẩm đã được đặt mua hệ thống sẽ chuyển sản phẩm sang trạng thái ngừng kinh doanh?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-dismiss="modal">Không</button>
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal" id="confirmDelete">Có</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle2" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel12">Hoàn thành</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box text-center">
+                        <div class="wrapper">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                        </div>
+                        <h4 class="text-content">Xoá thành công</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal Box End -->
+
+    <!-- latest js -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="assets/js/scrollbar/simplebar.js"></script>
+    <script src="assets/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- customizer js -->
+    <script src="assets/js/customizer.js"></script>
+
+    <!-- Plugins js -->
+    <script src="assets/js/sidebar-menu.js"></script>
+    <script src="assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/notify/index.js"></script>
+
+    <!-- Data table js -->
+    <script src="assets/js/jquery.dataTables.js"></script>
+    <script src="assets/js/custom-data-table.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="assets/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="assets/js/script.js"></script>
+    <script src="./assets/js/product/product.js"></script>
+    <script src="assets/js/script.js"></script>
+ 
+</body>
+
+
+</html>

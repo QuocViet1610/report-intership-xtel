@@ -18,7 +18,7 @@ public class ProductViewDto {
         private Double productPrice;
         private Double productCostPrice;
         private String productDescription;
-        private Boolean productIsActive;
+        private Integer productIsActive;
         private Long productTotalSold;
         private Double productTotalRating;
         private Long productStock;

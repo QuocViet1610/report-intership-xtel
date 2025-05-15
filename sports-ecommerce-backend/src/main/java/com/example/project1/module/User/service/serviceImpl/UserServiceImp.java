@@ -18,6 +18,7 @@ import com.example.project1.module.Order.repository.OrderRepository;
 import com.example.project1.module.User.repository.RoleRepository;
 import com.example.project1.module.User.repository.UserRepository;
 import com.example.project1.module.User.repository.UserRoleRepository;
+import com.example.project1.module.User.repository.UserViewRepository;
 import com.example.project1.module.User.service.UserService;
 import com.example.project1.utils.DataUtils;
 import com.example.project1.utils.MinioUtils;
@@ -56,6 +57,7 @@ public class UserServiceImp implements UserService {
     private String bucketName ;
     private String folderLocal;
     private String keyName ;
+    private final UserViewRepository userViewRepository;
 
     @PostConstruct
     void started() {
@@ -67,14 +69,14 @@ public class UserServiceImp implements UserService {
     private void validateLogic(UserCreateRequest request, boolean isCreate){
         if (isCreate){
             if (userRepository.findByEmail(request.getEmail()).isPresent()){
-                throw new ValidateException(Translator.toMessage("error.user.user_email.is_exit"));
+                throw new ValidateException(Translator.toMessage("Email đã tồn tại"));
             }
             if (userRepository.findByPhone(request.getPhone()).isPresent()){
                 throw new ValidateException(Translator.toMessage("Số điện thoại đã tồn tại "));
             }
         }else {
             if (userRepository.findByEmailAndIdNot(request.getEmail(),request.getId() ).isPresent()){
-                throw new ValidateException(Translator.toMessage("error.user.user_email.is_exit"));
+                throw new ValidateException(Translator.toMessage("Email đã tồn tại"));
             }
             if (userRepository.findByPhoneAndIdNot(request.getPhone(), request.getId()).isPresent()){
                 throw new ValidateException(Translator.toMessage("Số điện thoại đã tồn tại "));
@@ -100,16 +102,19 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserDto update(UserCreateRequest request,Long id) {
-        Long idUser = tokenUtil.getCurrentUserId();
+//        Long idUser = tokenUtil.getCurrentUserId();
 
-        return userRepository.findById(idUser).map(user -> {
-            boolean authenticated = request.getPassword().equals(user.getPassword());
-            if (!authenticated){
-                request.setPassword(passwordEncoder.encode(request.getPassword()));
-            }
+        return userRepository.findById(id).map(user -> {
+//            boolean authenticated = request.getPassword().equals(user.getPassword());
+//            if (!authenticated){
+//                request.setPassword(passwordEncoder.encode(request.getPassword()));
+//            }
             request.setId(user.getId());
             this.validateLogic(request,false);
-            userMapper.partialUpdate(user, request);
+            user.setEmail(request.getEmail());
+            user.setPhone(request.getPhone());
+            user.setFullName(request.getFullName());
+            userRepository.save(user);
             return userMapper.toDto(user);
         }).orElseThrow(() -> new ValidateException("Tài khoản không tồn tại"));
 
@@ -169,7 +174,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Object getUser() {
-        return userRepository.findUsersByRoleIdUser();
+        return userViewRepository.findAll();
     }
 
     @Override
@@ -197,6 +202,7 @@ public class UserServiceImp implements UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new ValidateException("Người dùng không tồn tại "));
         return user;
     }
+
 
 
     @Override
@@ -231,5 +237,9 @@ public class UserServiceImp implements UserService {
         return user;
     }
 
+    public Object getUserDetail(Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new ValidateException("Người dùng không tồn tại "));
+        return user;
+    }
 
 }

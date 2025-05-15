@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<head>
+    <!-- meta data -->
+
+
+    <!-- Google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="assets/css/linearicon.css">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/themify.css">
+
+    <!--Dropzon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/dropzone.css">
+
+    <!-- Feather icon css-->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/feather-icon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/date-picker.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap.css">
+
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/bootstrap-tagsinput.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<link rel="stylesheet" type="text/css" href="assets/css/style.custom.css">
+<link rel="stylesheet" type="text/css" href="assets/css/add-product.css">
+<style>
+    
+</style>
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper start -->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-header">
+            <div class="header-wrapper m-0">
+                <div class="header-logo-wrapper p-0">
+                    <div class="logo-wrapper">
+
+                    </div>
+                 
+                </div>
+
+                <div class="toggle-sidebar" style="display: block;">
+                    <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                </div>
+                
+                <!-- <form class="form-inline search-full" action="javascript:void(0)" method="get">
+                    <div class="form-group w-100">
+                        <div class="Typeahead Typeahead--twitterUsers">
+                            <div class="u-posRelative">
+                                <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                                    placeholder="Tìm Kiếm" name="q" title="" autofocus>
+                                <i class="close-search" data-feather="x"></i>
+                                <div class="spinner-border Typeahead-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="Typeahead-menu"></div>
+                        </div>
+                    </div>
+                </form> -->
+
+                <div class="nav-right col-6 pull-right right-header p-0">
+                    <ul class="nav-menus">
+                        <li>
+                            <span class="header-search">
+                                <i class="ri-search-line"></i>
+                            </span>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <div class="notification-box">
+                            </div>
+                            <!-- <ul class="notification-dropdown onhover-show-div">
+                                <li>
+                                    <i class="ri-notification-line"></i>
+                                    <h6 class="f-18 mb-0">Thông báo</h6>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
+                                            class="pull-right">10 min.</span>
+                                    </p>
+                                </li>
+
+                            </ul> -->
+                        </li>
+
+                        <!-- <li>
+                            <div class="mode">
+                                <i class="ri-moon-line"></i>
+                            </div>
+                        </li> -->
+                        <li class="profile-nav onhover-dropdown pe-0 me-0">
+                            <div class="media profile-media">
+                                <img class="user-profile rounded-circle" src="assets/images/users/4.jpg" alt="">
+                                <div class="user-name-hide media-body">
+                                    <span id="username"></span>
+                                    <p class="mb-0 font-roboto" > Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                </div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div">
+                                <li>
+                                    <a href="all-users.html">
+                                        <i data-feather="users"></i>
+                                        <span>Tài Khoảnn</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                        href="javascript:void(0)">
+                                        <i data-feather="log-out"></i>
+                                        <span>Đăng xuất</span>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="sidebar-wrapper" >
+                <div ></div>
+                <div>
+                    <div class="logo-wrapper logo-wrapper-center" style="padding: 20px; padding-left: 40px">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-white" src="assets/images/logo/logo-white.png" alt="logo">
+
+                             <!-- <h1>Sport ecommer</h1> -->
+                        </a>
+                        <div class="back-btn">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <!-- <div class="toggle-sidebar">
+                            <i class="ri-menu-line status_toggle middle sidebar-toggle"></i>
+                        </div> -->
+                    </div>
+                    <div class="logo-icon-wrapper">
+                        <a href="index.html">
+                            <!-- <img class="img-fluid main-logo main-white" src="assets/images/logo/logo.png" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="assets/images/logo/logo-white.png"
+                                alt="logo"> -->
+                        </a>
+                    </div>
+                    <nav class="sidebar-main">
+                        <div class="left-arrow" id="left-arrow">
+                            <i data-feather="arrow-left"></i>
+                        </div>
+
+                        <div id="sidebar-menu">
+                            <ul class="sidebar-links" id="simple-bar">
+                                <li class="back-btn"></li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                        <i class="ri-home-line"></i>
+                                        <span>Bảng điều khiển</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Quản lý sản phẩm</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="products.html">Sản phẩm</a></li>
+                                        <!-- <li><a href="add-new-product.html">Thêm sản phẩm</a></li> -->
+                                        <li><a href="attributes.html">Thuộc tính sản phẩm</a></li>          
+                                        <li><a href="category.html">Thể loại sản phẩm</a></li>  
+                                        <li><a href="product-review.html">Đánh giá sản phẩm</a></li>
+                                    </ul>
+                                </li>
+                                
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="category.html">Danh sách thể loại</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-category.html">Thêm thể loại</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="category.html  ">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Thể loại</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="attributes.html">Thuộc tính</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="add-new-attributes.html">Thêm thuộc tính</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="attributes.html">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Thuộc tính</span>
+                                    </a>
+                                </li> -->
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Nhân viên</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="all-users.html">Danh sách nhân viên</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Quản lý người dùng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-users.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Nhân viên</span>
+                                            </a>
+                                        </li>
+        
+                                        <li class="sidebar-list">
+                                            <a class="sidebar-link sidebar-title link-nav" href="all-customer.html">
+                                                <i class="ri-user-3-line"></i>
+                                                <span>Khách hàng</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Đơn Hàng</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="order-list.html">Danh sách đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-detail.html">Chi tiết đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="order-tracking.html">theo dõi đơn</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="order-list.html">
+                                        <i class="ri-archive-line"></i>
+                                        <span>Quản lý đơn Hàng</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Giảm giá</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="coupon-list.html">Danh sách giảm giá</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="create-coupon.html">Tạo giảm giá</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="coupon-list.html">
+                                        <i class="ri-price-tag-3-line"></i>
+                                        <span>Quản lý giảm giá</span>
+                                    </a>
+                                </li>
+
+                                
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="blog-list.html">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Quản lý bài viết</span>
+                                    </a>
+                                </li>
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Cài đặt</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="profile-setting.html">Profile Setting</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="profile-setting.html">
+                                        <i class="ri-settings-line"></i>
+                                        <span>Thông tin tài khoản</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                        <i class="ri-file-chart-line"></i>
+                                        <span>Báo cáo</span>
+                                    </a>
+                                </li> -->
+<!-- 
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                        <i class="ri-list-check"></i>
+                                        <span>List Page</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <div class="right-arrow" id="right-arrow">
+                            <i data-feather="arrow-right"></i>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+
+            <div class="page-body" style="margin-top: 15px !important">
+
+                <!-- New Product Add Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h5>Thêm bài viết</h5>
+                                            </div>
+
+                                            <form class="theme-form theme-form-2 mega-form">
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Mã sản phẩm</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text"
+                                                            placeholder="Mã hàng tự động" id = "codeProdutc" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Tên sản phẩm</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text"
+                                                            placeholder="Bắt buộc" id="productName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center hideupdate">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Đối tượng</label>
+                                                    <div class="col-sm-9">
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-success dropdown-toggle w-100 dropdow-attribute" type="button" id="dropdownButtonObject" data-bs-toggle="dropdown" aria-expanded="false"
+                                                                    style="background-color: #F9F9F6 !important;">
+                                                                    Chọn đối tượng
+                                                                </button>
+                                                                <ul class="dropdown-menu w-100" id="myDropdownObject">
+                                                                    <li>
+                                                                        <input type="text" class="form-control" id="myInputObject" placeholder="Search..." onkeyup="filterFunctionObject()">
+                                                                    </li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Tất cả" data-id="1">Tất cả</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Người lớn" data-id="2"> &nbsp;&nbsp;Người lớn</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Nam" data-id="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nam</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Nữ" data-id="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nữ</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Trẻ em" data-id="5">&nbsp;&nbsp;Trẻ em</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Bé trai" data-id="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bé trai</a></li>
+                                                                    <li><a class="dropdown-item dropdown-item-object" href="#" data-name="Bé gái" data-id="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bé gái</a></li>
+                                                                </ul>
+                                                            </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center hideupdate">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Thể Loại</label>
+                                                    <div class="col-sm-8" style="padding-right: 0px;">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-success dropdown-toggle w-100 dropdow-attribute" type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false"
+                                                                style="background-color: #F9F9F6 !important;">
+                                                                Chọn thể loại (bắt buộc)
+                                                            </button>
+                                                            <ul class="dropdown-menu w-100" id="myDropdown">
+                                                                <li>
+                                                                    <input type="text" class="form-control" id="myInput" placeholder="Search..." onkeyup="filterFunction()">                                                           
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1" style="padding-left: 0px;">
+                                                        <div style="width: 100%">
+                                                            <button id="createAttribute">+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Category modal-header -->
+                                                <div class="modal fade" id="attributeModal" tabindex="-1" aria-labelledby="attributeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="attributeModalLabel">Thêm thể loại mới</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Input cho tên -->
+                                                                <div class="mb-4">
+                                                                    <label for="nameInput" class="form-label">Tên</label>
+                                                                    <input type="text" class="form-control" id="nameCateogryInput" placeholder="Nhập tên thể loại" style="width: 100%; height: 45px; font-size: 16px;">
+                                                                </div>
+                                                                <label for="nameInput" class="form-label">Thể loại cha</label>
+                                                                <!-- Dropdown tìm kiếm -->
+                                                                <div class="dropdown mb-4">
+                                                                    <button class="btn btn-success dropdown-toggle w-100 dropdow-attribute" type="button" id="dropdownButtonModal" data-bs-toggle="dropdown" aria-expanded="false"
+                                                                        style="background-color: #F9F9F6 !important; height: 45px; font-size: 16px;">
+                                                                        Chọn thể loại
+                                                                    </button>
+                                                                    <ul class="dropdown-menu w-100" id="myDropdownModal">
+                                                                        <li>
+                                                                            <input type="text" class="form-control" id="myInputModal" placeholder="Search..." onkeyup="filterFunctionModelAttribute()" style="height: 45px; font-size: 16px;">
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id ="saveCateogye" style="background-color: #F9F9F6; border-color: #ddd; height: 45px; ">Đóng</button>
+                                                                <button type="button" class="btn btn-primary" id ="saveCategory" style="background-color: #F9F9F6; border-color: #ddd; height: 45px;">Lưu</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="mb-4 row align-items-center hideupdate">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Thương Hiệu</label>
+                                                    <div class="col-sm-8" style="padding-right: 0px;">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-success dropdown-toggle w-100 dropdow-brand" type="button" id="dropdownButtonBrand" data-bs-toggle="dropdown" aria-expanded="false"
+                                                                style="background-color: #F9F9F6 !important;">
+                                                                Chọn thương hiệu
+                                                            </button>
+                                                            <ul class="dropdown-menu w-100" id="myDropdownBrand">
+                                                                <li>
+                                                                     <input type="text" class="form-control" id="myInput" placeholder="Search..." onkeyup="filterFunction()">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1" style="padding-left: 0px;">
+                                                        <div style="width: 100%">
+                                                            <button id="createBrand" type="button" data-bs-toggle="modal" data-bs-target="#brandModal" >+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Modal Thương Hiệu -->
+                                                <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="brandModalLabel">Thêm thương hiệu</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Input Nhập Tên Thương Hiệu -->
+                                                                <div class="mb-3">
+                                                                    <label for="brandNameInput" class="form-label">Tên thương hiệu</label>
+                                                                    <input type="text" class="form-control" id="brandNameInput" placeholder="Nhập tên thương hiệu">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                                <button type="button" class="btn btn-primary" id="saveBrand">Lưu</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                                                                <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" >Sửa thương hiệu</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Input Nhập Tên Thương Hiệu -->
+                                                                <div class="mb-3">
+                                                                    <label for="brandNameInputUpdate" class="form-label">Tên thương hiệu</label>
+                                                                    <input type="text" class="form-control" id="brandNameInputUpdate" placeholder="Nhập tên thương hiệu">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                                <button type="button" class="btn btn-primary" id="updateBrand">Lưu</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 form-label-title">Số lượng</label>
+                                                    <div class="col-sm-3">
+                                                        <input class="form-control price-stock" type="text" placeholder="0" min="0" value="0" id="stock">
+                                                    </div>
+                                                    <div class="col-sm-1"></div>
+                                                    <label class="form-label-title col-sm-2 mb-0 hideupdate">Trọng lượng (kg)</label>
+                                                    <div class="col-sm-3 hideupdate">
+                                                        <input class="form-control price" type="text" placeholder="0" min="0" value="0" id="weight">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 form-label-title">Giá bán</label>
+                                                    <div class="col-sm-3">
+                                                        <input class="form-control price" type="text" placeholder="0" value="0"  id="price">
+
+                                                    </div>
+                                                    <div class="col-sm-1"></div>
+                                                    <label class="form-label-title col-sm-2 mb-0">Giá vốn</label>
+                                                    <div class="col-sm-3">
+                                                        <input class="form-control price" type="text" placeholder="0" min="0" value="0" id="costPrice">
+                                                    </div>
+                                                </div>
+                                                
+<!-- 
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Unit</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="js-example-basic-single w-100">
+                                                            <option disabled>Unit Menu</option>
+                                                            <option>Kilogram</option>
+                                                            <option>Pieces</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Tags</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="bs-example">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Type tag & hit enter" id="#inputTag"
+                                                                data-role="tagsinput">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+                                                <!-- image************************************************************************************ -->
+                                                <div class="mb-4 row align-items-center hideupdate">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Ảnh sản phẩm</label>
+                                                    <div class="col-sm-9">
+                                                        <div id="imagePreviewContainer" class="image-preview-container">
+                                                            <div class="image-preview">
+                                                                <span class="plus-sign">+</span>
+                                                                <input type="file" id="imageInput" class="image-input" accept="image/*">
+                                                            </div>
+                                                            <div class="image-preview">
+                                                                <span class="plus-sign">+</span>
+                                                                <input type="file" id="imageInput" class="image-input" accept="image/*">
+                                                            </div>
+                                                            <div class="image-preview">
+                                                                <span class="plus-sign">+</span>
+                                                                <input type="file" id="imageInput" class="image-input" accept="image/*">
+                                                            </div>
+                                                            <div class="image-preview">
+                                                                <span class="plus-sign">+</span>
+                                                                <input type="file" id="imageInput" class="image-input" accept="image/*">
+                                                            </div>
+                                                            <div class="image-preview">
+                                                                <span class="plus-sign">+</span>
+                                                                <input type="file" id="imageInput" class="image-input" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row align-items-center hideupdate">
+                                                    <label
+                                                        class="col-sm-3 col-form-label form-label-title">Bán trực tiếp</label>
+                                                    <div class="col-sm-9">
+                                                        <label class="switch">
+                                                            <input type="checkbox" checked=""><span
+                                                                class="switch-state"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="card hideupdate">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h5>Mô tả sản phẩm</h5>
+                                            </div>
+
+                                            <form class="theme-form theme-form-2 mega-form">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div id="editor" aria-valuemax="hello"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card">
+
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button class="btn btn-outline-secondary px-4 py-2">Bỏ qua</button>
+                                        <button class="btn custom-btn px-4 py-2" id="btn-create">Thêm sản phẩm</button>
+                                        <button class="btn btn-solid px-4 py-2" id="btn-update" style="display:none;">Sửa sản phẩm</button>
+                                        <button class="btn btn-solid px-4 py-2" id="btn-update-variant" style="display:none;">Sửa biến thể</button>
+                                    </div>
+                                    
+                                      
+
+                                </div>
+
+                                <!-- <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-header-2">
+                                            <h5>Product variations</h5>
+                                        </div>
+
+                                        <h2 class="text-center">Quản lý Thuộc Tính</h2>
+
+                                        <button id="addAttribute" class="btn btn-primary mb-3">Thêm Thuộc Tính</button>
+                                        <button id="generateTable" class="btn btn-success mb-3">Tạo Bảng Biến Thể</button>
+                                    
+                                        <div id="attributeContainer"></div>
+                                    
+                                        <h3 class="mt-4">Bảng Biến Thể</h3>
+                                        <table class="table mt-3" id="variantTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Biến thể</th>
+                                                    <th>Giá nhập</th>
+                                                    <th>Giá bán</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        </div>
+                                        
+                                        
+                                    </div> -->
+                                </div>
+
+                                <!-- <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-header-2">
+                                            <h5>Shipping</h5>
+                                        </div>
+
+                                        <form class="theme-form theme-form-2 mega-form">
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="form-label-title col-sm-3 mb-0">Weight
+                                                    (kg)</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="number" placeholder="Weight">
+                                                </div>
+                                            </div>
+
+                                            <div class="row align-items-center">
+                                                <label class="col-sm-3 col-form-label form-label-title">Dimensions
+                                                    (cm)</label>
+                                                <div class="col-sm-9">
+                                                    <select class="js-example-basic-single w-100" name="state">
+                                                        <option>Length</option>
+                                                        <option>Width</option>
+                                                        <option>Height</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="d-flex justify-content-end gap-2">
+                                    <button class="btn btn-outline-secondary px-4 py-2">Bỏ qua</button>
+                                    <button class="btn custom-btn px-4 py-2">Thêm sản phẩm</button>
+                                </div> -->
+                                
+                                  
+
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Add End -->
+                <!-- footer En -->
+            </div>
+            <!-- Container-fluid End -->
+        </div>
+        <!-- Page Body End -->
+    </div>
+    <!-- page-wrapper End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+    
+    <!-- latest js -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="assets/js/scrollbar/simplebar.js"></script>
+    <script src="assets/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="assets/js/config.js"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="assets/js/bootstrap-tagsinput.min.js"></script>
+    <script src="assets/js/sidebar-menu.js"></script>
+
+    <!-- customizer js -->
+    <script src="assets/js/customizer.js"></script>
+
+    <!--Dropzon js -->
+    <script src="assets/js/dropzone/dropzone.js"></script>
+    <script src="assets/js/dropzone/dropzone-script.js"></script>
+
+    <!-- Plugins js -->
+    <script src="assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="assets/js/notify/index.js"></script>
+
+    <!-- ck editor js -->
+    <script src="assets/js/ckeditor.js"></script>
+    <script src="assets/js/ckeditor-custom.js"></script>
+
+    <!-- select2 js -->
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/select2-custom.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="assets/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/product/add-new-blog.js"></script>
+    
+
+</body>
+
+</html>

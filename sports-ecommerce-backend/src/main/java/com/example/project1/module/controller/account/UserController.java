@@ -81,7 +81,7 @@ public class UserController {
         return ResponseResult.ofSuccess();
     }
     @GetMapping("/get-inf")
-    public ResponseResult<Object> delete() {
+    public ResponseResult<Object> getMyInf() {
         return ResponseResult.ofSuccess(userService.getMyInf());
     }
 
@@ -97,4 +97,13 @@ public class UserController {
         return ResponseResult.ofSuccess(userService.updateImage(image, id));
     }
 
+    @GetMapping("/get-detail/{id}")
+    public ResponseResult<Object> getDetail(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(userService.getUserDetail(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseResult<Object> updateUser(@PathVariable Long id, @RequestBody @Valid UserCreateRequest userCreateRequest) {
+        return ResponseResult.ofSuccess(userService.update(userCreateRequest , id));
+    }
 }

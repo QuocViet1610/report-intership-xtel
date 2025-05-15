@@ -29,6 +29,6 @@ public abstract class UserMapper implements EntityMapper<UserDto, User> {
      @Mapping(target = "updatedAt", expression = Constants.EXPRESSION.CURRENT_DATE)
      @Mapping(target = "id", ignore = true)
      @Mapping(target = "password", ignore = true)
-
+     @Mapping(target = "isActive", ignore = true)
      public abstract void  partialUpdate(@MappingTarget User user, UserCreateRequest request);
 }

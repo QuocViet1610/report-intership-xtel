@@ -225,6 +225,7 @@ public class ProductServiceImpl implements ProductService {
         }
         Specification<ProductView> conditions = Specification.where(SearchSpecificationUtil.<ProductView>alwaysTrue())
                 .and(SearchSpecificationUtil.equal("brandId", searchRequest.getBrandId()))
+                .and(SearchSpecificationUtil.equal("productIsActive", searchRequest.getProductIsActive()))
                 .and(SearchSpecificationUtil.equal("categoryId", searchRequest.getCategoryId()))
                 .and(SearchSpecificationUtil.equal("genderId", searchRequest.getGenderId()))
                 .and(SearchSpecificationUtil.likeFieldAttribute("attributeValueIds", searchRequest.getAttributeSearch()))

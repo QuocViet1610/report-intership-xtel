@@ -132,4 +132,5 @@ public class BrandServiceImpl implements BrandService {
     public List<BrandDto> getAll() {
         return brandMapper.toDto(brandRepository.findAll());
     }
+
 }

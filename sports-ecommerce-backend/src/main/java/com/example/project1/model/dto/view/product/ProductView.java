@@ -35,7 +35,7 @@ public class ProductView {
     private String productDescription;
 
     @Column(name = "product_is_active")
-    private Boolean productIsActive;
+    private Integer productIsActive;
 
     @Column(name = "product_total_sold")
     private Long productTotalSold;

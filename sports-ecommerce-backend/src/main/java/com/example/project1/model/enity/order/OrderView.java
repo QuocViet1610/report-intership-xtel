@@ -1,5 +1,6 @@
 package com.example.project1.model.enity.order;
 
+import com.example.project1.utils.DataUtils;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -86,4 +87,8 @@ public class OrderView {
 
     @Column(name = "total_product")
     private Integer totalProduct;
+
+    public String getAvatar() {
+        return DataUtils.convertUrl(avatar == null ? "product/avatar-vo-danh-9.png" : avatar);
+    }
 }

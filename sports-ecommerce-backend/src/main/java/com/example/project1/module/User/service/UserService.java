@@ -32,4 +32,6 @@ public interface UserService {
    Object changepassword(String passwrodOld, String passwordNew);
 
    Object updateImage(MultipartFile image, Long id);
+
+    public Object getUserDetail(Long id);
 }
