@@ -1,0 +1,82 @@
+
+
+$(document).ready(function() {
+
+    fetchLatestBlogs();
+});
+
+
+function fetchUserData() {
+    let token = localStorage.getItem("authToken");
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id') || 0;
+
+    if(id) {
+        $.ajax({
+            url: `http://localhost:8080/blog/get-detail/${id}`,
+            type: 'GET',
+            contentType: 'application/json',
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Accept": "application/json"
+            },
+            success: function(response) {
+                console.log(response);
+                var data = response.data;
+                $('#codeProdutc').val(data.title || '');
+                category = data.categoryId;
+                console.log(category);
+                  $('#dropdownButtonObject').text(getCategoryName(category));      
+                // First destroy any existing editor
+                if (editorInstance) {
+                    editorInstance.destroy()
+                        .then(() => {
+                            console.log("Previous editor instance destroyed");
+                            initEditor(data.content || '');
+                        })
+                        .catch(error => {
+                            console.error("Error destroying editor:", error);
+                            // Try to initialize anyway
+                            initEditor(data.content || '');
+                        });
+                } else {
+                    // No existing editor, initialize a new one
+                    initEditor(data.content || '');
+                }
+            },
+            error: function(xhr, status, error) {
+                // Xử lý khi có lỗi
+                let errorMessage = "Đã xảy ra lỗi!";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                } else if (xhr.responseText) {
+                    try {
+                        let response = JSON.parse(xhr.responseText);
+                        errorMessage = response.message || "Lỗi không xác định từ máy chủ!";
+                    } catch (e) {
+                        errorMessage = "Lỗi không thể đọc phản hồi từ server!";
+                    }
+                }
+                if (typeof showError === 'function') {
+                    showError(errorMessage);
+                } else {
+                    alert(errorMessage);
+                }
+            }
+        });
+    }
+    function getCategoryName(categoryId) {
+  switch (categoryId) {
+    case 1:
+      return "Chọn đồ thể thao";
+    case 2:
+      return "Bài tập thể thao";
+    case 3:
+      return "Sự kiện thể thao";
+    default:
+      return "Không xác định";
+  }
+}
+}

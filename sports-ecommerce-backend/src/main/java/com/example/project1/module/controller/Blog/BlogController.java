@@ -42,8 +42,9 @@ public class BlogController {
 
 
     @PutMapping("/{id}")
-    public ResponseResult<Object> updateQuantity(@RequestBody @TrimAndValid BlogDto createRequest, @RequestParam Long id) {
-        return ResponseResult.ofSuccess(blogService.updateBlog(createRequest, id));
+    public ResponseResult<Void> updateQuantity(@RequestBody @TrimAndValid BlogDto createRequest, @PathVariable Long id) {
+        blogService.updateBlog(createRequest, id);
+        return ResponseResult.ofSuccess();
     }
 
     @PostMapping("/search")
@@ -58,4 +59,14 @@ public class BlogController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseResult<Void> deleted(@PathVariable Long id) {
+        blogService.deleteBlog(id);
+        return ResponseResult.ofSuccess();
+    }
+
+    @GetMapping("/get-detail/{id}")
+    public ResponseResult<Object> getDetail(@PathVariable Long id) {
+        return ResponseResult.ofSuccess(blogService.getDetail(id));
+    }
 }

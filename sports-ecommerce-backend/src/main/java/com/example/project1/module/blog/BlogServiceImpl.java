@@ -64,6 +64,10 @@ public class BlogServiceImpl implements BlogService{
 
     public Object create(BlogBaseRequest request) {
         BlogDto createRequest = request.getData();
+        createRequest.setUserId(tokenUtil.getCurrentUserId());
+        createRequest.setCreatedAt(OffsetDateTime.now());
+
+        createRequest.setUpdatedAt(OffsetDateTime.now());
                 if(!DataUtils.isNullOrEmpty(request.getImage())){
             createRequest.setImage(MinioUtils.uploadToMinioAndGetUrl(request.getImage(), folderLocal, bucketName, keyName));
         }
@@ -71,18 +75,34 @@ public class BlogServiceImpl implements BlogService{
         return blog;
     }
 
-    public Object updateBlog(BlogDto blogDto, Long id){
+    @Override
+    public Object getDetail(Long id) {
+        BlogView blog = blogViewRepository.findById(id)
+                .orElseThrow(() -> new ValidateException(Translator.toMessage("bài viết không tồn tại ")));
+        return blog;
+    }
+
+    @Override
+    public void deleteBlog(Long id) {
+        Blog blog = blogRepository.findById(id)
+                .orElseThrow(() -> new ValidateException(Translator.toMessage("bài viết không tồn tại ")));
+        blogRepository.delete(blog);
+    }
+
+    public void updateBlog(BlogDto blogDto, Long id){
         Blog blog = blogRepository.findById(id)
                 .orElseThrow(() -> new ValidateException(Translator.toMessage("bài viết không tồn tại ")));
 
         Blog blogUpdate = blogMapper.toEntity(blogDto);
-        blogUpdate.setId(id);
-        blogUpdate.setCreatedAt(blog.getCreatedAt());
+        blog.setTitle(blogDto.getTitle());
+        blog.setContent(blogDto.getContent());
+        blog.setCategoryId(blogDto.getCategoryId());
         blog.setUpdatedAt(OffsetDateTime.now());
         blog.setUserId(tokenUtil.getCurrentUserId());
+
         blogRepository.save(blog);
 
-        return blog;
+
     }
 
 
