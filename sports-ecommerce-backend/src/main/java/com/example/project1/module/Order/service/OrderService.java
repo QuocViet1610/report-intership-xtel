@@ -30,4 +30,6 @@ public interface OrderService {
     Object topProduct();
 
     Object topOder();
+
+    public Object topCustomer();
 }

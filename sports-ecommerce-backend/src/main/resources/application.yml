@@ -77,7 +77,7 @@ app:
             blog: "blog/"
 vnpay:
     pay-url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
-    return-url: "${VNPAY_RETURN_URI:http://127.0.0.1:5501/sport-econmmer/fronend/sport/front-end/order-success.html}"
+    return-url: "${VNPAY_RETURN_URI:http://127.0.0.1:5500/final/sport-econmmer/fronend/sport/front-end/order-success.html}"
     tmn-code: "VFVK4LS2" #tmn code
     secret-key: "7FCMYIFHA0YB62ELDJ78WKMXJS9I2EXP" # key code
     api-url: "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction"

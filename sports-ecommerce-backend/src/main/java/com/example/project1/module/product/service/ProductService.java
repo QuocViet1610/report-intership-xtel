@@ -22,5 +22,5 @@ public interface ProductService {
 
     ProductViewDto getDetail(Long id);
 
-
+    Object kinhDoanh(Long id);
 }

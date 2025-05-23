@@ -67,4 +67,9 @@ public class ProductController {
         return ResponseResult.ofSuccess(productService.getDetail(id));
     }
 
+    @PutMapping("/is-active/{id}")
+    public ResponseResult<Object> isActive(@PathVariable Long id) {
+        return ResponseResult.ofSuccess( productService.kinhDoanh(id));
+    }
+
 }

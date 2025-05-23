@@ -372,4 +372,21 @@ public class ProductServiceImpl implements ProductService {
         return productViewMapper.toDto(productView);
     }
 
+    public Object kinhDoanh(Long id){
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ValidateException(Translator.toMessage("Sản phẩm không tồn tại")));
+
+        // Đảo trạng thái: 0 -> 1 hoặc 1 -> 0
+        int currentStatus = product.getIsActive();
+        int newStatus = (currentStatus == 0) ? 1 : 0;
+
+        // Cập nhật trạng thái mới
+        product.setIsActive(newStatus);
+
+        // Lưu thay đổi
+        productRepository.save(product);
+
+        return product;
+
+    }
 }

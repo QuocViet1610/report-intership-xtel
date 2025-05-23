@@ -38,7 +38,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -76,7 +75,6 @@ public class OrderServiceImpl implements OrderService {
         if (!productVariantRepository.findById(request.getProductVariantId()).isPresent()) {
             throw new ValidateException(Translator.toMessage("Biến thể sản phẩm trong đơn hàng không tồn tại "));
         }
-
     }
 
     @Override
@@ -89,6 +87,14 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDetail> orderDetails = orderCreateRequest.getOrderDetails().stream().map(orderDetailCreateRequest -> {
             validateOrderDetail(orderDetailCreateRequest, true);
             orderDetailCreateRequest.setOrderId(order.getId());
+            Product product = productRepository.findById(orderDetailCreateRequest.getProductId()).orElseThrow(() -> new ValidateException("Sản phẩm không tồn tại"));
+            product.setTotalSold(product.getTotalSold() + 1L);
+            ProductVariant variant = productVariantRepository.findById(orderDetailCreateRequest.getProductVariantId()).orElseThrow(() -> new ValidateException("Sản phẩm không tồn tại"));
+            if (variant.getQuantity() > 0){
+                variant.setQuantity(variant.getQuantity() - 1L);
+            }
+            productRepository.save(product);
+            productVariantRepository.save(variant);
             return orderDetailMapper.toCreate(orderDetailCreateRequest);
         }).collect(Collectors.toList());
 
@@ -100,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse getOrderDetail(Long id) {
         Long userId = tokenUtil.getCurrentUserId();
-        Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
         List<OrderDetail> orderDetailList = orderDetailRepository.findAllByOrderId(order.getId());
         Set<OrderDetailResponse> orderDetails = orderDetailList.stream()
                 .sorted(Comparator.comparing(OrderDetail::getOrderId)) // Sắp xếp theo ID
@@ -159,7 +165,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto UpdateProcess(Long id) {
         Long userId = tokenUtil.getCurrentUserId();
-        Order order = orderRepository.findByIdAndUserId(id, userId).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ValidateException("Đơn hàng không tồn tại"));
         order.setStatusId(order.getStatusId() + 1);
         orderRepository.save(order);
         return orderMapper.toDto(order);
@@ -258,5 +264,21 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findTop5ByOrderByTotalAmountDesc(pageable);
     }
 
+
+    public Object topCustomer() {
+        Pageable pageable = PageRequest.of(0, 5);  // Top 5
+        List<Object[]> results = orderRepository.findTopUsersByPurchaseCountNative(pageable);
+
+        for (Object[] row : results) {
+            Long userId = ((Number) row[0]).longValue();
+            String fullName = (String) row[1];
+            String avatar = (String) row[2];
+            String email = (String) row[3];
+            String phone = (String) row[4];
+            Long totalProducts = ((Number) row[5]).longValue();
+            BigDecimal totalAmount = (BigDecimal) row[6];
+        }
+        return results;
+    }
 
 }

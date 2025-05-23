@@ -62,6 +62,8 @@ public class WebSecurityConfig {
             Pair.of("/attribute/find-value/{id}", HttpMethod.GET),
             Pair.of("/category/{id}", HttpMethod.GET),
             Pair.of("/product-rating/{id}", HttpMethod.GET),
+            Pair.of("/blog/search", HttpMethod.POST),
+            Pair.of("/blog/get-detail/{id}", HttpMethod.GET),
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

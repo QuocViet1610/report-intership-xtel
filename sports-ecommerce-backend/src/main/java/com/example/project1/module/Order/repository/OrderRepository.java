@@ -62,5 +62,15 @@ public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecific
     @Query("SELECT o FROM Order o WHERE o.statusId = 4 ORDER BY o.finalPrice DESC")
     List<Order> findTop5ByOrderByTotalAmountDesc(Pageable pageable);
 
+    @Query(value = "SELECT u.id AS userId, u.full_name AS fullName, u.avatar AS avatar, " +
+            "u.email AS email, u.phone AS phone, " +
+            "SUM(o.total_product) AS totalProductsBought, " +
+            "SUM(o.final_price) AS totalAmountSpent " +
+            "FROM Orders o JOIN users u ON o.user_id = u.id " +
+            "WHERE o.status_id = 4 " +   // Thêm điều kiện chỉ lấy đơn hàng trạng thái Đã giao
+            "GROUP BY u.id, u.full_name, u.avatar, u.email, u.phone " +
+            "ORDER BY totalProductsBought DESC", nativeQuery = true)
+    List<Object[]> findTopUsersByPurchaseCountNative(Pageable pageable);
+
 
 }

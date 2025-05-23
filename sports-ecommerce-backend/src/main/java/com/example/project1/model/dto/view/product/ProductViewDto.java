@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Data
 public class ProductViewDto {
-
         private Long productId;
         private String productCode;
         private String productName;

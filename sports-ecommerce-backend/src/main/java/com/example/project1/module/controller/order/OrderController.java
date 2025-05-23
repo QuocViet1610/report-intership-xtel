@@ -83,5 +83,10 @@ public class OrderController {
     public ResponseResult<Object> getTopOrder() {
         return ResponseResult.ofSuccess(orderService.topOder());
     }
+
+    @GetMapping("/topUser")
+    public ResponseResult<Object> getTopUser() {
+        return ResponseResult.ofSuccess(orderService.topCustomer());
+    }
 }
 
