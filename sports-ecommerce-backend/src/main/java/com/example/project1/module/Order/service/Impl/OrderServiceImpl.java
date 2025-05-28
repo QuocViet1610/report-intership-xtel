@@ -234,17 +234,13 @@ public class OrderServiceImpl implements OrderService {
         Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Order.desc("totalOrders")));
         List<Object[]> result = orderDetailRepository.findTop5ProductsByTotalOrders(pageable);
 
-
         List<Long> productIds = result.stream()
                 .map(row -> (Long) row[0])  // Chuyển đổi từ Object[] lấy product_id
                 .collect(Collectors.toList());
 
-
         List<ProductView> products = productViewRepository.findAllById(productIds);
 
-
         List<ProductImage> productImages = new ArrayList<>();
-
 
         for (Long productId : productIds) {
 
@@ -263,7 +259,6 @@ public class OrderServiceImpl implements OrderService {
         Pageable pageable = PageRequest.of(0, 5);  // Lấy 5 đơn hàng có số tiền cao nhất
         return orderRepository.findTop5ByOrderByTotalAmountDesc(pageable);
     }
-
 
     public Object topCustomer() {
         Pageable pageable = PageRequest.of(0, 5);  // Top 5
