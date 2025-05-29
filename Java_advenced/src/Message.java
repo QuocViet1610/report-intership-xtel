@@ -1,5 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class Message {
     String content;
@@ -7,34 +10,30 @@ public class Message {
     Message(String content) {
         this.content = content;
     }
+    @Override
+    public String toString() {
+        return content;
+    }
 }
 
 class MessageQueue {
-    private Queue<Message> queue = new LinkedList<>();
-    private int capacity;
+
+    private BlockingQueue<Message> queue;
 
     MessageQueue(int capacity) {
-        this.capacity = capacity;
+        this.queue = new ArrayBlockingQueue<>(capacity);
     }
 
-    public synchronized void produce(Message message) throws InterruptedException {
-        while (queue.size() == capacity) {
-            wait();  // Chờ nếu queue đầy
-        }
-        queue.add(message);
-        System.out.println("Producer đã gửi: " + message.content);
-        notify();  // Thông báo consumer rằng có message mới
+    // Thêm message vào queue
+    public void put(Message msg) throws InterruptedException {
+        queue.put(msg);
     }
 
-    public synchronized Message consume() throws InterruptedException {
-        while (queue.isEmpty()) {
-            wait();  // Chờ nếu queue rỗng
-        }
-        Message message = queue.poll();
-        System.out.println("Consumer đã nhận: " + message.content);
-        notify();  // Thông báo producer có chỗ trống trong queue
-        return message;
+    // Lấy message từ queue
+    public Message take() throws InterruptedException {
+        return queue.take();
     }
+
 }
 
 class Producer extends Thread {
@@ -45,16 +44,21 @@ class Producer extends Thread {
     }
 
     public void run() {
-        try {
-            while (true) {
-                String messageContent = "Message " + System.currentTimeMillis();
-                Message message = new Message(messageContent);
-                queue.produce(message);
-                Thread.sleep(1000);  // Tạo message mới sau mỗi 1 giây
+        Random random = new Random();
+
+
+        while (true){
+            try {
+                int randomInt = random.nextInt(100);
+                Message message = new Message("message "+ randomInt);
+                queue.put(message);
+//                Thread.sleep(1000);
+                System.out.println("producer: "+ message);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        } catch (InterruptedException e) {
-            System.out.println("Producer bị gián đoạn.");
         }
+
     }
 }
 
@@ -66,13 +70,15 @@ class Consumer extends Thread {
     }
 
     public void run() {
-        try {
-            while (true) {
-                queue.consume();
-                Thread.sleep(1500);  // Tiêu thụ message sau mỗi 1.5 giây
+
+        while (true){
+            try {
+                Message message = queue.take();
+                System.out.println("Consumed: " + message.content);
+//                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-        } catch (InterruptedException e) {
-            System.out.println("Consumer bị gián đoạn.");
         }
     }
 }
