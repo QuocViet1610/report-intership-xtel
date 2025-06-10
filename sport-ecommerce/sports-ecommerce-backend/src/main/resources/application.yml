@@ -1,0 +1,92 @@
+spring:
+    application:
+        name: project1
+
+    datasource:
+        url: ${DBMS_CONNECTION_URL:jdbc:mysql://172.17.0.2/sport_ecommerce}
+        username: ${DBMS_CONNECTION_USERNAME:root}
+        password: ${DBMS_CONNECTION_PASSWORD:123456}
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+
+    mail:
+        host: smtp.gmail.com
+        port: 465
+        username: vietddls06@gmail.com
+        password: loeavfbmttsgqnlu
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 50MB
+
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 716023674346-i2jacdj98u5v0evbu3665cqovl0acp62.apps.googleusercontent.com
+                        client-secret: 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
+                        redirect-uri: "${GOOGLE_REDIRECT_URI:http://127.0.0.1:5501/sport-econmmer/fronend/sport/front-end/login.html}" #sau khi user đăng nhập google thành công sẽ tự redirect đến trang này kèm code(của gooogle)
+                        user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+                        #auth-uri: "https://www.facebook.com/v3.2/dialog/oauth"
+                        resource-server:
+                            opaque-token:
+                                introspection-uri: "https://googleapis.com"  # Đảm bảo URI này chính xác
+
+api:
+    prefix: /api/v1
+
+server:
+    port: 8080
+
+jwt:
+    signerKey: 8o24T1lHAIsiyuoKMPYnVaavjaVWmTbAE4tofn0jmEs=
+    valid-duration: 14400 # in seconds 2h
+    refreshable-duration: 72000 # in seconds
+
+
+app:
+    minio:
+        host: "http://localhost:9001/"
+        local: "http://localhost:9000/"
+        accessKey: "minioadmin"
+        secretKey: "minioadmin"
+        bucketName: "sports"
+    image:
+        folder:
+            category: "src\\upload\\category\\"
+            brand: "src\\upload\\image\\brand\\"
+            product: "src\\upload\\image\\product\\"
+            user: "src\\upload\\image\\user\\"
+            blog: "src\\upload\\image\\blog\\"
+        keyName:
+            category: "category/"
+            brand: "brand/"
+            product: "product/"
+            user: "user/"
+            blog: "blog/"
+vnpay:
+    pay-url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
+    return-url: "${VNPAY_RETURN_URI:http://127.0.0.1:5500/final/sport-econmmer/fronend/sport/front-end/order-success.html}"
+    tmn-code: "VFVK4LS2" #tmn code
+    secret-key: "7FCMYIFHA0YB62ELDJ78WKMXJS9I2EXP" # key code
+    api-url: "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction"
+
+# swagger-ui custom path
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html
+    api-docs:
+        path: /api-docs
+    show-actuator: true
+

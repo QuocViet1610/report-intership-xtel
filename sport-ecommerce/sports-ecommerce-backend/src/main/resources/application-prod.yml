@@ -1,0 +1,5 @@
+jwt:
+    signerKey: ${SIGNERKEY-PROD:jxA1esSXuSc7Fz6/k7orEckPxYYus/5lswYoaoHn8rVcvWzRtb3LdZIzEisFOuwU}
+    valid-duration: 72000 # in seconds 2h
+    refreshable-duration: 72000 # in seconds
+

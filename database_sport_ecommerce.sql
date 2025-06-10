@@ -54,7 +54,6 @@ CREATE TABLE permission (
   description TEXT DEFAULT NULL  
 );
 
-
 CREATE TABLE role_permission (
   id INT NOT NULL AUTO_INCREMENT,
   role_id INT NOT NULL,
