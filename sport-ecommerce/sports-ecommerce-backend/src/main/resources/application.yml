@@ -3,26 +3,31 @@ spring:
         name: project1
 
     datasource:
-        url: ${DBMS_CONNECTION_URL:jdbc:mysql://172.17.0.2/sport_ecommerce}
+        url: ${DBMS_CONNECTION_URL:jdbc:mysql://localhost:3306/sport_ecommerce}
         username: ${DBMS_CONNECTION_USERNAME:root}
         password: ${DBMS_CONNECTION_PASSWORD:123456}
+        hikari:
+            maximum-pool-size: 100
+            connection-timeout: 30000
 
     jpa:
         show-sql: true
         hibernate:
             ddl-auto: none
+            format_sql: true
 
     mail:
-        host: smtp.gmail.com
-        port: 465
-        username: vietddls06@gmail.com
-        password: loeavfbmttsgqnlu
+        host: ${MAIL_HOST}
+        port: ${MAIL_PORT}
+        username: ${MAIL_USERNAME}
+        password: ${MAIL_PASSWORD}
         properties:
             mail:
                 smtp:
                     auth: true
                     starttls:
                         enable: true
+
 
     servlet:
         multipart:
@@ -41,13 +46,40 @@ spring:
                         #auth-uri: "https://www.facebook.com/v3.2/dialog/oauth"
                         resource-server:
                             opaque-token:
-                                introspection-uri: "https://googleapis.com"  # Đảm bảo URI này chính xác
+                                introspection-uri: "https://googleapis.com"
+    data:
+        redis:
+            host: localhost
+            port: 6379
+            timeout: 2000
+            lettuce:
+                pool:
+                    max-active: 50
+                    max-idle: 30
+                    min-idle: 10
+                    max-wait: 10000
+
+    spring:
+        kafka:
+            bootstrap-servers: localhost:9092
+            producer:
+                key-serializer: org.apache.kafka.common.serialization.StringSerializer # serializer byte
+                value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # serializer
+                acks: -1
+                retries: 1
+                properties:
+                    enable.idempotence: true
+                    max.in.flight.requests.per.connection: 5
 
 api:
     prefix: /api/v1
 
 server:
     port: 8080
+    servlet:
+        async:
+            timeout: 60000
+
 
 jwt:
     signerKey: 8o24T1lHAIsiyuoKMPYnVaavjaVWmTbAE4tofn0jmEs=
@@ -89,4 +121,11 @@ springdoc:
     api-docs:
         path: /api-docs
     show-actuator: true
+
+logging:
+    file:
+        path: logs
+    level:
+        root: INFO
+        com.mycompany: DEBUG
 

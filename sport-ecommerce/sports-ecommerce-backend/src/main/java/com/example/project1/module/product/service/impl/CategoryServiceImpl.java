@@ -26,7 +26,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -54,7 +53,6 @@ public class CategoryServiceImpl implements CategoryService {
     private void validateLogic(CategoryCreateRequest request, boolean isCreated) {
         request.validate();
 
-
         request.setName(request.getName().trim());
         if (isCreated) {
             if (request.getParentId() != null) {
@@ -74,14 +72,10 @@ public class CategoryServiceImpl implements CategoryService {
                 request.setLevel(1L);
                 request.setFullParentId(null);
             }
-
-
             List<Category> existingCategory = categoryRepository.findByNameIgnoreCase(request.getName().trim());
             if (existingCategory.size() >= 1 ) {
                 throw new ValidateException(Translator.toMessage("Thể loại đã tồn tại"));
             }
-
-
         } else {
             Optional<Category> existingCategoryExit = categoryRepository.findByNameIgnoreCaseAndIdNot(request.getName(), request.getId());
             if (existingCategoryExit.isPresent()) {
@@ -96,15 +90,12 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new ValidateException(Translator.toMessage("Thể loại không tồn tại ")));
         MinioUtils.deleteFileMinio(bucketName, category.getImage());
         List<Long> fullParentIds = categoryRepository.findIdsByFullParentIdContaining(String.valueOf(id));
-
 //        String[] parentIds = fullParentId.split(",");
 //        Long[] parentIdsLong = new Long[parentIds.length];
 //        for (int i = 0; i < parentIds.length; i++) {
 //            parentIdsLong[i] = Long.parseLong(parentIds[i]);
 //        }
 //        List<Long> parentIdsList = Arrays.asList(parentIdsLong);
-
-
         List<Product> productIds = productRepository.findAllByCategoryId(fullParentIds);
         List<Product> productId = productRepository.findAllByCategoryId(id);
         if (productIds.size() > 0 || productId.size() > 0){
@@ -181,7 +172,6 @@ public class CategoryServiceImpl implements CategoryService {
             }else {
                 categoryRepository.updateFullParentId("",category.getId());
             }
-
 
             categoryMapper.partialUpdate(category, createRequest);
             categoryRepository.save(category);

@@ -1,8 +1,6 @@
 package com.example.project1.config;
-
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;

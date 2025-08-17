@@ -1,23 +1,17 @@
 package com.example.project1.module.controller.product;
-
 import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.product.AttributeDto;
 import com.example.project1.model.dto.product.AttributeValueDTO;
-import com.example.project1.model.dto.product.BrandDto;
 import com.example.project1.model.dto.request.product.AttributeCreateRequest;
 import com.example.project1.model.dto.request.product.AttributeSearchRequest;
-import com.example.project1.model.dto.request.product.BrandBaseRequest;
-import com.example.project1.model.dto.request.product.BrandSearchRequest;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.product.service.AttributeService;
-import com.example.project1.module.product.service.BrandService;
 import com.example.project1.utils.DataUtils;
 import jakarta.websocket.server.PathParam;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

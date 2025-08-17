@@ -1,12 +1,10 @@
 package com.example.project1.module.controller.Cart;
-
 import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.cart.CartItemCreateRequest;
 import com.example.project1.model.dto.cart.CartItemDto;
 import com.example.project1.model.dto.respone.CartResponse;
 import com.example.project1.module.cart.service.CartService;
-import jakarta.websocket.server.PathParam;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,14 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CartController {
-    CartService cartService;
 
+    CartService cartService;
 
     @PostMapping("")
     public ResponseResult<CartItemDto> addProductToCart(@RequestBody @TrimAndValid CartItemCreateRequest createRequest) {
         return ResponseResult.ofSuccess(cartService.addProductToCart(createRequest));
     }
-
 
     @PutMapping("/update/{cartItemId}")
     public ResponseResult<CartItemDto> updateQuantity(@PathVariable Long cartItemId, @RequestParam Long quantity) {
@@ -36,7 +33,6 @@ public class CartController {
         cartService.removeProductFromCart(cartItemId);
         return ResponseResult.ofSuccess();
     }
-
 
     @GetMapping("")
     public ResponseResult<CartResponse> getCartByUserId() {

@@ -1,27 +1,17 @@
 package com.example.project1.module.controller.Blog;
 
 import com.example.project1.middleware.annotation.TrimAndValid;
-import com.example.project1.model.config.MinioConfig;
 import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.blog.BlogDto;
-import com.example.project1.model.dto.cart.CartItemCreateRequest;
-import com.example.project1.model.dto.cart.CartItemDto;
-import com.example.project1.model.dto.product.CategoryDto;
 import com.example.project1.model.dto.request.Blog.BlogBaseRequest;
 import com.example.project1.model.dto.request.Blog.BlogSearch;
-import com.example.project1.model.dto.request.Order.OrderSearchRequest;
-import com.example.project1.model.dto.request.product.CategoryBaseRequest;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.module.blog.BlogService;
 import com.example.project1.utils.DataUtils;
-import jakarta.annotation.PostConstruct;
 import jakarta.websocket.server.PathParam;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -39,7 +29,6 @@ public class BlogController {
 //    public ResponseResult<Object> addProductToCart(@RequestBody @TrimAndValid BlogDto createRequest) {
 //        return ResponseResult.ofSuccess(blogService.createBlog(createRequest));
 //    }
-
 
     @PutMapping("/{id}")
     public ResponseResult<Void> updateQuantity(@RequestBody @TrimAndValid BlogDto createRequest, @PathVariable Long id) {

@@ -8,14 +8,13 @@ COPY src ./src
 
 RUN mvn package -DskipTests
 
-#Stage 2: create image
-# Start with Amazon Correto JDK 21
 
+# Start with Amazon Correto JDK 21
 FROM amazoncorretto:21.0.1-al2023
 
 
 WORKDIR /app
-
+RUN mkdir -p logs
 COPY --from=build /app/target/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

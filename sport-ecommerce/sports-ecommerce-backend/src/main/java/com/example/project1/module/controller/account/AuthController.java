@@ -1,6 +1,4 @@
 package com.example.project1.module.controller.account;
-import com.example.project1.expection.ValidateException;
-import com.example.project1.local.Translator;
 import com.example.project1.middleware.annotation.TrimAndValid;
 import com.example.project1.model.dto.ResponseResult;
 import com.example.project1.model.dto.User.UserDto;
@@ -10,29 +8,16 @@ import com.example.project1.model.dto.request.RegisterRequest;
 import com.example.project1.model.dto.request.VerificationOtp;
 import com.example.project1.model.dto.respone.AuthenticationResponse;
 import com.example.project1.module.User.service.AuthenticationService;
-import com.example.project1.module.User.service.serviceImpl.AuthenticationServiceImpl;
 import com.example.project1.module.auth.AuthService;
 import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.JWSVerifier;
-import com.nimbusds.jose.crypto.MACVerifier;
-import com.nimbusds.jwt.SignedJWT;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.NonFinal;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/auth")
@@ -70,7 +55,6 @@ public class AuthController {
     public ResponseResult<UserDto> verifyOtp(@RequestBody VerificationOtp verificationOtp) {
         return ResponseResult.ofSuccess(authenticationService.verifyOtp(verificationOtp));
     }
-
 
     @PostMapping("/validate-forget-password/{email}")
     public ResponseResult<Boolean> validateForgetPassword(@PathVariable String email) {
@@ -118,7 +102,6 @@ public class AuthController {
         return authService.loginSocial(userLoginDTO, request);
     }
 
-
     @PostMapping("/logout")
     public ResponseResult<Void> logout(@RequestBody IntrospectionRequest request) {
         authenticationService.logout(request);
@@ -130,6 +113,4 @@ public class AuthController {
         authenticationService.refreshToken(request);
         return ResponseResult.ofSuccess();
     }
-
-
 }

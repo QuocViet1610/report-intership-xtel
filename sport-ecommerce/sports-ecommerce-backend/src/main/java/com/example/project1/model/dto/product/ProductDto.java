@@ -41,4 +41,5 @@ public class ProductDto extends BaseDto {
 
     private BigDecimal weight;
 
+
 }

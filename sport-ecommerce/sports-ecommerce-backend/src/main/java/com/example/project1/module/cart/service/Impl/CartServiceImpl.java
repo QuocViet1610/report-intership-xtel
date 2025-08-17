@@ -133,9 +133,9 @@ public class CartServiceImpl implements CartService {
                     if (cartItem.getProductVariantId() != null) {
                         ProductVariant productVariant = productVariantRepository.findByIdAndProductId(cartItem.getProductVariantId(), cartItem.getProductId())
                                 .orElseThrow(() -> new ValidateException(Translator.toMessage("Biến thể trong giỏ hàng không tồn tại")));
-                        productView.setProductVariants(Set.of(productVariant));
+//                        productView.setProductVariants(Set.of(productVariant));
                     } else {
-                        productView.setProductVariants(Collections.emptySet());
+//                        productView.setProductVariants(Collections.emptySet());
                     }
 
                     // Gán ProductView vào CartItemResponse

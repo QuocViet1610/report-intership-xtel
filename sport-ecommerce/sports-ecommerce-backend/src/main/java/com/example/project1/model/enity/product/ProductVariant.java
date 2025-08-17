@@ -32,9 +32,10 @@ public class ProductVariant extends BaseEntity {
     private Product product;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false, updatable = false, insertable = false )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false, updatable = false, insertable = false)
     private ProductView productView;
+
     @Column(nullable = false)
     private BigDecimal price;
 

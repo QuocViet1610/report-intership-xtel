@@ -34,10 +34,10 @@ public class UserVerification {
     @Column(name = "password")
     private String password;
 
-
     public boolean isLocked() {
         return lockTime != null && lockTime.isAfter(LocalDateTime.now());
     }
+
     public UserVerification() {
 
     }

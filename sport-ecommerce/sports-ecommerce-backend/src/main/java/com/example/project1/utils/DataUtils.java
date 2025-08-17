@@ -1,10 +1,13 @@
 package com.example.project1.utils;
 
+import com.example.project1.expection.ValidateException;
+import com.example.project1.local.Translator;
 import com.example.project1.middleware.annotation.Nested;
 import com.example.project1.model.config.LocalDateAdapter;
 import com.example.project1.model.config.OffsetDateTimeAdapter;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nimbusds.jose.shaded.gson.Gson;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.text.Normalizer;
@@ -233,4 +237,46 @@ public class DataUtils {
 //
 //        return tmp_Url;
 //    }
+
+    public static SimpleModule createOffsetDateTimeModule() {  //SimpleModule đăng ký các deserializer hoặc serializer
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(OffsetDateTime.class, new JsonDeserializer<OffsetDateTime>() {
+            @Override
+            public OffsetDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+                String date = p.getText();
+                return OffsetDateTime.parse(date);
+            }
+        });
+        return module;
+    }
+
+    public static <T> List<T> jsonToListThrow(String json, Class<T> classOutput, String message) {
+        ObjectMapper objectMapper = new ObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false) // bỏ các thuôc tinh khong xac dinh
+                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY) //  parse vào field kiểu List<String>
+                .registerModule(new JavaTimeModule())
+                .registerModule(DataUtils.createOffsetDateTimeModule());
+        TypeFactory typeFactory = objectMapper.getTypeFactory(); // để tạo các kiểu (generic)
+        try {
+            return objectMapper.readValue(json, typeFactory.constructCollectionType(List.class, classOutput)); //List<T>, với T là classOutput.
+        } catch (Exception ex) {
+            log.error("error: " + ex);
+            throw new ValidateException(Translator.toMessage(message));
+        }
+    }
+
+    public static String objectToJson(Object data) {
+        try {
+            ObjectMapper mapper = new ObjectMapper(); // ObjectMapper deserializer hoặc serializer
+            mapper.registerModule(new JavaTimeModule());
+            mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+            return mapper.writeValueAsString(data);
+        } catch (Exception ex) {
+            log.warn(ex.getMessage(), ex);
+            return "";
+        }
+    }
+
+
 }

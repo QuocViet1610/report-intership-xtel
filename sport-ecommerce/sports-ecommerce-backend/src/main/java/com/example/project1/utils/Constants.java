@@ -28,4 +28,6 @@ public class Constants {
         public static final String SYSTEM_ERROR = "500";
 
     }
+
+    public static final int timeOutCache30Days = 30;
 }

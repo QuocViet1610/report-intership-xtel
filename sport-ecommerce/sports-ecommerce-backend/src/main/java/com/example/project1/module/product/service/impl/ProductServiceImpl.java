@@ -1,5 +1,4 @@
 package com.example.project1.module.product.service.impl;
-
 import com.example.project1.expection.ValidateException;
 import com.example.project1.local.Translator;
 import com.example.project1.mapper.product.ProductMapper;
@@ -27,7 +26,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.math.BigDecimal;
 import java.text.Normalizer;
 import java.util.*;
@@ -211,8 +209,6 @@ public class ProductServiceImpl implements ProductService {
             }
             productRepository.delete(product);
         }
-
-
     }
 
     @Override

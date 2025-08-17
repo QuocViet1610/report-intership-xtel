@@ -1,5 +1,4 @@
 package com.example.project1.model.dto.request.product;
-
 import com.example.project1.expection.ValidateException;
 import com.example.project1.local.Translator;
 import lombok.Data;

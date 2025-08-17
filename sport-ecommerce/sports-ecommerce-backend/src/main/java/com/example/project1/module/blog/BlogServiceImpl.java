@@ -1,5 +1,4 @@
 package com.example.project1.module.blog;
-
 import com.example.project1.expection.ValidateException;
 import com.example.project1.local.Translator;
 import com.example.project1.mapper.Blog.BlogMapper;
@@ -7,10 +6,8 @@ import com.example.project1.model.config.MinioConfig;
 import com.example.project1.model.dto.blog.BlogDto;
 import com.example.project1.model.dto.request.Blog.BlogBaseRequest;
 import com.example.project1.model.dto.request.Blog.BlogSearch;
-import com.example.project1.model.dto.request.product.CategoryCreateRequest;
 import com.example.project1.model.enity.blog.Blog;
 import com.example.project1.model.enity.blog.BlogView;
-import com.example.project1.model.enity.product.Category;
 import com.example.project1.module.PageableCustom;
 import com.example.project1.utils.DataUtils;
 import com.example.project1.utils.MinioUtils;
@@ -23,7 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,10 +95,7 @@ public class BlogServiceImpl implements BlogService{
         blog.setCategoryId(blogDto.getCategoryId());
         blog.setUpdatedAt(OffsetDateTime.now());
         blog.setUserId(tokenUtil.getCurrentUserId());
-
         blogRepository.save(blog);
-
-
     }
 
 

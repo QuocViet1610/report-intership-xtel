@@ -61,7 +61,7 @@ public class Product extends BaseEntity {
     @Column(name = "weight")
     private BigDecimal weight;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<ProductVariant> productVariants ;
 

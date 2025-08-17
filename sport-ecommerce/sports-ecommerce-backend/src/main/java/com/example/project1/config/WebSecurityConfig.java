@@ -78,7 +78,9 @@ public class WebSecurityConfig {
             Pair.of("/swagger-ui/**", HttpMethod.GET),
             Pair.of("/swagger-ui.html", HttpMethod.GET),
             Pair.of("/webjars/swagger-ui/**", HttpMethod.GET),
-            Pair.of("/swagger-ui/index.html", HttpMethod.GET)
+            Pair.of("/swagger-ui/index.html", HttpMethod.GET),
+            Pair.of("/v1/coupon/apply", HttpMethod.POST),
+            Pair.of("/customer/**", HttpMethod.GET)
     };
 
     @Bean

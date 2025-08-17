@@ -39,6 +39,7 @@ public class CouponService {
     public Coupon delete(Long id){
         Coupon coupon = couponRepository.findById(id).orElseThrow(() -> new ValidateException(Translator.toMessage("Mã giảm không tồn tại ")));
         coupon.setActive(false);
+
         return couponRepository.save(coupon);
     }
 
